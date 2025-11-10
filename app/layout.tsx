@@ -1,19 +1,20 @@
 import "./globals.css";
 import { ReactNode } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Petković Solutions",
-  description: "Digitalna rješenja — web, aplikacije, AI i SaaS temelji.",
+  title: "Petković Solutions — Petciety Digital",
+  description:
+    "Digitalna rešenja koja traju — web sajtovi, aplikacije, AI i SaaS temelji. Deo Petković Solutions ekosistema.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="sr">
-      <body className="bg-gray-950 text-white font-sans min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-[#F9EBD0] text-gray-900 font-[Poppins]">
         <Navbar />
-        <main className="flex-grow container max-w-6xl mx-auto px-4 py-10">
+        <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>
         <Footer />
