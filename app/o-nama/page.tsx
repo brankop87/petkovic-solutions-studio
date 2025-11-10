@@ -40,4 +40,17 @@ export default function ONamaPage() {
                 Kao deo <span className="text-emerald-400">Petciety ekosistema</span>,
                 naš tim kombinuje iskustvo u softverskom razvoju, dizajnu i
                 automatizaciji. Radimo sa preduzećima koja žele modernu
-                digi
+                digitalnu infrastrukturu — ne samo sajt, već održiv sistem.
+              </p>
+              <p>
+                Verujemo u pristup “manje reči, više rezultata”.  
+                Svaki projekat je prilika da klijent dobije rešenje koje
+                štedi vreme, povećava profit i ostavlja profesionalan utisak.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </MotionConfig>
+  );
+}
