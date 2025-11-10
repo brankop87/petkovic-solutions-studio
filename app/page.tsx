@@ -1,6 +1,16 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 {/* ANIMIRANI DETALJ: AI LAB */}
 <section className="bg-gray-950 text-white py-24 px-4 border-t border-gray-800">
-  <div className="max-w-5xl mx-auto text-center space-y-8">
+  <motion.div
+    className="max-w-5xl mx-auto text-center space-y-8"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.4 }}
+  >
     <h2 className="text-2xl font-semibold text-emerald-400">
       Aplikacija je trenutno u izradi
     </h2>
@@ -41,14 +51,11 @@
           animate={{ rotate: [0, -3, 3, -3, 0] }}
           transition={{ repeat: Infinity, duration: 6 }}
         >
-          {/* Glava */}
           <circle cx="150" cy="90" r="20" fill="currentColor" />
-          {/* Oči */}
           <circle cx="142" cy="88" r="3" fill="#000" />
           <circle cx="158" cy="88" r="3" fill="#000" />
-          {/* Telo */}
           <rect x="135" y="110" width="30" height="40" rx="6" fill="currentColor" />
-          {/* Ruka */}
+
           <motion.rect
             x="120"
             y="115"
@@ -60,7 +67,6 @@
             transition={{ repeat: Infinity, duration: 2 }}
             transform-origin="130 115"
           />
-          {/* Čekić */}
           <motion.rect
             x="114"
             y="135"
@@ -107,7 +113,7 @@
           />
         ))}
 
-        {/* 💡 Pulsni efekat kroz hologram */}
+        {/* Pulsni efekat kroz hologram */}
         <motion.rect
           x="175"
           y="80"
@@ -135,5 +141,5 @@
         </defs>
       </svg>
     </div>
-  </div>
+  </motion.div>
 </section>
