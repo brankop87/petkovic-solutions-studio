@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { MotionConfig } from "framer-motion";
+"use client";
+
 
 export default function Home() {
   return (
