@@ -2,16 +2,18 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <header className="border-b border-border/70">
-      <div className="container py-4 flex items-center justify-between">
-        <Link href="/" className="font-heading text-xl">Petković Solutions</Link>
-        <nav className="flex gap-6 text-sm">
-          <Link href="/o-nama" className="hover:text-accent">O nama</Link>
-          <Link href="/usluge" className="hover:text-accent">Usluge</Link>
-          <Link href="/projekti" className="hover:text-accent">Projekti</Link>
-          <Link href="/kontakt" className="hover:text-accent">Kontakt</Link>
-        </nav>
+    <nav className="w-full bg-gray-950 border-b border-emerald-700">
+      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+        <Link href="/" className="text-emerald-400 text-2xl font-bold tracking-tight">
+          Petković Solutions
+        </Link>
+        <div className="flex gap-6 text-gray-300 text-sm">
+          <Link href="/usluge" className="hover:text-emerald-400 transition">Usluge</Link>
+          <Link href="/projekti" className="hover:text-emerald-400 transition">Projekti</Link>
+          <Link href="/o-nama" className="hover:text-emerald-400 transition">O nama</Link>
+          <Link href="/kontakt" className="hover:text-emerald-400 transition">Kontakt</Link>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 }
