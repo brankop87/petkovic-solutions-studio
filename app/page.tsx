@@ -7,6 +7,7 @@ import ChatbotWidget from "@/components/ChatbotWidget";
 export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
+      {/* HERO SEKCIJA */}
       <section className="bg-gray-950 text-white py-24 text-center">
         <div className="space-y-6 max-w-3xl mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
@@ -17,16 +18,17 @@ export default function Home() {
             na skalabilnim temeljima.
           </p>
 
-          <div className="flex gap-4 justify-center pt-4">
+          {/* Dugmad */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Link
               href="/usluge"
-              className="px-6 py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition"
+              className="px-8 py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition w-full sm:w-auto text-center"
             >
               Pogledaj usluge
             </Link>
             <Link
               href="/projekti"
-              className="px-6 py-3 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-white transition"
+              className="px-8 py-3 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-white transition w-full sm:w-auto text-center"
             >
               Projekti
             </Link>
@@ -34,6 +36,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEKCJA O PETCIETY APLIKACIJI */}
       <section className="bg-gray-950 text-white py-16 border-t border-gray-800">
         <div className="max-w-5xl mx-auto px-4 space-y-8">
           <h2 className="text-2xl font-semibold text-emerald-400">
@@ -58,6 +61,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CHATBOT WIDGET */}
       <ChatbotWidget />
     </MotionConfig>
   );
