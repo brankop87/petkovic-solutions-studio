@@ -1,19 +1,43 @@
-export default function ONama() {
+"use client";
+
+import { MotionConfig } from "framer-motion";
+
+export default function ONamaPage() {
   return (
-    <section className="space-y-6">
-      <h1 className="font-heading text-3xl">O nama</h1>
-      <p className="text-gray-300">
-        Petković Solutions je tehnološki partner fokusiran na izgradnju modernih web i mobilnih rješenja,
-        sa posebnim naglaskom na AI, automatizaciju i pripremu za SaaS modele.
-      </p>
-      <div className="rounded-2xl p-6 bg-surface2 border border-border">
-        <h2 className="font-heading text-xl">Naš pristup</h2>
-        <ul className="list-disc ml-6 mt-2 space-y-1">
-          <li>Stabilna arhitektura i skalabilnost od prvog dana</li>
-          <li>Jasan dizajn i mjerljive poslovne metrike</li>
-          <li>Iterativan razvoj uz prioritet na kvalitet</li>
-        </ul>
-      </div>
-    </section>
-  );
-}
+    <MotionConfig reducedMotion="user">
+      <section className="bg-gray-950 text-white min-h-screen py-24 px-4 border-t border-gray-800">
+        <div className="max-w-5xl mx-auto space-y-12">
+          {/* Naslov */}
+          <div className="text-center space-y-3">
+            <h1 className="text-4xl md:text-5xl font-semibold text-emerald-400">
+              O nama
+            </h1>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Petković Solutions je tehnološki partner fokusiran na izgradnju
+              modernih digitalnih proizvoda — od web sajtova i aplikacija do
+              pametnih AI sistema i skalabilnih SaaS modela.  
+              Naš cilj je jasan: rešenja koja rastu zajedno sa vašim biznisom.
+            </p>
+          </div>
+
+          {/* Naš pristup */}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 space-y-4">
+              <h2 className="text-2xl font-semibold text-emerald-300">
+                Naš pristup
+              </h2>
+              <ul className="list-disc list-inside text-gray-400 space-y-2">
+                <li>Stabilna arhitektura i dugoročna skalabilnost</li>
+                <li>Jasan dizajn i merljive poslovne metrike</li>
+                <li>Iterativan razvoj uz prioritet na kvalitet</li>
+                <li>Transparentna komunikacija i podrška</li>
+              </ul>
+            </div>
+
+            {/* Tekstualni deo */}
+            <div className="space-y-4 text-gray-400 leading-relaxed">
+              <p>
+                Kao deo <span className="text-emerald-400">Petciety ekosistema</span>,
+                naš tim kombinuje iskustvo u softverskom razvoju, dizajnu i
+                automatizaciji. Radimo sa preduzećima koja žele modernu
+                digi
