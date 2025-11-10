@@ -15,11 +15,11 @@ export default function Home() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl">
-            Petković Solutions — moderni web sajtovi, aplikacije i AI rešenja
-            na skalabilnim temeljima.
+            Petković Solutions — moderna digitalna agencija fokusirana na web,
+            aplikacije i AI sisteme koji rastu zajedno sa vašim biznisom.
           </p>
 
-          {/* Dugmad — sada poravnata i stabilna */}
+          {/* Dugmad */}
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
               href="/usluge"
@@ -37,31 +37,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GRADIENT PRELAZ */}
-      <div className="h-24 bg-gradient-to-b from-gray-950 via-gray-900 to-emerald-950"></div>
-
       {/* SEKCJA O PETCIETY APLIKACIJI */}
-      <section className="bg-emerald-950 text-white py-20 px-4 border-t border-emerald-800">
-        <div className="max-w-7xl mx-auto space-y-10">
-          <h2 className="text-3xl font-semibold text-emerald-400 text-center">
-            Petciety — aplikacija u razvoju
-          </h2>
+      <section className="bg-gray-950 text-white py-20 border-t border-gray-800 px-4">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-3">
+            <h2 className="text-3xl font-semibold text-emerald-400">
+              Petciety — aplikacija u razvoju
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Naš dugoročni projekat koji povezuje vlasnike ljubimaca, šetače i
+              AI asistente u jedinstveni ekosistem.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Walk Buddy", desc: "Planer šetnji i zakazivanja." },
+              {
+                title: "Walk Buddy",
+                desc: "Planer šetnji i zakazivanja — jednostavno povezivanje korisnika i šetača.",
+              },
               {
                 title: "AI Companion",
-                desc: "Pametna pomoć za vlasnike ljubimaca (faza 2).",
+                desc: "Pametna pomoć za vlasnike ljubimaca — savetnik, planer i digitalni partner.",
               },
               {
                 title: "Temelj",
-                desc: "Flutter + Supabase arhitektura.",
+                desc: "Tehnološka osnova: Flutter, Supabase, i skalabilna infrastruktura.",
               },
             ].map((c) => (
               <div
                 key={c.title}
-                className="rounded-2xl p-6 bg-gray-900 border border-gray-800 hover:border-emerald-400 hover:scale-[1.02] transition-transform duration-300"
+                className="rounded-2xl p-6 bg-gray-900 border border-gray-800 hover:border-emerald-400 hover:scale-[1.01] transition-transform duration-300"
               >
                 <h3 className="text-xl font-semibold text-emerald-300">
                   {c.title}
