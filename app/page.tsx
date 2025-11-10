@@ -8,27 +8,28 @@ export default function Home() {
   return (
     <MotionConfig reducedMotion="user">
       {/* HERO SEKCIJA */}
-      <section className="bg-gray-950 text-white py-24 text-center">
-        <div className="space-y-6 max-w-3xl mx-auto px-4">
+      <section className="bg-gray-950 text-white py-24">
+        <div className="max-w-3xl mx-auto px-4 flex flex-col items-center text-center gap-6">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
             Gradimo digitalna rešenja koja traju
           </h1>
-          <p className="text-lg md:text-xl text-gray-400">
+
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl">
             Petković Solutions — moderni web sajtovi, aplikacije i AI rešenja
             na skalabilnim temeljima.
           </p>
 
-          {/* Dugmad */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+          {/* Dugmad — sada poravnata i stabilna */}
+          <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Link
               href="/usluge"
-              className="px-8 py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition w-full sm:w-auto text-center"
+              className="inline-block px-8 py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition"
             >
               Pogledaj usluge
             </Link>
             <Link
               href="/projekti"
-              className="px-8 py-3 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-white transition w-full sm:w-auto text-center"
+              className="inline-block px-8 py-3 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-white transition"
             >
               Projekti
             </Link>
