@@ -11,9 +11,16 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="sr">
-      <body>
+      <body className="bg-gray-950 text-white font-sans min-h-screen flex flex-col">
+        {/* Glavna navigacija */}
         <Navbar />
-        <main className="container py-10">{children}</main>
+
+        {/* Sadržaj stranice */}
+        <main className="flex-grow container max-w-6xl mx-auto px-4 py-10">
+          {children}
+        </main>
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>
