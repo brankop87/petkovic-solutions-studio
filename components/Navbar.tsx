@@ -1,82 +1,71 @@
 "use client";
+
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-gray-950/95 backdrop-blur-md border-b border-emerald-700 z-50">
+    <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md border-b border-emerald-300 z-50 transition-colors duration-300">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-emerald-400 font-bold text-xl tracking-tight hover:text-emerald-300 transition"
-        >
-          Petković Solutions
+        {/* Logo animacija */}
+        <Link href="/" className="flex items-center gap-2 font-bold text-emerald-700 tracking-tight">
+          <AnimatePresence mode="wait">
+            {!isScrolled ? (
+              <motion.span
+                key="full"
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.25 }}
+                className="text-lg md:text-xl"
+              >
+                Petković Solutions
+              </motion.span>
+            ) : (
+              <motion.span
+                key="short"
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.25 }}
+                className="text-2xl md:text-3xl"
+              >
+                PS
+              </motion.span>
+            )}
+          </AnimatePresence>
         </Link>
 
-        {/* Desktop navigacija */}
-        <nav className="hidden md:flex items-center gap-6 text-gray-200 text-sm font-medium">
-          <Link
-            href="/usluge"
-            className="hover:text-emerald-400 transition"
-          >
+        {/* Navigacija */}
+        <nav className="hidden md:flex gap-6 text-gray-800 text-sm font-medium">
+          <Link href="/usluge" className="hover:text-emerald-600 transition">
             Usluge
           </Link>
-          <Link
-            href="/projekti"
-            className="hover:text-emerald-400 transition"
-          >
+          <Link href="/projekti" className="hover:text-emerald-600 transition">
             Projekti
           </Link>
-          <Link
-            href="/o-nama"
-            className="hover:text-emerald-400 transition"
-          >
+          <Link href="/o-nama" className="hover:text-emerald-600 transition">
             O nama
           </Link>
           <Link
             href="/kontakt"
-            className="px-4 py-1.5 rounded-lg border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-white transition"
+            className="bg-emerald-600 text-white px-4 py-2 rounded-xl hover:bg-emerald-700 transition"
           >
             Kontakt
           </Link>
         </nav>
-
-        {/* Mobilni meni dugme */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-3xl text-emerald-400 focus:outline-none"
-          aria-label="Otvori meni"
-        >
-          ☰
-        </button>
       </div>
-
-      {/* Mobilni meni */}
-      {open && (
-        <div className="md:hidden bg-gray-950 border-t border-emerald-700 shadow-lg">
-          <nav className="flex flex-col p-4 space-y-2 text-gray-200">
-            <Link href="/usluge" onClick={() => setOpen(false)}>
-              Usluge
-            </Link>
-            <Link href="/projekti" onClick={() => setOpen(false)}>
-              Projekti
-            </Link>
-            <Link href="/o-nama" onClick={() => setOpen(false)}>
-              O nama
-            </Link>
-            <Link
-              href="/kontakt"
-              onClick={() => setOpen(false)}
-              className="border border-emerald-500 text-emerald-400 px-4 py-2 rounded-lg text-center hover:bg-emerald-500 hover:text-white transition"
-            >
-              Kontakt
-            </Link>
-          </nav>
-        </div>
-      )}
     </header>
   );
 }
