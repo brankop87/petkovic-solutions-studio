@@ -28,7 +28,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2️⃣ ZA KOGA RADIMO (TOPLA SEKCIJA) */}
+      {/* 2️⃣ ZA KOGA RADIMO */}
       <section className="bg-[#F9EBD0] text-gray-900 py-20 px-4 border-b border-emerald-100">
         <div className="max-w-6xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-semibold text-emerald-700">
@@ -108,9 +108,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4️⃣ PETCIETY — SHOWCASE SA ROBOTOM */}
-      <section className="bg-gray-950 text-white py-24 border-b border-gray-800 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      {/* 4️⃣ PETCIETY — ROBOT U LABU */}
+      <section className="bg-gray-950 text-white py-24 border-b border-gray-800 px-4 relative overflow-hidden">
+        {/* pozadinske svetleće čestice */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-emerald-400/40 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              opacity: [0.1, 1, 0.1],
+              y: [0, -10, 0],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 4 + Math.random() * 3,
+              delay: i * 0.2,
+            }}
+          />
+        ))}
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+          {/* Leva strana */}
           <div className="space-y-6">
             <h2 className="text-3xl font-semibold text-emerald-400">
               Petciety — aplikacija u razvoju
@@ -134,18 +156,24 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Robot */}
+          {/* Desna strana — unapređeni robot */}
           <div className="relative flex justify-center items-center">
             <motion.div
-              className="absolute w-64 h-64 rounded-full bg-emerald-500/10 blur-3xl"
-              animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
-              transition={{ repeat: Infinity, duration: 4 }}
+              className="absolute w-64 h-64 rounded-full bg-emerald-400/20 blur-3xl"
+              animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 5 }}
+            />
+            <motion.div
+              className="absolute bottom-10 w-72 h-8 bg-emerald-400/30 blur-2xl rounded-full"
+              animate={{ opacity: [0.2, 0.8, 0.4] }}
+              transition={{ repeat: Infinity, duration: 3 }}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 300 200"
               className="w-[250px] h-[180px] text-emerald-400 relative z-10"
             >
+              {/* platforma */}
               <motion.rect
                 x="60"
                 y="160"
@@ -153,9 +181,10 @@ export default function HomePage() {
                 height="10"
                 rx="5"
                 fill="currentColor"
-                animate={{ opacity: [0.5, 0.8, 0.5] }}
+                animate={{ opacity: [0.6, 0.9, 0.6] }}
                 transition={{ repeat: Infinity, duration: 3 }}
               />
+              {/* robot */}
               <motion.g
                 animate={{ rotate: [0, -3, 3, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 6 }}
