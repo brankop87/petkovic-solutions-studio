@@ -93,7 +93,7 @@ export default function HomePage() {
               i AI.
             </p>
             <p className="text-gray-400 leading-relaxed">
-              Trenutno se razvijaju ključni moduli: <br />
+              Trenutno se razvijaju ključni moduli:{" "}
               <span className="text-emerald-400">
                 Walk Buddy, AI Companion i centralni sistem upravljanja.
               </span>
@@ -122,7 +122,6 @@ export default function HomePage() {
               viewBox="0 0 300 200"
               className="w-[250px] h-[180px] text-emerald-400 relative z-10"
             >
-              {/* Platforma */}
               <motion.rect
                 x="60"
                 y="160"
@@ -134,14 +133,27 @@ export default function HomePage() {
                 transition={{ repeat: Infinity, duration: 3 }}
               />
 
-              {/* Robot */}
               <motion.g
                 animate={{ rotate: [0, -3, 3, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 6 }}
               >
                 <circle cx="150" cy="90" r="20" fill="currentColor" />
-                <circle cx="142" cy="88" r="3" fill="#000" />
-                <circle cx="158" cy="88" r="3" fill="#000" />
+                <motion.circle
+                  cx="142"
+                  cy="88"
+                  r="3"
+                  fill="#00ffcc"
+                  animate={{ opacity: [0.2, 1, 0.2] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                />
+                <motion.circle
+                  cx="158"
+                  cy="88"
+                  r="3"
+                  fill="#00ffcc"
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ repeat: Infinity, duration: 1.5, delay: 0.4 }}
+                />
                 <rect
                   x="135"
                   y="110"
@@ -177,53 +189,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4️⃣ MINI USLUGE */}
-      <section className="bg-gray-950 text-white py-20 border-t border-gray-800 px-4">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="text-center space-y-3">
-            <h2 className="text-2xl font-semibold text-emerald-400">
-              Naše usluge
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Kombinujemo dizajn, tehnologiju i automatizaciju kako bismo vaš
-              biznis podigli na viši nivo.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Web sajtovi",
-                desc: "Moderni, brzi i optimizovani sajtovi prilagođeni vašem brendu.",
-                icon: "💻",
-              },
-              {
-                title: "Mobilne aplikacije",
-                desc: "Flutter rešenja koja povezuju korisnike i biznise bez barijera.",
-                icon: "📱",
-              },
-              {
-                title: "AI & SaaS sistemi",
-                desc: "Pametne platforme koje automatizuju i skaliraju poslovanje.",
-                icon: "⚙️",
-              },
-            ].map((c) => (
-              <div
-                key={c.title}
-                className="rounded-2xl p-6 bg-gray-900 border border-gray-800 hover:border-emerald-400 transition"
-              >
-                <div className="text-3xl mb-3">{c.icon}</div>
-                <h3 className="text-xl font-semibold text-emerald-300">
-                  {c.title}
-                </h3>
-                <p className="text-gray-400 mt-2">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5️⃣ CHATBOT */}
+      {/* 4️⃣ CHATBOT */}
       <ChatbotWidget />
     </>
   );
