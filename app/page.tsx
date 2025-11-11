@@ -11,12 +11,12 @@ export default function HomePage() {
       <section className="bg-gradient-to-b from-gray-950 to-gray-900 text-white py-28 px-4 border-b border-gray-800">
         <div className="max-w-5xl mx-auto flex flex-col items-center text-center gap-6">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
-            Digitalna rešenja koja traju
+            Digitalna rešenja koja spajaju tehnologiju i ljude
           </h1>
 
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl">
-            Petković Solutions — studio za izgradnju modernih web sajtova,
-            aplikacija i AI sistema koji rastu zajedno sa vašim biznisom.
+            Petković Solutions — studio koji pomaže malim biznisima da izgledaju
+            kao veliki. Gradimo moderne sajtove, aplikacije i AI sisteme koji rade za vas.
           </p>
 
           <Link
@@ -28,7 +28,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2️⃣ NAŠ PRISTUP */}
+      {/* 2️⃣ ZA KOGA RADIMO (TOPLA SEKCIJA) */}
+      <section className="bg-[#F9EBD0] text-gray-900 py-20 px-4 border-b border-emerald-100">
+        <div className="max-w-6xl mx-auto text-center space-y-8">
+          <h2 className="text-3xl font-semibold text-emerald-700">
+            Za koga gradimo rešenja
+          </h2>
+          <p className="max-w-2xl mx-auto text-gray-700 text-lg">
+            Pomažemo preduzetnicima, salonima, trenerima, servisima i malim firmama
+            da imaju moderan i pouzdan online nastup — bez komplikacija i velikih troškova.
+          </p>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+            {[
+              "Saloni lepote",
+              "Veterinari i groomeri",
+              "Treneri i instruktori",
+              "Lokalni servisi",
+            ].map((kategorija) => (
+              <div
+                key={kategorija}
+                className="p-6 bg-white rounded-3xl shadow-md border border-emerald-100 hover:shadow-emerald-200/40 hover:scale-[1.02] transition-all"
+              >
+                <p className="font-medium text-emerald-700">{kategorija}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3️⃣ NAŠ PRISTUP */}
       <section className="bg-gray-950 text-white py-20 border-b border-gray-800 px-4">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-3">
@@ -36,8 +65,8 @@ export default function HomePage() {
               Naš pristup
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Svaki projekat gradimo na jasnim principima — kombinacijom
-              funkcionalnosti, dizajna i tehnologije koja traje.
+              Svaki projekat gradimo pažljivo — kombinujemo funkcionalnost,
+              dizajn i dugoročno održivu tehnologiju.
             </p>
           </div>
 
@@ -45,22 +74,22 @@ export default function HomePage() {
             {[
               {
                 title: "Stabilna osnova",
-                desc: "Koristimo moderne tehnologije i arhitekturu spremnu za rast.",
+                desc: "Koristimo proverene tehnologije spremne za rast i skaliranje.",
                 icon: "🧱",
               },
               {
                 title: "Jasan dizajn",
-                desc: "Minimalistički, fokusiran na korisničko iskustvo i brend identitet.",
+                desc: "Jednostavno, lepo i intuitivno korisničko iskustvo.",
                 icon: "🎨",
               },
               {
                 title: "AI integracije",
-                desc: "Uvodimo automatizaciju i inteligentne asistente gde donose vrednost.",
+                desc: "Uvodimo automatizaciju i inteligentne procese kad to ima smisla.",
                 icon: "🤖",
               },
               {
                 title: "Partnerski odnos",
-                desc: "Verujemo u transparentnu saradnju i dugoročnu podršku.",
+                desc: "Radimo transparentno i dugoročno, kao vaš digitalni partner.",
                 icon: "🤝",
               },
             ].map((c) => (
@@ -79,10 +108,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3️⃣ PETCIETY — SHOWCASE SA ROBOTOM */}
+      {/* 4️⃣ PETCIETY — SHOWCASE SA ROBOTOM */}
       <section className="bg-gray-950 text-white py-24 border-b border-gray-800 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          {/* Leva strana — opis */}
           <div className="space-y-6">
             <h2 className="text-3xl font-semibold text-emerald-400">
               Petciety — aplikacija u razvoju
@@ -98,7 +126,6 @@ export default function HomePage() {
                 Walk Buddy, AI Companion i centralni sistem upravljanja.
               </span>
             </p>
-
             <Link
               href="/projekti"
               className="inline-block mt-2 px-6 py-3 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-500 hover:text-white transition"
@@ -107,16 +134,13 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Desna strana — robot animacija */}
+          {/* Robot */}
           <div className="relative flex justify-center items-center">
-            {/* Svetlucava pozadina */}
             <motion.div
               className="absolute w-64 h-64 rounded-full bg-emerald-500/10 blur-3xl"
               animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 4 }}
             />
-
-            {/* Robot */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 300 200"
@@ -132,7 +156,6 @@ export default function HomePage() {
                 animate={{ opacity: [0.5, 0.8, 0.5] }}
                 transition={{ repeat: Infinity, duration: 3 }}
               />
-
               <motion.g
                 animate={{ rotate: [0, -3, 3, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 6 }}
@@ -189,7 +212,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4️⃣ CHATBOT */}
+      {/* 5️⃣ CHATBOT */}
       <ChatbotWidget />
     </>
   );
