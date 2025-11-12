@@ -1,71 +1,99 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const links = [
+    { href: "/usluge", label: "Usluge" },
+    { href: "/projekti", label: "Projekti" },
+    { href: "/onama", label: "O nama" },
+  ];
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md border-b border-emerald-300 z-50 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        {/* Logo animacija */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-emerald-700 tracking-tight">
-          <AnimatePresence mode="wait">
-            {!isScrolled ? (
-              <motion.span
-                key="full"
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.25 }}
-                className="text-lg md:text-xl"
-              >
-                Petković Solutions
-              </motion.span>
-            ) : (
-              <motion.span
-                key="short"
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.25 }}
-                className="text-2xl md:text-3xl"
-              >
-                PS
-              </motion.span>
-            )}
-          </AnimatePresence>
+    <nav className="fixed top-0 w-full bg-[#F9EBD0] shadow-sm z-50 border-b border-emerald-200">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-emerald-700 font-semibold text-lg tracking-tight hover:text-emerald-600 transition"
+        >
+          Petković Solutions
         </Link>
 
-        {/* Navigacija */}
-        <nav className="hidden md:flex gap-6 text-gray-800 text-sm font-medium">
-          <Link href="/usluge" className="hover:text-emerald-600 transition">
-            Usluge
-          </Link>
-          <Link href="/projekti" className="hover:text-emerald-600 transition">
-            Projekti
-          </Link>
-          <Link href="/o-nama" className="hover:text-emerald-600 transition">
-            O nama
-          </Link>
+        {/* Desktop meni */}
+        <div className="hidden md:flex items-center space-x-8">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition ${
+                pathname === link.href
+                  ? "text-emerald-700 font-semibold"
+                  : "text-gray-800 hover:text-emerald-600"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+
           <Link
             href="/kontakt"
-            className="bg-emerald-600 text-white px-4 py-2 rounded-xl hover:bg-emerald-700 transition"
+            className="px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition font-medium"
           >
             Kontakt
           </Link>
-        </nav>
+        </div>
+
+        {/* Mobile meni dugme */}
+        <button
+          className="md:hidden text-gray-700 text-2xl focus:outline-none"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
       </div>
-    </header>
+
+      {/* Mobile meni */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[#F9EBD0] border-t border-emerald-200 shadow-inner px-6 py-4 space-y-4"
+          >
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`block text-base font-medium transition ${
+                  pathname === link.href
+                    ? "text-emerald-700 font-semibold"
+                    : "text-gray-800 hover:text-emerald-600"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <Link
+              href="/kontakt"
+              onClick={() => setMenuOpen(false)}
+              className="block text-center mt-4 px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition font-medium"
+            >
+              Kontakt
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
