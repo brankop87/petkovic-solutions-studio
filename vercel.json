@@ -2,7 +2,10 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://petkovicsolutions.com/$1",
+      "has": [
+        { "type": "host", "value": "www.petkovicsolutions.com" }
+      ],
+      "destination": "https://petkovicsolutions.com/:path*",
       "permanent": true
     }
   ]
