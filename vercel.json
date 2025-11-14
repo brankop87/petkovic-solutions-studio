@@ -1,11 +1,11 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/",
       "has": [
         { "type": "host", "value": "www.petkovicsolutions.com" }
       ],
-      "destination": "https://petkovicsolutions.com/:path*",
+      "destination": "https://petkovicsolutions.com",
       "permanent": true
     }
   ]
