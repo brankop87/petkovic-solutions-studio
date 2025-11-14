@@ -1,12 +1,7 @@
 {
-  "redirects": [
-    {
-      "source": "/",
-      "has": [
-        { "type": "host", "value": "www.petkovicsolutions.com" }
-      ],
-      "destination": "https://petkovicsolutions.com",
-      "permanent": true
-    }
-  ]
+  "version": 2,
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs"
 }
