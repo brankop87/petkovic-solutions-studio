@@ -1,3 +1,5 @@
+"use client";
+
 export default function OnamaPage() {
   return (
     <section className="min-h-screen bg-gray-950 text-white py-24 px-4 border-b border-gray-800">
@@ -41,4 +43,7 @@ export default function OnamaPage() {
             Kontaktiraj nas
           </a>
         </div>
-      <
+      </div>
+    </section>
+  );
+}
