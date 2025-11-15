@@ -9,7 +9,9 @@ export default function Kontakt() {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
     setLoading(true);
     setStatus("");
@@ -49,14 +51,16 @@ export default function Kontakt() {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
-
+        
         <input
           className="w-full rounded-xl bg-white border border-emerald-300 text-gray-900 p-3 
                      focus:outline-none focus:ring-2 focus:ring-emerald-500
                      placeholder-gray-500"
           placeholder="Ime"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
         />
 
         <input
@@ -65,7 +69,9 @@ export default function Kontakt() {
                      placeholder-gray-500"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
         />
 
         <textarea
@@ -75,7 +81,9 @@ export default function Kontakt() {
           placeholder="Poruka"
           rows={5}
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setMessage(e.target.value)
+          }
         />
 
         <button
