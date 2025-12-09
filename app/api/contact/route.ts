@@ -16,12 +16,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: `Petkovic Solutions <${process.env.MAIL_FROM}>`,
       to: process.env.MAIL_TO!,
-      reply_to: [
-        {
-          email: email,
-          name: name,
-        },
-      ],
+      replyTo: email,  // ← PRAVILNO!
       subject: `Nova poruka od ${name}`,
       html: `
         <h2>Nova poruka sa sajta</h2>
@@ -31,9 +26,11 @@ export async function POST(req: Request) {
       `,
     });
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-    });
+    return new Response(
+      JSON.stringify({ success: true }),
+      { status: 200 }
+    );
+
   } catch (err) {
     console.error("Greška:", err);
     return new Response(
