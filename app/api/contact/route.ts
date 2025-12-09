@@ -13,9 +13,10 @@ export async function POST(req: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await resend.emails.send({
-      from: process.env.MAIL_FROM!,
+    const data = await resend.emails.send({
+      from: `Petkovic Solutions <info@petkovicsolutions.com>`,
       to: process.env.MAIL_TO!,
+      reply_to: email, // 🔥 KLJUČNO — bez ovoga Resend NE ŠALJE
       subject: `Nova poruka od ${name}`,
       html: `
         <h2>Nova poruka sa sajta</h2>
@@ -25,15 +26,14 @@ export async function POST(req: Request) {
       `,
     });
 
-    return new Response(
-      JSON.stringify({ success: true }),
-      { status: 200 }
-    );
+    console.log("RESEND RESPONSE:", data);
 
-  } catch (err) {
-    console.error("Greška:", err);
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+
+  } catch (err: any) {
+    console.error("Resend error:", err);
     return new Response(
-      JSON.stringify({ error: "Došlo je do greške." }),
+      JSON.stringify({ error: "Došlo je do greške pri slanju." }),
       { status: 500 }
     );
   }
