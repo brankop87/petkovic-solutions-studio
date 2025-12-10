@@ -9,27 +9,37 @@ export default function Kontakt() {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setStatus("");
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message }),
-    });
+    console.log("Šaljem zahtev ka API-u:", { name, email, message });
 
-    setLoading(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
 
-    if (res.ok) {
-      setStatus("Uspešno poslato! ❤️");
-      setName("");
-      setEmail("");
-      setMessage("");
-    } else {
+      console.log("Odgovor API-a:", res);
+
+      setLoading(false);
+
+      if (res.ok) {
+        const data = await res.json();
+        console.log("Podaci sa servera:", data);
+        setStatus("Uspešno poslato! ❤️");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("Došlo je do greške, pokušajte ponovo.");
+      }
+    } catch (error) {
+      console.error("Greška pri fetch-u:", error);
+      setLoading(false);
       setStatus("Došlo je do greške, pokušajte ponovo.");
     }
   };
@@ -51,39 +61,35 @@ export default function Kontakt() {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
-        
         <input
+          name="name"
           className="w-full rounded-xl bg-white border border-emerald-300 text-gray-900 p-3 
                      focus:outline-none focus:ring-2 focus:ring-emerald-500
                      placeholder-gray-500"
           placeholder="Ime"
           value={name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setName(e.target.value)
-          }
+          onChange={(e) => setName(e.target.value)}
         />
 
         <input
+          name="email"
           className="w-full rounded-xl bg-white border border-emerald-300 text-gray-900 p-3 
                      focus:outline-none focus:ring-2 focus:ring-emerald-500
                      placeholder-gray-500"
           placeholder="Email"
           value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
-          }
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <textarea
+          name="message"
           className="w-full rounded-xl bg-white border border-emerald-300 text-gray-900 p-3 
                      focus:outline-none focus:ring-2 focus:ring-emerald-500
                      placeholder-gray-500 h-32 resize-none"
           placeholder="Poruka"
           rows={5}
           value={message}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setMessage(e.target.value)
-          }
+          onChange={(e) => setMessage(e.target.value)}
         />
 
         <button
