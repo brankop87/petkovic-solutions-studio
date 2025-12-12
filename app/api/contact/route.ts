@@ -6,7 +6,10 @@ export async function POST(req: Request) {
     const { name, email, message } = await req.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Sva polja su obavezna." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Sva polja su obavezna." },
+        { status: 400 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
@@ -22,6 +25,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: process.env.MAIL_FROM,
       to: process.env.MAIL_TO,
+      replyTo: email, // 👈🔥 Reply ide nazad klijentu
       subject: `Nova poruka od ${name}`,
       html: `
         <h2>Nova poruka sa sajta</h2>
@@ -31,9 +35,13 @@ export async function POST(req: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { status: 200 });
+
   } catch (err) {
     console.error("Email error:", err);
-    return NextResponse.json({ error: "Greška pri slanju emaila." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Greška pri slanju emaila." },
+      { status: 500 }
+    );
   }
 }
