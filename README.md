@@ -1,33 +1,55 @@
-# Petković Solutions — Next.js Starter (srpski)
+# Petkovic Solutions
 
-Moderni temelj sajta za **petkovicsolutions.com** — Next.js 14 + Tailwind, spremno za Sanity CMS i AI chatbot.
+Marketing site for `petkovicsolutions.com`, built with Next.js App Router and Tailwind CSS.
 
-## Brzi start (lokalno)
+Current positioning:
+- Boutique web studio for US service businesses
+- Main offer: custom websites and landing pages
+- Secondary offer: lightweight AI add-ons for lead capture and FAQ flows
+
+## Project structure
+- `app/` route layer, layout, global styles, and API routes
+- `components/home/` homepage sections
+- `components/layout/` global navigation and footer
+- `data/` site copy, projects, services, and navigation content
+- `sanity/` optional CMS setup for later use
+
+## Main routes
+- `/` homepage
+- `/onama` about
+- `/usluge` services
+- `/projekti` work
+- `/kontakt` contact / audit request
+
+## Local development
 ```bash
 npm install
 npm run dev
-# http://localhost:3000
 ```
 
-## Deploy (Vercel)
-Repo je povezan na Vercel → svaka promjena na `main` grani se automatski objavljuje.
+If PowerShell blocks `npm`, use:
 
-## Stranice
-- `/` (Početna) — hero + Petciety tizer
-- `/o-nama`
-- `/usluge`
-- `/projekti`
-- `/kontakt`
-- `components/ChatbotWidget.tsx` — demo widget (kasnije zamijeni stvarnim)
+```bash
+npm.cmd run dev
+```
 
-## Tema
-Boje i izgled podešavaš kroz CSS varijable u `app/globals.css`.
+## Build notes
+- The project uses App Router conventions.
+- TypeScript validation can be checked with `node .\\node_modules\\typescript\\bin\\tsc --noEmit`.
+- `next lint` is not configured yet and will prompt for ESLint setup.
 
-## Sanity (opciono, kasnije)
-- `sanity/` folder i `studio` skripta su spremni. Kreiraj projekat u Sanity, popuni `.env.local`, pa pokreni:
+## Environment
+Contact form email delivery depends on:
+
+```bash
+RESEND_API_KEY=
+MAIL_FROM=
+MAIL_TO=
+```
+
+## Sanity
+Sanity is scaffolded but not required for the current site. Run the studio with:
+
 ```bash
 npm run studio
 ```
-
-## Sigurnost
-Ne stavljaj privatne ključeve u repo. Koristi `.env.local` i Vercel Environment Variables.

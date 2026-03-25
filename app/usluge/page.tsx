@@ -1,78 +1,85 @@
-"use client";
-
-import { MotionConfig } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { services } from "@/data/services";
 
-export default function UslugePage() {
+export const metadata: Metadata = {
+  title: "Services | Petkovic Solutions",
+  description:
+    "Custom websites, landing pages, and lightweight AI add-ons for service businesses.",
+};
+
+const extras = [
+  "Homepage messaging and structure",
+  "Responsive development in Next.js",
+  "Lead-focused contact flow",
+  "Optional AI chatbot or FAQ support",
+];
+
+export default function ServicesPage() {
   return (
-    <MotionConfig reducedMotion="user">
-      <section className="bg-gray-950 text-white min-h-screen py-24 px-4 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Naslov */}
-          <div className="text-center space-y-3">
-            <h1 className="text-4xl md:text-5xl font-semibold text-emerald-400">
-              Naše usluge
+    <section className="px-6 pb-20 pt-28 sm:px-8 lg:px-10 lg:pb-24 lg:pt-36">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div className="max-w-xl">
+            <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
+              Services
+            </div>
+            <h1
+              className="mt-4 text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              Focused offers that are easy to explain and easy to buy.
             </h1>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Gradimo digitalna rešenja od nule — stabilna, moderna i spremna za rast.
-              Naš fokus je dugoročna vrednost, ne brzi projekti.
-            </p>
           </div>
 
-          {/* Kartice usluga */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Web & App razvoj",
-                desc: "Next.js, Flutter, Tailwind, Supabase — brzi, stabilni i moderni sistemi.",
-              },
-              {
-                title: "AI rešenja i automatizacija",
-                desc: "Chatbotovi, asistenti za klijente, integracije sa OpenAI i prilagođeni AI alati.",
-              },
-              {
-                title: "SaaS temelji i arhitektura",
-                desc: "Autentikacija, plaćanja, CMS, deployment i skaliranje. Gradimo temelje za rast.",
-              },
-              {
-                title: "Brendiranje i UX dizajn",
-                desc: "Jedinstveni vizuelni identitet i jednostavno korisničko iskustvo koje prodaje.",
-              },
-              {
-                title: "Integracije i API sistemi",
-                desc: "Spajamo aplikacije, CRM, i alate u jedinstven sistem — efikasnije poslovanje.",
-              },
-              {
-                title: "Održavanje i podrška",
-                desc: "Tehnička podrška, analitika i redovno unapređenje vaših digitalnih rešenja.",
-              },
-            ].map((s) => (
+          <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">
+            The service stack stays intentionally narrow. That makes the offer
+            clearer, the work stronger, and the final product more useful for the
+            kind of businesses you want to reach.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className="rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7"
+            >
+              <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
+                0{index + 1}
+              </div>
+              <h2 className="mt-5 text-2xl text-[var(--text)]">{service.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14 rounded-[30px] border border-[var(--line)] bg-white/[0.02] p-8">
+          <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
+            What can be included
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {extras.map((item) => (
               <div
-                key={s.title}
-                className="rounded-2xl p-6 bg-gray-900 border border-gray-800 hover:border-emerald-400 hover:scale-[1.01] transition-transform duration-300"
+                key={item}
+                className="rounded-[20px] border border-[var(--line)] bg-[var(--surface-soft)] px-5 py-4 text-sm leading-7 text-[var(--muted-strong)]"
               >
-                <h3 className="text-xl font-semibold text-emerald-300">
-                  {s.title}
-                </h3>
-                <p className="text-gray-400 mt-2 leading-relaxed">{s.desc}</p>
+                {item}
               </div>
             ))}
           </div>
 
-          {/* CTA sekcija */}
-          <div className="text-center pt-10">
-            <p className="text-gray-400 mb-4">
-              Želite da pokrenemo vaš sledeći projekat?
-            </p>
-            <Link
-              href="/kontakt"
-              className="inline-block px-8 py-3 rounded-xl bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition"
-            >
-              Zakaži konsultaciju
-            </Link>
-          </div>
+          <Link
+            href="/kontakt"
+            className="mt-8 inline-flex rounded-full border border-[var(--line)] bg-white/[0.04] px-5 py-3 text-sm text-white transition hover:border-[var(--accent)] hover:bg-[rgba(24,160,106,0.12)] hover:text-[var(--accent-strong)]"
+          >
+            Tell us what you need
+          </Link>
         </div>
-      </section>
-    </MotionConfig>
+      </div>
+    </section>
   );
 }

@@ -1,23 +1,36 @@
 import "./globals.css";
+import type { Metadata } from "next";
 import { ReactNode } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Manrope, Fraunces } from "next/font/google";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
-export const metadata = {
-  title: "Petković Solutions — Petciety Digital",
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+});
+
+export const metadata: Metadata = {
+  title: "Petkovic Solutions",
   description:
-    "Digitalna rešenja koja traju — web sajtovi, aplikacije, AI i SaaS temelji. Deo Petković Solutions ekosistema.",
+    "Petkovic Solutions builds conversion-focused websites and landing pages for US service businesses.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
-    <html lang="sr">
-      <body className="min-h-screen flex flex-col bg-[#F9EBD0] text-gray-900 font-[Poppins]">
-        {/* Fiksiran Navbar + razmak ispod */}
+    <html lang="en">
+      <body className={`${manrope.variable} ${fraunces.variable} bg-[var(--bg)] text-[var(--text)]`}>
         <Navbar />
-        <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
-          {children}
-        </main>
+        {children}
         <Footer />
       </body>
     </html>
