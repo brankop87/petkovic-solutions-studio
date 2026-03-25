@@ -1,47 +1,34 @@
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Sva polja su obavezna." },
-        { status: 400 }
-      );
+      return new Response(JSON.stringify({ error: "All fields are required." }), {
+        status: 400,
+      });
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
-      port: Number(process.env.MAIL_PORT),
-      secure: process.env.MAIL_SECURE === "true",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await transporter.sendMail({
-      from: process.env.MAIL_FROM,
-      to: process.env.MAIL_TO,
-      replyTo: email, // 👈🔥 Reply ide nazad klijentu
-      subject: `Nova poruka od ${name}`,
+    await resend.emails.send({
+      from: process.env.MAIL_FROM!,
+      to: process.env.MAIL_TO!,
+      subject: `New website inquiry from ${name}`,
       html: `
-        <h2>Nova poruka sa sajta</h2>
-        <p><strong>Ime:</strong> ${name}</p>
+        <h2>New message from the website</h2>
+        <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Poruka:</strong><br/>${message}</p>
+        <p><strong>Message:</strong><br/>${message}</p>
       `,
     });
 
-    return NextResponse.json({ success: true }, { status: 200 });
-
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
-    console.error("Email error:", err);
-    return NextResponse.json(
-      { error: "Greška pri slanju emaila." },
-      { status: 500 }
-    );
+    console.error("Contact form error:", err);
+    return new Response(JSON.stringify({ error: "Something went wrong." }), {
+      status: 500,
+    });
   }
 }
