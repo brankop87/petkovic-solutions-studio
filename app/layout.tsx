@@ -2,8 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Manrope, Fraunces } from "next/font/google";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -29,9 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${fraunces.variable} bg-[var(--bg)] text-[var(--text)]`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
