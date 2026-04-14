@@ -28,7 +28,7 @@ export default function ProjectsPreview() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {liveProjects.map((project) => (
             <a
               key={project.name}
@@ -61,7 +61,7 @@ export default function ProjectsPreview() {
               <div className="grid gap-4 px-2 sm:px-3">
                 <div>
                   <h3
-                    className="text-3xl leading-tight sm:text-[2.3rem]"
+                    className="text-3xl leading-tight"
                     style={{ fontFamily: "var(--font-fraunces)" }}
                   >
                     {project.name}
@@ -81,7 +81,7 @@ export default function ProjectsPreview() {
                   </p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4">
                   <div className="rounded-[22px] border border-[var(--line)] bg-white/[0.02] p-5">
                     <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
                       Focus

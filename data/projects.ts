@@ -45,6 +45,22 @@ export const projects: Project[] = [
     deliverables: ["Landing structure", "Offer clarity", "Conversion-first CTA flow"],
   },
   {
+    name: "The Cannon",
+    description:
+      "Live content blog with early organic visits, built as a sharper editorial platform for Arsenal stories and matchday reading.",
+    href: "https://arsenal.petkovicsolutions.com/",
+    type: "Live",
+    niche: "Content / SEO",
+    image: "/images/projects/the-cannon.svg",
+    challenge:
+      "Create a content-led website that feels more like a focused editorial product than a basic blog archive.",
+    focus:
+      "Readable story hierarchy, stronger category navigation, recurring article structure, and a visual tone built for repeat visits.",
+    outcome:
+      "An owned content platform that started attracting real visits early, showing how useful content can support long-term visibility and trust.",
+    deliverables: ["Editorial structure", "SEO-friendly content layout", "Early traffic proof"],
+  },
+  {
     name: "Meridian Properties",
     description:
       "Concept direction for a premium real-estate brand focused on presentation, hierarchy, and perceived value.",
