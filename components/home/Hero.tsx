@@ -55,29 +55,30 @@ export default function Hero() {
         <div className="grid gap-6 lg:pt-4">
           <div className="rounded-[34px] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[var(--shadow)] backdrop-blur">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
-              Featured positioning note
+              What the audit covers
             </div>
 
             <div
               className="mt-5 text-3xl leading-tight sm:text-[2.15rem]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              The site should feel selective, not generic.
+              Clear fixes before you commit to a full rebuild.
             </div>
 
             <p className="mt-5 max-w-xl text-sm leading-8 text-[var(--muted)]">
-              Strong service-business sites do not need to say everything. They
-              need to communicate trust, positioning, and next action with more
-              control and less noise.
+              The first pass is not about style alone. It is about finding the
+              credibility gaps, weak sections, and missed conversion points that
+              hold the site back.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-[24px] border border-[var(--line)] bg-[var(--surface-soft)] p-5">
                 <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                  Clarity first
+                  What gets reviewed
                 </div>
                 <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
-                  Visitors should understand the offer and trust level almost immediately.
+                  Positioning, trust signals, CTA flow, offer clarity, mobile
+                  structure, and overall first impression.
                 </p>
               </div>
 
@@ -86,7 +87,8 @@ export default function Hero() {
                   Best fit
                 </div>
                 <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
-                  Beauty, local services, transport, real estate, and other trust-sensitive niches.
+                  Service businesses that already have traffic, referrals, or
+                  outreach, but need a stronger online presentation.
                 </p>
               </div>
             </div>
