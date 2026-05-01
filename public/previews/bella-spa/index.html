@@ -1,0 +1,1355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>Bella Spa Manchester — Website Redesign Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --espresso: #1a1210;
+    --espresso-mid: #251a17;
+    --espresso-light: #3a2820;
+    --gold: #c9a47a;
+    --gold-light: #dfc09a;
+    --cream: #f5ede6;
+    --cream-dim: #d4bfb0;
+    --muted: #8a7068;
+    --muted-dark: #6a5048;
+    --white: #ffffff;
+    --border-light: rgba(255,255,255,0.1);
+    --border-gold: rgba(201,164,122,0.25);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--espresso); overflow-x: hidden; }
+
+  /* DEMO BANNER */
+  .demo-banner {
+    background: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-family: var(--font-body);
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1000;
+  }
+  .demo-banner strong { font-weight: 500; }
+
+  /* ANNOUNCEMENT */
+  .announce {
+    background: var(--espresso);
+    color: var(--muted);
+    text-align: center;
+    padding: 9px 20px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .announce .sep { width: 1px; height: 12px; background: var(--muted-dark); }
+  .announce a { color: var(--gold); text-decoration: none; }
+
+  /* NAV */
+  nav {
+    background: var(--espresso);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .nav-logo small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 3px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .nav-rating .stars { color: var(--gold); font-size: 12px; }
+  .nav-rating strong { color: var(--cream); font-weight: 500; }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream-dim);
+    font-size: 11px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--espresso);
+    font-size: 11px;
+    padding: 9px 22px;
+    border-radius: 30px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+    font-family: var(--font-body);
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    background: var(--espresso);
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
+    pointer-events: none;
+  }
+  .hero-left {
+    padding: 80px 60px 80px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,164,122,0.12);
+    border: 1px solid var(--border-gold);
+    border-radius: 30px;
+    padding: 6px 14px;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 360px;
+    font-weight: 300;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-cta-primary {
+    background: var(--gold);
+    color: var(--espresso);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 30px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .hero-cta-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .hero-cta-ghost {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--cream-dim);
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 14px 28px;
+    border-radius: 30px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: border-color 0.2s;
+    display: inline-block;
+  }
+  .hero-cta-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-trust {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .trust-pill .val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .trust-pill .label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .trust-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
+
+  /* HERO RIGHT â€” gallery */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    gap: 3px;
+  }
+  .gallery-cell {
+    background: var(--espresso-mid);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+  }
+  .gallery-cell.tall { grid-row: span 2; }
+  .gallery-cell img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+  .gallery-cell:hover img { opacity: 0.9; }
+  .gallery-label {
+    position: relative;
+    z-index: 1;
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    background: rgba(0,0,0,0.35);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  /* Placeholder gallery cells with colors */
+  .gc1 { background: linear-gradient(135deg, #3d2820 0%, #2a1a14 100%); }
+  .gc2 { background: linear-gradient(135deg, #251a14 0%, #1e1510 100%); }
+  .gc3 { background: linear-gradient(135deg, #352218 0%, #251810 100%); }
+  .gc4 { background: linear-gradient(135deg, #3a2218 0%, #2c1a10 100%); }
+  .gallery-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: rgba(201,164,122,0.2);
+    letter-spacing: 0.2em;
+    font-style: italic;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: #110d0b;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 18px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .trust-icon-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,164,122,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .trust-item strong { color: var(--cream-dim); font-weight: 500; }
+  .trust-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.07); flex-shrink: 0; }
+
+  /* SERVICES */
+  .services-section {
+    background: var(--cream);
+    padding: 80px;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--espresso);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 480px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    background: white;
+    padding: 32px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .service-card:hover { background: #faf7f4; }
+  .service-card:hover::after { width: 100%; }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .service-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #f5f0eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--espresso);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .service-price {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--espresso);
+    font-weight: 400;
+  }
+  .service-price small {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--muted);
+    display: block;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  .service-arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #e8ddd6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .service-card:hover .service-arrow {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--espresso);
+  }
+  .service-card.full-span {
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    background: var(--espresso);
+    color: var(--cream);
+  }
+  .service-card.full-span:hover { background: var(--espresso-light); }
+  .service-card.full-span .service-name { color: var(--cream); margin-bottom: 0; font-size: 18px; }
+  .service-card.full-span .service-desc { margin-bottom: 0; color: var(--muted); }
+
+  /* BOOKING SECTION */
+  .booking-section {
+    background: var(--espresso);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .booking-left .section-eyebrow { color: var(--gold); }
+  .booking-left .section-title { color: var(--cream); }
+  .booking-left .section-sub { color: var(--muted); }
+  .booking-steps { display: flex; flex-direction: column; gap: 0; }
+  .booking-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .booking-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .step-content {}
+  .step-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .booking-cta-wrap {
+    margin-top: 36px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .booking-info {
+    background: var(--espresso-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 36px;
+  }
+  .hours-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-day { color: var(--muted); font-weight: 300; }
+  .hours-time { color: var(--cream-dim); font-weight: 400; }
+  .hours-row.today .hours-day { color: var(--gold); }
+  .hours-row.today .hours-time { color: var(--gold); }
+  .open-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    color: #5dbf7a;
+    letter-spacing: 0.08em;
+  }
+  .open-dot { width: 7px; height: 7px; border-radius: 50%; background: #5dbf7a; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .contact-info {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .contact-row a { color: var(--cream-dim); text-decoration: none; }
+  .contact-row a:hover { color: var(--gold); }
+  .contact-icon { color: var(--gold); font-size: 13px; width: 16px; text-align: center; }
+
+  /* REVIEWS */
+  .reviews-section {
+    background: #f0e8e0;
+    padding: 80px;
+  }
+  .reviews-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .score-display {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    border-radius: 16px;
+    padding: 24px 32px;
+    border: 1px solid rgba(201,164,122,0.2);
+    min-width: 240px;
+  }
+  .score-big {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--espresso);
+    line-height: 1;
+  }
+  .score-right {}
+  .score-stars { color: var(--gold); font-size: 18px; margin-bottom: 4px; }
+  .score-count { font-size: 12px; color: var(--muted); font-weight: 300; }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .review-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid rgba(201,164,122,0.12);
+    transition: transform 0.2s;
+  }
+  .review-card:hover { transform: translateY(-2px); }
+  .review-stars { color: var(--gold); font-size: 13px; margin-bottom: 14px; }
+  .review-text {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--espresso);
+    line-height: 1.65;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .review-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid #f0ebe6;
+  }
+  .review-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e8ddd6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--espresso);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .review-name { font-size: 12px; font-weight: 500; color: var(--espresso); }
+  .review-date { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .reviews-cta { text-align: center; margin-top: 36px; }
+  .reviews-cta a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(138,112,104,0.3);
+    padding-bottom: 2px;
+  }
+  .reviews-cta a:hover { color: var(--espresso); border-color: var(--espresso); }
+
+  /* PROMOS */
+  .promos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .promo-gift {
+    background: var(--espresso);
+    padding: 72px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .promo-gift::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 40px solid rgba(201,164,122,0.06);
+  }
+  .promo-hen {
+    background: #f5ede6;
+    padding: 72px 80px;
+    border-left: 1px solid #e8ddd6;
+  }
+  .promo-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .promo-gift .promo-label { color: var(--muted-dark); }
+  .promo-hen .promo-label { color: var(--muted); }
+  .promo-title {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .promo-gift .promo-title { color: var(--cream); }
+  .promo-hen .promo-title { color: var(--espresso); }
+  .promo-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .promo-gift .promo-desc { color: var(--muted); }
+  .promo-hen .promo-desc { color: var(--muted); }
+  .promo-amounts {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .amount-pill {
+    border: 1px solid var(--border-gold);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .amount-pill:hover, .amount-pill.active {
+    background: var(--gold);
+    color: var(--espresso);
+    border-color: var(--gold);
+  }
+  .promo-hen .amount-pill {
+    border-color: rgba(138,112,104,0.3);
+    color: var(--espresso);
+  }
+  .promo-hen .amount-pill:hover {
+    background: var(--espresso);
+    color: var(--cream);
+    border-color: var(--espresso);
+  }
+  .promo-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+  .promo-cta-link:hover { gap: 14px; }
+  .promo-gift .promo-cta-link { color: var(--gold); }
+  .promo-hen .promo-cta-link { color: var(--espresso); }
+
+  /* FOOTER */
+  footer {
+    background: #110d0b;
+    padding: 64px 80px 32px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 32px;
+  }
+  .footer-brand-logo {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+  .footer-brand-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col strong {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-col ul a:hover { color: var(--cream-dim); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy { font-size: 11px; color: var(--muted-dark); font-weight: 300; }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { font-size: 11px; color: var(--muted-dark); text-decoration: none; }
+  .footer-legal a:hover { color: var(--muted); }
+
+  /* STICKY MOBILE CTA */
+  .mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--espresso);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 14px 20px;
+    z-index: 200;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-cta-info { font-size: 11px; color: var(--muted); }
+  .mobile-cta-info strong { color: #5dbf7a; display: block; font-size: 12px; margin-bottom: 1px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; height: 58px; }
+    .nav-links { display: none; }
+    .nav-rating { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 48px 20px 36px; }
+    .hero-right { height: 55vw; }
+    .trust-bar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .trust-sep { display: none; }
+    .services-section { padding: 48px 20px; }
+    .services-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+    .service-card.full-span { grid-column: span 2; }
+    .booking-section { padding: 48px 20px; grid-template-columns: 1fr; gap: 36px; }
+    .reviews-section { padding: 48px 20px; }
+    .reviews-header { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .promos { grid-template-columns: 1fr; }
+    .promo-gift, .promo-hen { padding: 48px 20px; }
+    footer { padding: 48px 20px 24px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .mobile-cta { display: flex; }
+    body { padding-bottom: 68px; }
+    .announce { font-size: 10px; gap: 12px; }
+  }
+  @media (max-width: 540px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.full-span { grid-column: span 1; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .score-display { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge { animation: fadeInUp 0.5s ease both; }
+  .hero h1 { animation: fadeInUp 0.6s 0.1s ease both; }
+  .hero-subtitle { animation: fadeInUp 0.6s 0.2s ease both; }
+  .hero-ctas { animation: fadeInUp 0.6s 0.3s ease both; }
+  .hero-trust { animation: fadeInUp 0.6s 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- DEMO NOTE -->
+<div class="demo-banner">
+  <strong>Design Demo</strong> â€” This is a visual prototype of the proposed Bella Spa website redesign. All backend functionality (booking, payments, gift cards) remains unchanged.
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <span>Walk-ins always welcome</span>
+  <span class="sep"></span>
+  <span>10% student discount â€” every weekday</span>
+  <span class="sep"></span>
+  <a href="tel:07554012698">07554 012 698</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    BELLA SPA
+    <small>NORTHERN QUARTER Â· MANCHESTER</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hen">Hen parties</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#">Our story</a></li>
+    <li><a href="#">Aftercare</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-rating">
+      <span class="stars">â˜…â˜…â˜…â˜…â˜…</span>
+      <strong>4.9</strong>
+      <span>Â· 3,000+ reviews</span>
+    </div>
+    <a href="#gift" class="btn-ghost">Gift vouchers</a>
+    <a href="http://www.bellaspa.com/show_cart" class="btn-primary">Book now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-badge">Northern Quarter's #1 Rated Salon</div>
+    <h1>Where <em>beautiful</em><br>nails meet<br>genuine care</h1>
+    <p class="hero-subtitle">Award-winning nail, lash, brow, and beauty treatments in the heart of Manchester. Rated 4.9 stars across 3,000+ Google reviews.</p>
+    <div class="hero-ctas">
+      <a href="http://www.bellaspa.com/show_cart" class="hero-cta-primary">Book your treatment â†’</a>
+      <a href="#services" class="hero-cta-ghost">View services &amp; prices</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-pill">
+        <span class="val">4.9â˜…</span>
+        <span class="label">Google rating</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-pill">
+        <span class="val">3,000+</span>
+        <span class="label">Verified reviews</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-pill">
+        <span class="val">No MMA</span>
+        <span class="label">Organic certified</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-pill">
+        <span class="val">Walk-ins</span>
+        <span class="label">Always welcome</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right" id="gallery">
+    <div class="hero-gallery">
+      <div class="gallery-cell tall gc1">
+        <div class="gallery-placeholder">nail art</div>
+        <span class="gallery-label">Nail Art</span>
+      </div>
+      <div class="gallery-cell gc2">
+        <div class="gallery-placeholder">lashes</div>
+        <span class="gallery-label">Lashes</span>
+      </div>
+      <div class="gallery-cell gc3">
+        <div class="gallery-placeholder">spa</div>
+        <span class="gallery-label">Spa Manicure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon-circle">â˜…</div>
+    <div>Consecutive <strong>Best Salon award</strong> winner</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon-circle">âœ“</div>
+    <div><strong>No MMA Â· No acid</strong> â€” 100% certified organic products</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon-circle">â—Ž</div>
+    <div>Open <strong>Tuesday â€“ Sunday</strong>, walk-ins welcome daily</div>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <div class="trust-icon-circle">â™¡</div>
+    <div>Proudly supporting <strong>Manchester charities</strong></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-eyebrow">Our treatments</div>
+  <div class="section-title">Services &amp; pricing</div>
+  <p class="section-sub">Every treatment uses premium, certified, organic products. No shortcuts â€” your nail health is our priority.</p>
+  <div class="services-grid">
+
+    <a href="http://www.bellaspa.com/product_category/Mani---pedi." class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon-wrap">ðŸ’…</div>
+      <div class="service-name">Manicure &amp; Pedicure</div>
+      <p class="service-desc">From express polish to full hot stone spa treatments. Shellac, gelish, builder gel, and Russian manicure options available.</p>
+      <div class="service-footer">
+        <div class="service-price">From Â£25<small>per treatment</small></div>
+        <div class="service-arrow">â†’</div>
+      </div>
+    </a>
+
+    <a href="http://www.bellaspa.com/product_category/Nails-extension" class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon-wrap">âœ¨</div>
+      <div class="service-name">Nail Extensions</div>
+      <p class="service-desc">Acrylic, SNS colour powder, polygel sculpting, and builder gel. Premium 5â˜… NSI acrylic sculpting also available.</p>
+      <div class="service-footer">
+        <div class="service-price">From Â£40<small>per set</small></div>
+        <div class="service-arrow">â†’</div>
+      </div>
+    </a>
+
+    <a href="http://www.bellaspa.com/product_category/Lashes" class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon-wrap">ðŸ‘</div>
+      <div class="service-name">Lashes &amp; Brows</div>
+      <p class="service-desc">Lash lifts, extensions, brow shaping, tinting, and lamination for defined, long-lasting results.</p>
+      <div class="service-footer">
+        <div class="service-price">From Â£20<small>per treatment</small></div>
+        <div class="service-arrow">â†’</div>
+      </div>
+    </a>
+
+    <a href="http://www.bellaspa.com/product_category/Massage---tanning" class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon-wrap">â—Œ</div>
+      <div class="service-name">Massage &amp; Tanning</div>
+      <p class="service-desc">Relaxing back, neck, shoulder, and facial massages. Spray tanning and couples retreat packages available.</p>
+      <div class="service-footer">
+        <div class="service-price">From Â£35<small>per session</small></div>
+        <div class="service-arrow">â†’</div>
+      </div>
+    </a>
+
+    <a href="http://www.bellaspa.com/product_category/Brows" class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon-wrap">âŒ‡</div>
+      <div class="service-name">Waxing</div>
+      <p class="service-desc">Full body and facial waxing services using premium skin-friendly products by our trained beauticians.</p>
+      <div class="service-footer">
+        <div class="service-price">From Â£12<small>per area</small></div>
+        <div class="service-arrow">â†’</div>
+      </div>
+    </a>
+
+    <a href="http://www.bellaspa.com/show_cart" class="service-card" style="background:#faf7f4;border:2px dashed #e0d4ca;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+      <div style="font-family:var(--font-display);font-size:18px;color:var(--espresso);margin-bottom:8px;font-weight:300;font-style:italic;">Not sure what to book?</div>
+      <p class="service-desc" style="margin-bottom:16px;">Browse the full menu with detailed descriptions, timing, and package deals</p>
+      <span style="font-size:12px;color:var(--espresso);letter-spacing:0.05em;border-bottom:1px solid currentColor;padding-bottom:2px;">View full treatment menu â†’</span>
+    </a>
+
+    <a href="http://www.bellaspa.com/show_cart" class="service-card full-span">
+      <div>
+        <div class="service-name">First-time visitor? Explore our intro packages</div>
+        <div class="service-desc" style="margin-top:6px;">Special first-time packages from Â£29 â€” experience Bella Spa at exceptional value</div>
+      </div>
+      <div class="service-arrow" style="border-color:rgba(255,255,255,0.15);color:var(--gold);flex-shrink:0;">â†’</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="booking-section">
+  <div class="booking-left">
+    <div class="section-eyebrow">Online booking</div>
+    <div class="section-title" style="color:var(--cream);">Book in 3<br><em>simple steps</em></div>
+    <p class="section-sub">Available 24/7 â€” no phone call needed. Choose your treatments, pick a time, and you're confirmed instantly.</p>
+    <div class="booking-steps">
+      <div class="booking-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Choose your treatments</div>
+          <div class="step-desc">Browse all services with full descriptions and pricing. Add multiple treatments to one appointment.</div>
+        </div>
+      </div>
+      <div class="booking-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Pick your date &amp; time</div>
+          <div class="step-desc">See real-time availability and select what works for you. Walk-ins also welcome daily.</div>
+        </div>
+      </div>
+      <div class="booking-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Confirm &amp; you're done</div>
+          <div class="step-desc">Receive an instant confirmation. Bring your reference when you arrive â€” no forms to fill in at the salon.</div>
+        </div>
+      </div>
+    </div>
+    <div class="booking-cta-wrap">
+      <a href="http://www.bellaspa.com/show_cart" class="btn-primary" style="padding:13px 30px;font-size:12px;">Book your appointment â†’</a>
+      <a href="tel:07554012698" class="btn-ghost" style="font-size:12px;">Call us instead</a>
+    </div>
+  </div>
+  <div class="booking-info">
+    <div class="open-now"><span class="open-dot"></span> Open now</div>
+    <div class="hours-title">Opening hours</div>
+    <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time" style="color:var(--muted-dark);">Closed</span></div>
+    <div class="hours-row today"><span class="hours-day">Tuesday â€“ Friday</span><span class="hours-time">10:00am â€“ 7:00pm</span></div>
+    <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00am â€“ 6:15pm</span></div>
+    <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">11:00am â€“ 6:00pm</span></div>
+    <div class="contact-info">
+      <div class="contact-row"><span class="contact-icon">ðŸ“</span><span>12 Faraday Street, Northern Quarter, Manchester M1 1BE</span></div>
+      <div class="contact-row"><span class="contact-icon">ðŸ“ž</span><a href="tel:07554012698">07554 012 698</a></div>
+      <div class="contact-row"><span class="contact-icon">âœ‰</span><a href="mailto:contact@bellaspa.com">contact@bellaspa.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="reviews-header">
+    <div>
+      <div class="section-eyebrow">Google reviews</div>
+      <div class="section-title">What our clients say</div>
+      <p class="section-sub" style="margin-bottom:0;">Over 3,000 verified reviews â€” consistently rated Manchester's best nail salon.</p>
+    </div>
+    <div class="score-display">
+      <div class="score-big">4.9</div>
+      <div class="score-right">
+        <div class="score-stars">â˜…â˜…â˜…â˜…â˜…</div>
+        <div class="score-count">3,000+ reviews<br>on Google Maps</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">â˜…â˜…â˜…â˜…â˜…</div>
+      <p class="review-text">"Absolutely stunning nails â€” I've been coming here for 2 years and never been disappointed. The attention to detail and the care for your nail health is unlike any other salon I've visited."</p>
+      <div class="review-footer">
+        <div class="review-avatar">SJ</div>
+        <div>
+          <div class="review-name">Sarah J.</div>
+          <div class="review-date">Regular client Â· 2 weeks ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">â˜…â˜…â˜…â˜…â˜…</div>
+      <p class="review-text">"Best nail salon in Manchester, no contest. They use organic products only and my nails have never been healthier. Highly recommend the hot stone spa pedicure â€” absolute luxury."</p>
+      <div class="review-footer">
+        <div class="review-avatar">EK</div>
+        <div>
+          <div class="review-name">Emma K.</div>
+          <div class="review-date">Verified review Â· 1 month ago</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">â˜…â˜…â˜…â˜…â˜…</div>
+      <p class="review-text">"Came for a hen party and the team made us feel so special. Champagne on arrival, gorgeous nails all round, and such a warm atmosphere. We'll be back as a group every year!"</p>
+      <div class="review-footer">
+        <div class="review-avatar">MT</div>
+        <div>
+          <div class="review-name">Mia T.</div>
+          <div class="review-date">Hen party group Â· 3 weeks ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-cta">
+    <a href="https://g.page/yourbellaspa?share" target="_blank">Read all 3,000+ reviews on Google Maps â†’</a>
+  </div>
+</section>
+
+<!-- PROMOS -->
+<div class="promos">
+  <div class="promo-gift" id="gift">
+    <div class="promo-label">Gift vouchers</div>
+    <div class="promo-title">The perfect gift for someone special</div>
+    <p class="promo-desc">Digital and physical gift vouchers available from Â£20. Any treatment, any value â€” beautifully presented and redeemable anytime. Ideal for birthdays, Mother's Day, or just because.</p>
+    <div class="promo-amounts">
+      <span class="amount-pill active">Â£20</span>
+      <span class="amount-pill">Â£30</span>
+      <span class="amount-pill">Â£50</span>
+      <span class="amount-pill">Â£75</span>
+      <span class="amount-pill">Â£100</span>
+      <span class="amount-pill">Custom</span>
+    </div>
+    <a href="http://www.bellaspa.com/buy_voucher" class="promo-cta-link">Buy a gift voucher â†’</a>
+  </div>
+  <div class="promo-hen" id="hen">
+    <div class="promo-label">Hen parties</div>
+    <div class="promo-title">Make it a day to remember</div>
+    <p class="promo-desc">Bespoke hen party pamper packages for groups of all sizes. Prosecco on arrival, full treatments, and a dedicated experience tailored to your group. Fully flexible on budget and date.</p>
+    <div class="promo-amounts">
+      <span class="amount-pill">2â€“4 guests</span>
+      <span class="amount-pill">5â€“8 guests</span>
+      <span class="amount-pill">9+ guests</span>
+      <span class="amount-pill">Custom group</span>
+    </div>
+    <a href="http://www.bellaspa.com/pages/Hen-pamper" class="promo-cta-link">Enquire about hen packages â†’</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-logo">BELLA SPA</div>
+      <p class="footer-brand-desc">Award-winning nail, lash, brow, and beauty salon in Manchester's Northern Quarter. Certified organic products. Walk-ins welcome.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">in</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <strong>Treatments</strong>
+      <ul>
+        <li><a href="http://www.bellaspa.com/product_category/Mani---pedi.">Manicure &amp; Pedicure</a></li>
+        <li><a href="http://www.bellaspa.com/product_category/Nails-extension">Nail Extensions</a></li>
+        <li><a href="http://www.bellaspa.com/product_category/Lashes">Lashes</a></li>
+        <li><a href="http://www.bellaspa.com/product_category/Brows">Brows</a></li>
+        <li><a href="http://www.bellaspa.com/product_category/Massage---tanning">Massage &amp; Tanning</a></li>
+        <li><a href="http://www.bellaspa.com/waxing">Waxing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <strong>Visit us</strong>
+      <ul>
+        <li><a href="#">Our story</a></li>
+        <li><a href="http://www.bellaspa.com/pages/Gallery">Gallery</a></li>
+        <li><a href="http://www.bellaspa.com/pages/aftercare">Aftercare advice</a></li>
+        <li><a href="http://www.bellaspa.com/pages/Support">Local support</a></li>
+        <li><a href="http://www.bellaspa.com/pages/DIRECTION-&-PARKING">Directions &amp; parking</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <strong>Book &amp; buy</strong>
+      <ul>
+        <li><a href="http://www.bellaspa.com/show_cart">Book online</a></li>
+        <li><a href="http://www.bellaspa.com/buy_voucher">Buy gift vouchers</a></li>
+        <li><a href="http://www.bellaspa.com/pages/Hen-pamper">Hen party enquiry</a></li>
+        <li><a href="#">Student discount</a></li>
+        <li><a href="tel:07554012698">Call: 07554 012 698</a></li>
+        <li><a href="mailto:contact@bellaspa.com">Email us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">Â© 2025 Bella Spa Manchester. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <div class="mobile-cta-info">
+    <strong>Open today</strong>
+    Tueâ€“Fri 10amâ€“7pm
+  </div>
+  <a href="http://www.bellaspa.com/show_cart" class="btn-primary" style="font-size:12px;padding:11px 24px;">Book now â†’</a>
+</div>
+
+<script>
+  // Amount pill interaction
+  document.querySelectorAll('.amount-pill').forEach(pill => {
+    pill.addEventListener('click', function() {
+      const parent = this.closest('.promo-amounts');
+      parent.querySelectorAll('.amount-pill').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
+
