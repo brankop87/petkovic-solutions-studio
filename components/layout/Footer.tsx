@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
-import { navigationLinks } from "@/data/navigation";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { nav, ui } from "@/data/i18n";
 import { siteData } from "@/data/site";
 
 export default function Footer() {
   const { brand } = siteData;
+  const { locale } = useLocale();
+  const strings = ui[locale];
 
   return (
     <footer className="border-t border-[var(--line)] px-6 py-10 sm:px-8 lg:px-10">
@@ -16,19 +21,18 @@ export default function Footer() {
             {brand}
           </div>
           <p className="mt-4 max-w-lg text-sm leading-7 text-[var(--muted)]">
-            Websites and landing pages for service businesses that need a more
-            credible online presence.
+            {strings.footerTagline}
           </p>
         </div>
 
         <div className="grid gap-3 text-sm text-[var(--muted-strong)] md:justify-self-end md:text-right">
-          {navigationLinks.slice(0, 2).map((link) => (
+          {nav.slice(0, 2).map((link) => (
             <Link key={link.href} href={link.href} className="transition hover:text-white">
-              {link.label}
+              {link[locale]}
             </Link>
           ))}
           <Link href="/kontakt" className="transition hover:text-white">
-            Request audit
+            {strings.requestAudit}
           </Link>
         </div>
       </div>

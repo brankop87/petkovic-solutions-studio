@@ -3,9 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { navigationLinks } from "@/data/navigation";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import { nav, ui } from "@/data/i18n";
 
 export default function Navbar() {
+  const { locale } = useLocale();
+  const strings = ui[locale];
   const [menuOpen, setMenuOpen] = useState(false);
   const [showCompactLogo, setShowCompactLogo] = useState(false);
 
@@ -45,28 +49,30 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          {navigationLinks.map((link) => (
+          {nav.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="text-sm text-[var(--muted-strong)] transition hover:text-white"
             >
-              {link.label}
+              {link[locale]}
             </Link>
           ))}
+
+          <LanguageSwitcher />
 
           <Link
             href="/kontakt"
             className="rounded-full border border-[var(--line)] bg-white/[0.04] px-5 py-2 text-sm text-white transition hover:border-[var(--accent)] hover:bg-[rgba(24,160,106,0.12)] hover:text-[var(--accent-strong)]"
           >
-            Request audit
+            {strings.requestAudit}
           </Link>
         </div>
 
         <button
           className="text-2xl text-white md:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label="Open menu"
+          aria-label={strings.openMenu}
         >
           {menuOpen ? "x" : "="}
         </button>
@@ -82,23 +88,27 @@ export default function Navbar() {
             className="border-t border-[var(--line)] bg-[#0c1216] px-6 py-5 md:hidden"
           >
             <div className="space-y-4">
-              {navigationLinks.map((link) => (
+              {nav.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="block text-base text-[var(--muted-strong)] transition hover:text-white"
                 >
-                  {link.label}
+                  {link[locale]}
                 </Link>
               ))}
+
+              <div className="pt-1">
+                <LanguageSwitcher />
+              </div>
 
               <Link
                 href="/kontakt"
                 onClick={() => setMenuOpen(false)}
                 className="mt-4 block rounded-full border border-[var(--line)] bg-white/[0.04] px-5 py-3 text-center text-sm text-white transition hover:border-[var(--accent)] hover:bg-[rgba(24,160,106,0.12)]"
               >
-                Request audit
+                {strings.requestAudit}
               </Link>
             </div>
           </motion.div>
