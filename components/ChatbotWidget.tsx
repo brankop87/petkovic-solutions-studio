@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { chatbot } from "@/data/chatbot";
+
+type ChatText = (typeof chatbot)["en"];
 
 const ACCENT = "#3CB878";
 const ACCENT_GLOW = "rgba(60,184,120,0.35)";
@@ -53,21 +57,15 @@ function OptionButton({
   );
 }
 
-function StepGreeting({ onSelect }: { onSelect: (v: string) => void }) {
-  const options = [
-    { label: "Website", emoji: "🌐" },
-    { label: "Chatbot", emoji: "🤖" },
-    { label: "App", emoji: "📱" },
-    { label: "Something else", emoji: "✨" },
-  ];
+function StepGreeting({ t, onSelect }: { t: ChatText; onSelect: (v: string) => void }) {
   return (
     <motion.div variants={stepVariants} initial="initial" animate="animate" exit="exit">
       <p style={{ color: "#a7b0a5", fontSize: 12, marginBottom: 4 }}>Petkovic Solutions</p>
       <p style={{ color: "#f4efe6", fontSize: 15, fontWeight: 600, marginBottom: 16, lineHeight: 1.4 }}>
-        Hey! What brings you here today?
+        {t.greetingQ}
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {options.map((o) => (
+        {t.services.map((o) => (
           <OptionButton key={o.label} label={o.label} emoji={o.emoji} onClick={() => onSelect(o.label)} />
         ))}
       </div>
@@ -75,21 +73,15 @@ function StepGreeting({ onSelect }: { onSelect: (v: string) => void }) {
   );
 }
 
-function StepBudget({ onSelect }: { onSelect: (v: string) => void }) {
-  const options = [
-    { label: "Under $1,000", emoji: "💡" },
-    { label: "$1,000 – $3,000", emoji: "🚀" },
-    { label: "$3,000 – $10,000", emoji: "🔥" },
-    { label: "$10,000+", emoji: "💎" },
-  ];
+function StepBudget({ t, onSelect }: { t: ChatText; onSelect: (v: string) => void }) {
   return (
     <motion.div variants={stepVariants} initial="initial" animate="animate" exit="exit">
-      <p style={{ color: "#a7b0a5", fontSize: 12, marginBottom: 4 }}>Great choice!</p>
+      <p style={{ color: "#a7b0a5", fontSize: 12, marginBottom: 4 }}>{t.budgetKicker}</p>
       <p style={{ color: "#f4efe6", fontSize: 15, fontWeight: 600, marginBottom: 16, lineHeight: 1.4 }}>
-        What&apos;s your approximate budget?
+        {t.budgetQ}
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {options.map((o) => (
+        {t.budgets.map((o) => (
           <OptionButton key={o.label} label={o.label} emoji={o.emoji} onClick={() => onSelect(o.label)} />
         ))}
       </div>
@@ -98,8 +90,9 @@ function StepBudget({ onSelect }: { onSelect: (v: string) => void }) {
 }
 
 function StepContact({
-  name, email, setName, setEmail, submitting, error, onSubmit,
+  t, name, email, setName, setEmail, submitting, error, onSubmit,
 }: {
+  t: ChatText;
   name: string; email: string;
   setName: (v: string) => void; setEmail: (v: string) => void;
   submitting: boolean; error: string;
@@ -119,14 +112,14 @@ function StepContact({
 
   return (
     <motion.div variants={stepVariants} initial="initial" animate="animate" exit="exit">
-      <p style={{ color: "#a7b0a5", fontSize: 12, marginBottom: 4 }}>Almost there!</p>
+      <p style={{ color: "#a7b0a5", fontSize: 12, marginBottom: 4 }}>{t.contactKicker}</p>
       <p style={{ color: "#f4efe6", fontSize: 15, fontWeight: 600, marginBottom: 16, lineHeight: 1.4 }}>
-        Where should we reach you?
+        {t.contactQ}
       </p>
       <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <input
           type="text"
-          placeholder="Your name"
+          placeholder={t.namePlaceholder}
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -134,7 +127,7 @@ function StepContact({
         />
         <input
           type="email"
-          placeholder="Your email"
+          placeholder={t.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -161,14 +154,14 @@ function StepContact({
             boxShadow: `0 2px 16px ${ACCENT_GLOW}`,
           }}
         >
-          {submitting ? "Sending…" : "Send →"}
+          {submitting ? t.sending : t.send}
         </motion.button>
       </form>
     </motion.div>
   );
 }
 
-function StepThanks({ name, onReset }: { name: string; onReset: () => void }) {
+function StepThanks({ t, name, onReset }: { t: ChatText; name: string; onReset: () => void }) {
   return (
     <motion.div
       variants={stepVariants}
@@ -186,10 +179,10 @@ function StepThanks({ name, onReset }: { name: string; onReset: () => void }) {
         🎉
       </motion.div>
       <p style={{ color: "#f4efe6", fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
-        Thanks{name ? `, ${name}` : ""}!
+        {t.thanks}{name ? `, ${name}` : ""}!
       </p>
       <p style={{ color: "#a7b0a5", fontSize: 13, lineHeight: 1.5, marginBottom: 20 }}>
-        We got your message and we&apos;ll be in touch soon. Looking forward to working with you!
+        {t.thanksBody}
       </p>
       <button
         onClick={onReset}
@@ -203,13 +196,15 @@ function StepThanks({ name, onReset }: { name: string; onReset: () => void }) {
           cursor: "pointer",
         }}
       >
-        Start over
+        {t.startOver}
       </button>
     </motion.div>
   );
 }
 
 export default function ChatbotWidget() {
+  const { locale } = useLocale();
+  const t = chatbot[locale];
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<Step>("greeting");
   const [service, setService] = useState("");
@@ -237,7 +232,7 @@ export default function ChatbotWidget() {
       if (!res.ok) throw new Error("Failed");
       setStep("thanks");
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t.error);
     } finally {
       setSubmitting(false);
     }
@@ -294,7 +289,7 @@ export default function ChatbotWidget() {
               <button
                 onClick={() => setIsOpen(false)}
                 style={{ background: "none", border: "none", color: "#a7b0a5", cursor: "pointer", fontSize: 15, lineHeight: 1, padding: 2 }}
-                aria-label="Close"
+                aria-label={t.close}
               >
                 ✕
               </button>
@@ -306,18 +301,21 @@ export default function ChatbotWidget() {
                 {step === "greeting" && (
                   <StepGreeting
                     key="greeting"
+                    t={t}
                     onSelect={(s) => { setService(s); setStep("budget"); }}
                   />
                 )}
                 {step === "budget" && (
                   <StepBudget
                     key="budget"
+                    t={t}
                     onSelect={(b) => { setBudget(b); setStep("contact"); }}
                   />
                 )}
                 {step === "contact" && (
                   <StepContact
                     key="contact"
+                    t={t}
                     name={name} email={email}
                     setName={setName} setEmail={setEmail}
                     submitting={submitting} error={error}
@@ -325,7 +323,7 @@ export default function ChatbotWidget() {
                   />
                 )}
                 {step === "thanks" && (
-                  <StepThanks key="thanks" name={name} onReset={reset} />
+                  <StepThanks key="thanks" t={t} name={name} onReset={reset} />
                 )}
               </AnimatePresence>
             </div>
@@ -368,7 +366,7 @@ export default function ChatbotWidget() {
           justifyContent: "center",
           fontSize: 22,
         }}
-        aria-label="Open chat"
+        aria-label={t.openChat}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
