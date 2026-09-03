@@ -4,16 +4,19 @@ import ServicesPreview from "@/components/home/ServicesPreview";
 import Pricing from "@/components/home/Pricing";
 import WhyUs from "@/components/home/WhyUs";
 import CTA from "@/components/home/CTA";
+import { getLocale } from "@/lib/locale-server";
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getLocale();
+
   return (
     <main className="overflow-hidden">
-      <Hero />
-      <ProjectsPreview />
-      <ServicesPreview />
-      <Pricing />
-      <WhyUs />
-      <CTA />
+      <Hero locale={locale} />
+      <ProjectsPreview locale={locale} />
+      <ServicesPreview locale={locale} />
+      <Pricing locale={locale} />
+      <WhyUs locale={locale} />
+      <CTA locale={locale} />
     </main>
   );
 }

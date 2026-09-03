@@ -1,29 +1,32 @@
 import Link from "next/link";
+import { Locale } from "@/data/i18n";
 import { pricing } from "@/data/pricing";
 
-export default function Pricing() {
+export default function Pricing({ locale }: { locale: Locale }) {
+  const content = pricing[locale];
+
   return (
     <section id="pricing" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1200px]">
         <div className="max-w-2xl">
           <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-            {pricing.eyebrow}
+            {content.eyebrow}
           </div>
 
           <h2
             className="mt-3 text-4xl leading-tight sm:text-5xl"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
-            {pricing.title}
+            {content.title}
           </h2>
 
           <p className="mt-6 text-sm leading-8 text-[var(--muted)] sm:text-base">
-            {pricing.description}
+            {content.description}
           </p>
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {pricing.tiers.map((tier) => (
+          {content.tiers.map((tier) => (
             <div
               key={tier.name}
               className={
@@ -73,14 +76,14 @@ export default function Pricing() {
 
               <div className="mt-8 pt-2">
                 <Link
-                  href={pricing.cta.href}
+                  href={content.cta.href}
                   className={
                     tier.highlight
                       ? "inline-flex rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"
                       : "inline-flex rounded-full border border-[var(--line)] bg-white/[0.03] px-6 py-2.5 text-sm text-[var(--text)] transition hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
                   }
                 >
-                  {pricing.cta.label}
+                  {content.cta.label}
                 </Link>
               </div>
             </div>
@@ -88,8 +91,8 @@ export default function Pricing() {
         </div>
 
         <div className="mt-8 flex flex-col gap-2 text-xs leading-6 text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-          <span>{pricing.footnote}</span>
-          <span className="text-[var(--muted)]/80">{pricing.currencyNote}</span>
+          <span>{content.footnote}</span>
+          <span className="text-[var(--muted)]/80">{content.currencyNote}</span>
         </div>
       </div>
     </section>

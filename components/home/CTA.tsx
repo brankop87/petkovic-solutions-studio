@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { siteData } from "@/data/site";
+import { Locale } from "@/data/i18n";
+import { siteContent } from "@/data/site";
 
-export default function CTA() {
-  const { cta } = siteData;
+export default function CTA({ locale }: { locale: Locale }) {
+  const { cta } = siteContent[locale];
 
   return (
     <section id="contact" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">

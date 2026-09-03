@@ -1,25 +1,8 @@
-import { siteData } from "@/data/site";
+import { Locale } from "@/data/i18n";
+import { siteContent } from "@/data/site";
 
-const steps = [
-  {
-    title: "Audit and positioning",
-    description:
-      "We start with the offer, the audience, and the gaps in your current presentation before touching visuals.",
-  },
-  {
-    title: "Structure and build",
-    description:
-      "We shape the page around trust, clarity, and action so the site does more than just look modern.",
-  },
-  {
-    title: "Launch and refine",
-    description:
-      "After launch, the site stays easy to update and ready for outreach, ads, or future additions.",
-  },
-];
-
-export default function WhyUs() {
-  const { process } = siteData;
+export default function WhyUs({ locale }: { locale: Locale }) {
+  const { process } = siteContent[locale];
 
   return (
     <section id="process" className="px-6 py-20 sm:px-8 lg:px-10 lg:py-24">
@@ -43,14 +26,14 @@ export default function WhyUs() {
           </div>
 
           <div className="grid gap-5">
-            {steps.map((step, index) => (
+            {process.steps.map((step, index) => (
               <div
                 key={step.title}
                 className="rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7"
               >
                 <div>
                   <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                    Step 0{index + 1}
+                    {process.stepWord} 0{index + 1}
                   </div>
                   <h3 className="mt-4 text-2xl">{step.title}</h3>
                 </div>

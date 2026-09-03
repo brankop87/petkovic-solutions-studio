@@ -1,10 +1,13 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { siteData } from "@/data/site";
+import { useLocale } from "@/components/i18n/LocaleProvider";
+import { contact } from "@/data/site";
+import { pages } from "@/data/pages";
 
 export default function ContactPage() {
-  const { contact } = siteData;
+  const { locale } = useLocale();
+  const t = pages[locale].contact;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -27,14 +30,14 @@ export default function ContactPage() {
     setLoading(false);
 
     if (res.ok) {
-      setStatus("Message sent successfully.");
+      setStatus(t.success);
       setName("");
       setEmail("");
       setMessage("");
       return;
     }
 
-    setStatus("Something went wrong. Please try again.");
+    setStatus(t.error);
   }
 
   return (
@@ -42,25 +45,21 @@ export default function ContactPage() {
       <div className="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[0.88fr_1.12fr]">
         <div className="max-w-xl">
           <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-            Contact
+            {t.eyebrow}
           </div>
 
           <h1
             className="mt-4 text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
-            Start with a free website audit.
+            {t.title}
           </h1>
 
-          <p className="mt-8 text-base leading-8 text-[var(--muted)]">
-            Send your current website, landing page, or offer details. The goal
-            is to identify the biggest credibility and conversion gaps before any
-            build starts.
-          </p>
+          <p className="mt-8 text-base leading-8 text-[var(--muted)]">{t.lead}</p>
 
           <div className="mt-8 rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7">
             <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-              Direct email
+              {t.directEmailLabel}
             </div>
             <a
               className="mt-3 block text-lg text-[var(--accent-strong)] transition hover:text-white"
@@ -70,12 +69,9 @@ export default function ContactPage() {
             </a>
 
             <div className="mt-6 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-              What helps most
+              {t.helpsLabel}
             </div>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-              Your website link, your niche, what feels weak right now, and what
-              kind of leads or clients you want more of.
-            </p>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{t.helpsBody}</p>
           </div>
         </div>
 
@@ -83,21 +79,21 @@ export default function ContactPage() {
           <div className="grid gap-5">
             <input
               className="w-full rounded-[18px] border border-[var(--line)] bg-[var(--surface-soft)] px-4 py-4 text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-              placeholder="Your name"
+              placeholder={t.namePlaceholder}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
 
             <input
               className="w-full rounded-[18px] border border-[var(--line)] bg-[var(--surface-soft)] px-4 py-4 text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-              placeholder="Your email"
+              placeholder={t.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
 
             <textarea
               className="h-40 w-full resize-none rounded-[18px] border border-[var(--line)] bg-[var(--surface-soft)] px-4 py-4 text-[var(--text)] outline-none transition placeholder:text-[var(--muted)] focus:border-[var(--accent)]"
-              placeholder="Tell us about your business, current site, and what you want to improve."
+              placeholder={t.messagePlaceholder}
               rows={6}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -107,7 +103,7 @@ export default function ContactPage() {
               disabled={loading}
               className="rounded-full bg-[var(--accent)] px-6 py-4 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Sending..." : "Request audit"}
+              {loading ? t.sending : t.submit}
             </button>
 
             {status ? (

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { projects } from "@/data/projects";
+import { getLocale } from "@/lib/locale-server";
+import { projects, projectsSection } from "@/data/projects";
+import { pages } from "@/data/pages";
 
 export const metadata: Metadata = {
   title: "Work | Petkovic Solutions",
@@ -8,9 +10,13 @@ export const metadata: Metadata = {
     "Live client work and concept directions across beauty, transport, content, real estate, and fitness.",
 };
 
-export default function ProjectsPage() {
-  const liveProjects = projects.filter((project) => project.type === "Live");
-  const conceptProjects = projects.filter((project) => project.type === "Concept");
+export default async function ProjectsPage() {
+  const locale = await getLocale();
+  const t = pages[locale].work;
+  const labels = projectsSection[locale];
+  const list = projects[locale];
+  const liveProjects = list.filter((project) => project.type === "Live");
+  const conceptProjects = list.filter((project) => project.type === "Concept");
 
   return (
     <section className="px-6 pb-20 pt-28 sm:px-8 lg:px-10 lg:pb-24 lg:pt-36">
@@ -18,21 +24,17 @@ export default function ProjectsPage() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div className="max-w-xl">
             <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-              Work
+              {t.eyebrow}
             </div>
             <h1
               className="mt-4 text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              Stronger project framing, stronger studio perception.
+              {t.title}
             </h1>
           </div>
 
-          <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">
-            Projects should not read like gallery cards. They should explain what
-            needed to improve, what the work focused on, and why the final result
-            matters for the business.
-          </p>
+          <p className="max-w-2xl text-base leading-8 text-[var(--muted)]">{t.intro}</p>
         </div>
 
         <div className="mt-14 space-y-16">
@@ -58,7 +60,7 @@ export default function ProjectsPage() {
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-[var(--line)] bg-[rgba(24,160,106,0.14)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                      {project.type}
+                      {labels.live}
                     </span>
                     <span className="rounded-full border border-[var(--line)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                       {project.niche}
@@ -80,7 +82,7 @@ export default function ProjectsPage() {
                 <div className="grid gap-4">
                   <div className="rounded-[22px] border border-[var(--line)] bg-white/[0.02] p-5">
                     <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                      Challenge
+                      {labels.challenge}
                     </div>
                     <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                       {project.challenge}
@@ -90,7 +92,7 @@ export default function ProjectsPage() {
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="rounded-[22px] border border-[var(--line)] bg-white/[0.02] p-5">
                       <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                        Focus
+                        {labels.focus}
                       </div>
                       <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                         {project.focus}
@@ -99,7 +101,7 @@ export default function ProjectsPage() {
 
                     <div className="rounded-[22px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-5">
                       <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                        Outcome
+                        {labels.outcome}
                       </div>
                       <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                         {project.outcome}
@@ -126,11 +128,9 @@ export default function ProjectsPage() {
         <div className="mt-16 rounded-[30px] border border-[var(--line)] bg-white/[0.02] p-8">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted-strong)]">
-              Concept directions
+              {t.conceptDirections}
             </div>
-            <div className="text-sm text-[var(--muted)]">
-              Useful for showing range, but clearly separated from live work
-            </div>
+            <div className="text-sm text-[var(--muted)]">{t.conceptNote}</div>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -153,7 +153,7 @@ export default function ProjectsPage() {
                 <div className="p-7">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-[var(--line)] bg-[rgba(24,160,106,0.08)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                      Concept
+                      {labels.concept}
                     </span>
                     <span className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
                       {project.niche}

@@ -1,9 +1,11 @@
-import { services } from "@/data/services";
-import { siteData } from "@/data/site";
+import { Locale } from "@/data/i18n";
+import { services, servicesLabels } from "@/data/services";
+import { siteContent } from "@/data/site";
 
-export default function ServicesPreview() {
-  const { services: servicesSection } = siteData;
-  const [primary, ...secondary] = services;
+export default function ServicesPreview({ locale }: { locale: Locale }) {
+  const servicesSection = siteContent[locale].services;
+  const [primary, ...secondary] = services[locale];
+  const labels = servicesLabels[locale];
 
   return (
     <section id="services" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
@@ -29,7 +31,7 @@ export default function ServicesPreview() {
           <div className="grid gap-5">
             <div className="rounded-[30px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-8">
               <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                Core offer
+                {labels.coreOffer}
               </div>
               <h3 className="mt-4 text-3xl leading-tight">{primary.title}</h3>
               <p className="mt-5 max-w-2xl text-sm leading-8 text-[var(--muted-strong)]">

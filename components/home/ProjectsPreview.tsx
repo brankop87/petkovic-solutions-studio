@@ -1,9 +1,12 @@
 import Image from "next/image";
-import { projects } from "@/data/projects";
+import { Locale } from "@/data/i18n";
+import { projects, projectsSection } from "@/data/projects";
 
-export default function ProjectsPreview() {
-  const liveProjects = projects.filter((project) => project.type === "Live");
-  const conceptProjects = projects.filter((project) => project.type === "Concept");
+export default function ProjectsPreview({ locale }: { locale: Locale }) {
+  const list = projects[locale];
+  const labels = projectsSection[locale];
+  const liveProjects = list.filter((project) => project.type === "Live");
+  const conceptProjects = list.filter((project) => project.type === "Concept");
 
   return (
     <section id="work" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
@@ -11,20 +14,19 @@ export default function ProjectsPreview() {
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <div>
             <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-              Selected work
+              {labels.eyebrow}
             </div>
 
             <h2
               className="mt-3 text-4xl leading-tight sm:text-5xl lg:text-6xl"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              Real client work, framed with more intention.
+              {labels.title}
             </h2>
           </div>
 
           <p className="max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
-            Premium perception comes from how the work is presented, not just
-            from how it looks. The strongest signal here is balance and control.
+            {labels.intro}
           </p>
         </div>
 
@@ -50,7 +52,7 @@ export default function ProjectsPreview() {
 
                 <div className="absolute left-5 top-5 flex flex-wrap gap-2">
                   <span className="rounded-full border border-[var(--line)] bg-[rgba(24,160,106,0.14)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                    Live
+                    {labels.live}
                   </span>
                   <span className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.04)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--muted-strong)]">
                     {project.niche}
@@ -74,7 +76,7 @@ export default function ProjectsPreview() {
 
                 <div className="rounded-[22px] border border-[var(--line)] bg-white/[0.02] p-5">
                   <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                    Challenge
+                    {labels.challenge}
                   </div>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                     {project.challenge}
@@ -84,7 +86,7 @@ export default function ProjectsPreview() {
                 <div className="grid gap-4">
                   <div className="rounded-[22px] border border-[var(--line)] bg-white/[0.02] p-5">
                     <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                      Focus
+                      {labels.focus}
                     </div>
                     <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                       {project.focus}
@@ -93,7 +95,7 @@ export default function ProjectsPreview() {
 
                   <div className="rounded-[22px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-5">
                     <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
-                      Outcome
+                      {labels.outcome}
                     </div>
                     <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
                       {project.outcome}
@@ -108,11 +110,9 @@ export default function ProjectsPreview() {
         <div className="mt-16 rounded-[30px] border border-[var(--line)] bg-white/[0.02] p-8">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted-strong)]">
-              Concept directions
+              {labels.conceptDirections}
             </div>
-            <div className="text-sm text-[var(--muted)]">
-              Visual range, clearly separated from live client work
-            </div>
+            <div className="text-sm text-[var(--muted)]">{labels.conceptNote}</div>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -135,7 +135,7 @@ export default function ProjectsPreview() {
                 <div className="p-7">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-[var(--line)] bg-[rgba(24,160,106,0.08)] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                      Concept
+                      {labels.concept}
                     </span>
                     <span className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
                       {project.niche}

@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { nav, ui } from "@/data/i18n";
-import { siteData } from "@/data/site";
+import { brand } from "@/data/site";
 
 export default function Footer() {
-  const { brand } = siteData;
   const { locale } = useLocale();
   const strings = ui[locale];
 

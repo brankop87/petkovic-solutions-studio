@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { siteData } from "@/data/site";
+import { Locale } from "@/data/i18n";
+import { siteContent } from "@/data/site";
 
-export default function Hero() {
-  const { hero, proof } = siteData;
+export default function Hero({ locale }: { locale: Locale }) {
+  const { hero, proof } = siteContent[locale];
+  const { card } = hero;
 
   return (
     <section className="px-6 pb-24 pt-32 sm:px-8 lg:px-10 lg:pb-32 lg:pt-40">
@@ -55,40 +57,36 @@ export default function Hero() {
         <div className="grid gap-6 lg:pt-4">
           <div className="rounded-[34px] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[var(--shadow)] backdrop-blur">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
-              What the audit covers
+              {card.label}
             </div>
 
             <div
               className="mt-5 text-3xl leading-tight sm:text-[2.15rem]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
-              Clear fixes before you commit to a full rebuild.
+              {card.title}
             </div>
 
             <p className="mt-5 max-w-xl text-sm leading-8 text-[var(--muted)]">
-              The first pass is not about style alone. It is about finding the
-              credibility gaps, weak sections, and missed conversion points that
-              hold the site back.
+              {card.body}
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-[24px] border border-[var(--line)] bg-[var(--surface-soft)] p-5">
                 <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                  What gets reviewed
+                  {card.reviewedLabel}
                 </div>
                 <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
-                  Positioning, trust signals, CTA flow, offer clarity, mobile
-                  structure, and overall first impression.
+                  {card.reviewedBody}
                 </p>
               </div>
 
               <div className="rounded-[24px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.01))] p-5">
                 <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                  Best fit
+                  {card.bestFitLabel}
                 </div>
                 <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">
-                  Service businesses that already have traffic, referrals, or
-                  outreach, but need a stronger online presentation.
+                  {card.bestFitBody}
                 </p>
               </div>
             </div>
