@@ -2,19 +2,19 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { cookies } from "next/headers";
-import { Manrope, Fraunces } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { LOCALE_COOKIE, defaultLocale, isLocale } from "@/data/i18n";
 
 const manrope = Manrope({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   variable: "--font-manrope",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+const display = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${manrope.variable} ${fraunces.variable} bg-[var(--bg)] text-[var(--text)]`}>
+      <body className={`${manrope.variable} ${display.variable} bg-[var(--bg)] text-[var(--text)]`}>
         <LocaleProvider initialLocale={locale}>
           <SiteChrome>{children}</SiteChrome>
         </LocaleProvider>

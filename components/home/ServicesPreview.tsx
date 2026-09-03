@@ -18,7 +18,7 @@ export default function ServicesPreview({ locale }: { locale: Locale }) {
 
             <h2
               className="mt-3 text-4xl leading-tight sm:text-5xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {servicesSection.title}
             </h2>

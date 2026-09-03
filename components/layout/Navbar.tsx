@@ -35,7 +35,7 @@ export default function Navbar() {
               exit={{ opacity: 0, y: 4 }}
               transition={{ duration: 0.22 }}
               className="block text-sm leading-none tracking-tight text-white sm:text-base"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {showCompactLogo ? (
                 "PS"

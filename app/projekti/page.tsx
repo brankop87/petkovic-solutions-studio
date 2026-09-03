@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
             </div>
             <h1
               className="mt-4 text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {t.title}
             </h1>
@@ -69,7 +69,7 @@ export default async function ProjectsPage() {
 
                   <h2
                     className="mt-4 text-4xl leading-tight"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {project.name}
                   </h2>

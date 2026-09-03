@@ -15,7 +15,7 @@ export default function CTA({ locale }: { locale: Locale }) {
 
           <h2
             className="mt-5 text-4xl leading-tight sm:text-5xl"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {cta.title}
           </h2>

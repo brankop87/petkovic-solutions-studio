@@ -15,7 +15,7 @@ export default function Footer() {
         <div>
           <div
             className="text-2xl text-white"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {brand}
           </div>

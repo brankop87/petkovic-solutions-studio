@@ -50,7 +50,7 @@ export default function ContactPage() {
 
           <h1
             className="mt-4 text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {t.title}
           </h1>

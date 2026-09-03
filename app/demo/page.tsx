@@ -135,7 +135,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
         <div className="mb-10 flex items-center justify-between gap-4">
           <div
             className="text-sm tracking-tight text-white sm:text-base"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Petkovic <span className="text-[var(--accent)]">Solutions</span>
           </div>
@@ -156,7 +156,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
 
           <h1
             className="mt-6 text-5xl leading-[0.94] tracking-[-0.05em] sm:text-6xl lg:text-7xl"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {content.headline}
           </h1>
@@ -239,7 +239,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
 
           <h2
             className="mt-4 text-4xl leading-[1] tracking-[-0.04em]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Services presented with more clarity.
           </h2>
@@ -263,7 +263,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
 
           <h2
             className="mt-4 text-4xl leading-[1] tracking-[-0.04em]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             The business feels more established from the first visit.
           </h2>
@@ -293,7 +293,7 @@ export default async function DemoPage({ searchParams }: DemoPageProps) {
 
             <h2
               className="mt-4 text-4xl leading-[1] tracking-[-0.04em] sm:text-5xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Built to make reaching {content.business} feel easy.
             </h2>

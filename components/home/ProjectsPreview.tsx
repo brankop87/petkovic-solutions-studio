@@ -19,7 +19,7 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
 
             <h2
               className="mt-3 text-4xl leading-tight sm:text-5xl lg:text-6xl"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {labels.title}
             </h2>
@@ -64,7 +64,7 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
                 <div>
                   <h3
                     className="text-3xl leading-tight"
-                    style={{ fontFamily: "var(--font-fraunces)" }}
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {project.name}
                   </h3>

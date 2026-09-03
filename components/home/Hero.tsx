@@ -16,7 +16,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
           <h1
             className="mt-8 max-w-5xl text-5xl leading-[0.9] tracking-[-0.055em] sm:text-6xl lg:text-[5.7rem]"
-            style={{ fontFamily: "var(--font-fraunces)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {hero.title}
           </h1>
@@ -62,7 +62,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
             <div
               className="mt-5 text-3xl leading-tight sm:text-[2.15rem]"
-              style={{ fontFamily: "var(--font-fraunces)" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               {card.title}
             </div>
