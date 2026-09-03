@@ -52,6 +52,7 @@ Otvori http://localhost:3000
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `fd751ca` — + display font Fraunces → Playfair Display (čistiji j/S)
 - `b6cdfb7` — + ChatbotWidget preveden (Faza 3 gotova)
 - `6d5b261` — + PUN prevod (homepage sekcije + podstranice + SR EUR cene)
 - `c6cf9ed` — + i18n foundation (EN/SR prekidač, nav+footer prevedeni)
