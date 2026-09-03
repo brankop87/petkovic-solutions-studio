@@ -3,8 +3,9 @@
 > Ovaj fajl je "sidro". Kad otvoriš projekat, pročitaj ovo prvo — odmah znaš gde si stao, šta je urađeno i šta je sledeće. Ažurira se na kraju svakog koraka.
 
 **Poslednje ažuriranje:** 2026-09-03
-**Aktivna grana:** `site-refresh-2026` (rad u toku)
-**Živi sajt (`main` → petkovicsolutions.com):** netaknut, na commitu `f132c2f`. Deploy tek posle Faze 3.
+**Aktivna grana:** `main` (redizajn merge-ovan i deployovan)
+**Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** na commitu `0a54014` — redizajn (dvojezično EN/SR, pricing, Playfair) je u produkciji. Potvrđeno.
+**Grana `site-refresh-2026`:** merge-ovana u `main`; može se obrisati ili zadržati.
 
 ---
 
@@ -25,7 +26,7 @@ Otvori http://localhost:3000
 | **1** | Pozicioniranje/copy: skinuto tvrdo "US", uklonjen "Senior signal" bedž | ✅ gotovo |
 | **2** | Pricing sekcija (Premium/EN pojas): Landing $1.200 / Website $3.000 / AI add-on $600 | ✅ gotovo |
 | **3** | Dvojezičnost EN/SR + SR pricing (€400/€900/€250) + čišćenje mrtvog koda | ✅ gotovo |
-| **Deploy** | Merge grane u `main` → Vercel auto-deploy | ⏳ spremno za deploy |
+| **Deploy** | Merge grane u `main` → Vercel auto-deploy | ✅ uživo (0a54014) |
 
 ### Faza 3 — pod-koraci
 - [x] Očistiti mrtvi kod (`components/Navbar.tsx`, `components/Footer.tsx`)
