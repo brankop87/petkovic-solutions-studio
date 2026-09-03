@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
 
-const SYSTEM_PROMPT = `You are a helpful assistant for Petkovic Solutions, a web design and development studio that builds conversion-focused websites and landing pages for US service businesses (contractors, agencies, consultants, local businesses).
+const SYSTEM_PROMPT = `You are a helpful assistant for Petkovic Solutions, a web design and development studio that builds conversion-focused websites and landing pages for service businesses (contractors, agencies, consultants, local businesses).
 
 Your role:
 - Help visitors understand our services: custom websites, landing pages, SEO-optimized pages, and AI-enhanced web experiences

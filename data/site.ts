@@ -2,7 +2,7 @@ export const siteData = {
   brand: "Petkovic Solutions",
 
   hero: {
-    eyebrow: "Boutique web studio for US service businesses",
+    eyebrow: "Boutique web studio for service businesses",
     title: "Websites and landing pages built to win more qualified inquiries.",
     subtitle:
       "We help service businesses look sharper online, earn trust faster, and turn more visitors into real leads.",

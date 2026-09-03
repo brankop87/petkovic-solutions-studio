@@ -48,17 +48,11 @@ export default function WhyUs() {
                 key={step.title}
                 className="rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7"
               >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-                      Step 0{index + 1}
-                    </div>
-                    <h3 className="mt-4 text-2xl">{step.title}</h3>
+                <div>
+                  <div className="text-xs uppercase tracking-[0.22em] text-[var(--accent-strong)]">
+                    Step 0{index + 1}
                   </div>
-
-                  <div className="rounded-full border border-[var(--line)] bg-[rgba(24,160,106,0.08)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--accent-strong)]">
-                    Senior signal
-                  </div>
+                  <h3 className="mt-4 text-2xl">{step.title}</h3>
                 </div>
 
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--muted)]">

@@ -17,7 +17,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Petkovic Solutions",
   description:
-    "Petkovic Solutions builds conversion-focused websites and landing pages for US service businesses.",
+    "Petkovic Solutions builds conversion-focused websites and landing pages for service businesses.",
 };
 
 export default function RootLayout({
