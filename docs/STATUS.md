@@ -24,8 +24,8 @@ Otvori http://localhost:3000
 |---|---|---|
 | **1** | Pozicioniranje/copy: skinuto tvrdo "US", uklonjen "Senior signal" bedž | ✅ gotovo |
 | **2** | Pricing sekcija (Premium/EN pojas): Landing $1.200 / Website $3.000 / AI add-on $600 | ✅ gotovo |
-| **3** | Dvojezičnost EN/SR + SR pricing (€400/€900/€250) + čišćenje mrtvog koda | 🔄 u toku |
-| **Deploy** | Merge grane u `main` → Vercel auto-deploy | ⏳ posle Faze 3 |
+| **3** | Dvojezičnost EN/SR + SR pricing (€400/€900/€250) + čišćenje mrtvog koda | ✅ gotovo |
+| **Deploy** | Merge grane u `main` → Vercel auto-deploy | ⏳ spremno za deploy |
 
 ### Faza 3 — pod-koraci
 - [x] Očistiti mrtvi kod (`components/Navbar.tsx`, `components/Footer.tsx`)
@@ -34,8 +34,10 @@ Otvori http://localhost:3000
 - [x] Prevedene sekcije homepage-a (Hero, Services, Pricing, Projects, WhyUs, CTA)
 - [x] Prevedene podstranice (onama, usluge, projekti, kontakt)
 - [x] SR pricing pojas (EUR) — Landing €400 / Sajt €900 / AI €250
-- [ ] **Prevesti ChatbotWidget** (konverzacija + budžet opcije u €) — jedino preostalo
-- [ ] `hreflang` (samo ako pređemo na `/sr` URL-ove — zasad isti URL + cookie)
+- [x] ChatbotWidget preveden (konverzacija + budžet opcije u €)
+- [ ] (opciono) `hreflang` — samo ako pređemo na `/sr` URL-ove; zasad isti URL + cookie
+
+**Faza 3 je gotova.** Ceo sajt (homepage + podstranice + chrome + chatbot) je dvojezičan EN/SR, cene menjaju valutu. Ostaje samo odluka o `/sr` URL-ovima za SEO (opciono, kasnije).
 
 **Kako i18n radi:** sav sadržaj je `Record<Locale, ...>` u `data/` (site, services, projects, pricing, pages) + rečnici chrome-a u `data/i18n.ts`. Server komponente čitaju jezik preko `getLocale()` (`lib/locale-server.ts`, čita cookie) i prosleđuju `locale` sekcijama; klijentske (Navbar, Footer, kontakt) koriste `useLocale()` iz `LocaleProvider`. Prekidač upisuje cookie `locale` + `router.refresh()`.
 
@@ -50,6 +52,7 @@ Otvori http://localhost:3000
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `b6cdfb7` — + ChatbotWidget preveden (Faza 3 gotova)
 - `6d5b261` — + PUN prevod (homepage sekcije + podstranice + SR EUR cene)
 - `c6cf9ed` — + i18n foundation (EN/SR prekidač, nav+footer prevedeni)
 - `174f199` — + obrisan mrtvi kod
