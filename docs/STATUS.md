@@ -31,12 +31,13 @@ Otvori http://localhost:3000
 - [x] Očistiti mrtvi kod (`components/Navbar.tsx`, `components/Footer.tsx`)
 - [x] i18n foundation (LocaleProvider + jezički prekidač + cookie; `<html lang>` po jeziku)
 - [x] Chrome preveden (Navbar + Footer EN/SR)
-- [ ] Prevesti sekcije homepage-a (Hero, Services, Pricing, Projects, WhyUs, CTA)
-- [ ] Prevesti podstranice (onama, usluge, projekti, kontakt)
-- [ ] SR pricing pojas (EUR) na srpskoj verziji
-- [ ] `hreflang` (kad/ako pređemo na `/sr` URL-ove — zasad isti URL, cookie)
+- [x] Prevedene sekcije homepage-a (Hero, Services, Pricing, Projects, WhyUs, CTA)
+- [x] Prevedene podstranice (onama, usluge, projekti, kontakt)
+- [x] SR pricing pojas (EUR) — Landing €400 / Sajt €900 / AI €250
+- [ ] **Prevesti ChatbotWidget** (konverzacija + budžet opcije u €) — jedino preostalo
+- [ ] `hreflang` (samo ako pređemo na `/sr` URL-ove — zasad isti URL + cookie)
 
-**Kako i18n radi:** rečnici u `data/i18n.ts`; `LocaleProvider` (client) + cookie `locale`; server u `app/layout.tsx` čita cookie za `<html lang>` i početni jezik; `LanguageSwitcher` menja + `router.refresh()`. Sekcije koje još nisu prevedene renderuju engleski iz svojih `data/*.ts` fajlova dok ih ne migriramo.
+**Kako i18n radi:** sav sadržaj je `Record<Locale, ...>` u `data/` (site, services, projects, pricing, pages) + rečnici chrome-a u `data/i18n.ts`. Server komponente čitaju jezik preko `getLocale()` (`lib/locale-server.ts`, čita cookie) i prosleđuju `locale` sekcijama; klijentske (Navbar, Footer, kontakt) koriste `useLocale()` iz `LocaleProvider`. Prekidač upisuje cookie `locale` + `router.refresh()`.
 
 ---
 
@@ -49,6 +50,7 @@ Otvori http://localhost:3000
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `6d5b261` — + PUN prevod (homepage sekcije + podstranice + SR EUR cene)
 - `c6cf9ed` — + i18n foundation (EN/SR prekidač, nav+footer prevedeni)
 - `174f199` — + obrisan mrtvi kod
 - `8b410c9` — + STATUS.md
