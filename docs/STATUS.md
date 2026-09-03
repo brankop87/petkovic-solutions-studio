@@ -29,11 +29,14 @@ Otvori http://localhost:3000
 
 ### Faza 3 — pod-koraci
 - [x] Očistiti mrtvi kod (`components/Navbar.tsx`, `components/Footer.tsx`)
-- [ ] i18n foundation (LocaleProvider + jezički prekidač + EN/SR rečnici)
-- [ ] Prevesti sve sekcije homepage-a (Hero, Services, Pricing, Projects, WhyUs, CTA)
+- [x] i18n foundation (LocaleProvider + jezički prekidač + cookie; `<html lang>` po jeziku)
+- [x] Chrome preveden (Navbar + Footer EN/SR)
+- [ ] Prevesti sekcije homepage-a (Hero, Services, Pricing, Projects, WhyUs, CTA)
 - [ ] Prevesti podstranice (onama, usluge, projekti, kontakt)
 - [ ] SR pricing pojas (EUR) na srpskoj verziji
-- [ ] `hreflang` + `<html lang>` po jeziku
+- [ ] `hreflang` (kad/ako pređemo na `/sr` URL-ove — zasad isti URL, cookie)
+
+**Kako i18n radi:** rečnici u `data/i18n.ts`; `LocaleProvider` (client) + cookie `locale`; server u `app/layout.tsx` čita cookie za `<html lang>` i početni jezik; `LanguageSwitcher` menja + `router.refresh()`. Sekcije koje još nisu prevedene renderuju engleski iz svojih `data/*.ts` fajlova dok ih ne migriramo.
 
 ---
 
@@ -46,6 +49,9 @@ Otvori http://localhost:3000
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `c6cf9ed` — + i18n foundation (EN/SR prekidač, nav+footer prevedeni)
+- `174f199` — + obrisan mrtvi kod
+- `8b410c9` — + STATUS.md
 - `ba32c01` — + Pricing sekcija (Faza 2)
 - `e85e5fc` — + skinut US / senior signal (Faza 1)
 - `b1ab16d` — + salvage docs
