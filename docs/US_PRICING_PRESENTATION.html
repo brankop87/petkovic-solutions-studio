@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petkovic Solutions Pricing</title>
+    <style>
+      :root {
+        --bg: #08111b;
+        --surface: #101b28;
+        --surface-strong: #132131;
+        --line: rgba(124, 146, 176, 0.22);
+        --text: #f5f7fb;
+        --muted: #9fb0c8;
+        --accent: #79c0ff;
+        --accent-soft: rgba(121, 192, 255, 0.12);
+        --warm: #f2b47f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(121, 192, 255, 0.14), transparent 28%),
+          linear-gradient(180deg, #08111b 0%, #09121b 100%);
+      }
+
+      .deck {
+        width: 100%;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 20mm 18mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        page-break-after: always;
+        background: transparent;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 16px;
+      }
+
+      .brand {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .kicker {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        color: var(--muted);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 46px;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        max-width: 720px;
+      }
+
+      h2 {
+        font-size: 26px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      h3 {
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
+      .lead {
+        margin-top: 18px;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: rgba(16, 27, 40, 0.82);
+        border-radius: 22px;
+        padding: 18px;
+      }
+
+      .card.soft {
+        background: linear-gradient(135deg, rgba(121, 192, 255, 0.12), rgba(255, 255, 255, 0.02));
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--muted);
+      }
+
+      .price {
+        margin-top: 14px;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .sub {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      ul {
+        padding-left: 18px;
+        margin: 14px 0 0;
+        color: var(--muted);
+      }
+
+      li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .tag {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+      }
+
+      .footer {
+        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .note {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 16px;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 12px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      @media print {
+        body {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .page {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck">
+      <section class="page">
+        <div>
+          <div class="header">
+            <div class="brand">Petkovic <span class="accent">Solutions</span></div>
+            <div class="kicker">Pricing overview</div>
+          </div>
+
+          <h1>Websites and landing pages built for service businesses that need more qualified inquiries.</h1>
+          <p class="lead">
+            This offer is designed for US service businesses that need a stronger first impression,
+            clearer positioning, and a better path from visitor to inquiry.
+          </p>
+
+          <div class="tag-row">
+            <div class="tag">US service businesses</div>
+            <div class="tag">Websites first</div>
+            <div class="tag">Landing pages second</div>
+            <div class="tag">AI as add-on</div>
+          </div>
+
+          <div class="grid grid-2" style="margin-top: 30px;">
+            <div class="card">
+              <div class="eyebrow">Best fit</div>
+              <h2 style="margin-top: 12px;">Beauty, local services, transport, real estate, and other trust-sensitive niches.</h2>
+              <p class="sub">
+                The stronger the role of credibility and first impressions in the sale, the more valuable this work becomes.
+              </p>
+            </div>
+
+            <div class="card soft">
+              <div class="eyebrow">How the offer is positioned</div>
+              <h2 style="margin-top: 12px;">Not a full-service agency. A focused studio with a clear offer and direct execution.</h2>
+              <p class="sub">
+                That makes the service easier to explain, easier to buy, and easier to deliver well.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Prepared March 25, 2026</span>
+          <span>Page 1</span>
+        </div>
+      </section>
+
+      <section class="page">
+        <div>
+          <div class="header">
+            <div class="brand">Petkovic <span class="accent">Solutions</span></div>
+            <div class="kicker">Core packages</div>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="card">
+              <div class="eyebrow">Package 1</div>
+              <h3 style="margin-top: 12px;">Landing Page</h3>
+              <div class="price">$1,200-$2,000</div>
+              <p class="sub">Best for one offer, one audience, one campaign, or one service push.</p>
+              <ul>
+                <li>One custom page</li>
+                <li>Clear CTA flow</li>
+                <li>Responsive build</li>
+                <li>Contact or inquiry setup</li>
+              </ul>
+            </div>
+
+            <div class="card soft">
+              <div class="eyebrow">Package 2</div>
+              <h3 style="margin-top: 12px;">Core Website</h3>
+              <div class="price">$3,000-$5,000</div>
+              <p class="sub">Best for service businesses that need stronger credibility and structure.</p>
+              <ul>
+                <li>5 to 7 pages</li>
+                <li>Homepage, services, about, contact</li>
+                <li>Mobile-first layout</li>
+                <li>Conversion-oriented structure</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="eyebrow">Package 3</div>
+              <h3 style="margin-top: 12px;">Premium Website</h3>
+              <div class="price">$5,000-$6,500</div>
+              <p class="sub">Best for businesses that need a more custom presentation and stronger positioning.</p>
+              <ul>
+                <li>Higher visual polish</li>
+                <li>Stronger page hierarchy</li>
+                <li>Copy direction</li>
+                <li>Sharper trust signals</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="note">
+            Recommended starting zone for current portfolio strength:
+            <strong>$3,000-$5,000</strong> for website projects.
+            This is the most realistic band for closing work now without underpricing yourself into the bottom of the market.
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Prepared March 25, 2026</span>
+          <span>Page 2</span>
+        </div>
+      </section>
+
+      <section class="page">
+        <div>
+          <div class="header">
+            <div class="brand">Petkovic <span class="accent">Solutions</span></div>
+            <div class="kicker">Add-ons and retainers</div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="card">
+              <div class="eyebrow">Add-ons</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Offer</th>
+                    <th>Range</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FAQ / lead capture AI widget</td>
+                    <td>$300-$1,000</td>
+                  </tr>
+                  <tr>
+                    <td>Extra niche landing page</td>
+                    <td>$500-$900</td>
+                  </tr>
+                  <tr>
+                    <td>Simple launch support / revisions</td>
+                    <td>$250-$600</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card soft">
+              <div class="eyebrow">Monthly care plan</div>
+              <h2 style="margin-top: 12px;">$100-$300 / month</h2>
+              <p class="sub">
+                Good for minor edits, content updates, and keeping the relationship active after launch.
+              </p>
+              <ul>
+                <li>Small content changes</li>
+                <li>Basic monitoring and updates</li>
+                <li>Fast support for light requests</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid grid-2" style="margin-top: 24px;">
+            <div class="card">
+              <div class="eyebrow">Lead offer</div>
+              <h2 style="margin-top: 12px;">Free website audit</h2>
+              <p class="sub">
+                Best first step for cold outreach. Small ask, useful value, and a natural bridge into a paid project.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="eyebrow">Primary CTA</div>
+              <h2 style="margin-top: 12px;">Request a free audit</h2>
+              <p class="sub">
+                Better first move than “book a call” for cold traffic. Lower friction usually means more replies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Prepared March 25, 2026</span>
+          <span>Page 3</span>
+        </div>
+      </section>
+
+      <section class="page">
+        <div>
+          <div class="header">
+            <div class="brand">Petkovic <span class="accent">Solutions</span></div>
+            <div class="kicker">Revenue scenarios</div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Emails / month</th>
+                <th>Reply rate</th>
+                <th>Closed deals</th>
+                <th>Avg deal</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Conservative</td>
+                <td>800</td>
+                <td>3%</td>
+                <td>1</td>
+                <td>$3,500</td>
+                <td>$3,500</td>
+              </tr>
+              <tr>
+                <td>Realistic</td>
+                <td>1,200</td>
+                <td>5%</td>
+                <td>2</td>
+                <td>$4,500</td>
+                <td>$9,000</td>
+              </tr>
+              <tr>
+                <td>Strong execution</td>
+                <td>1,600</td>
+                <td>7%</td>
+                <td>3</td>
+                <td>$5,500</td>
+                <td>$16,500</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            These are planning scenarios, not guarantees. They assume clean targeting, decent deliverability, a small but credible portfolio, and disciplined follow-up.
+          </div>
+
+          <div class="grid grid-2" style="margin-top: 24px;">
+            <div class="card">
+              <div class="eyebrow">Most realistic first target</div>
+              <h2 style="margin-top: 12px;">$3k-$5k / month</h2>
+              <p class="sub">
+                This is the most reasonable near-term target while building proof, learning calls, and improving close rate.
+              </p>
+            </div>
+
+            <div class="card soft">
+              <div class="eyebrow">Next milestone</div>
+              <h2 style="margin-top: 12px;">$8k-$12k / month</h2>
+              <p class="sub">
+                Reach this once targeting, deliverability, and offer clarity become repeatable, and once you can close 2 projects per month consistently.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Prepared March 25, 2026</span>
+          <span>Page 4</span>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
