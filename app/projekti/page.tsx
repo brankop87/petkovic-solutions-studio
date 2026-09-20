@@ -5,7 +5,7 @@ import { projects, projectsSection } from "@/data/projects";
 import { pages } from "@/data/pages";
 
 export const metadata: Metadata = {
-  title: "Work | Petkovic Solutions",
+  title: "Work",
   description:
     "Live client work and concept directions across beauty, transport, content, real estate, and fitness.",
 };

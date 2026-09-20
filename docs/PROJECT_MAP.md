@@ -17,7 +17,6 @@
 - **Vercel** deploy
 
 ### Integracije (instalirane)
-- **Anthropic SDK** — AI chatbot (`app/api/chat`)
 - **Resend** + **nodemailer** — kontakt mejl (`app/api/contact`)
 - **Supabase** — klijent postavljen
 - **Sanity** — CMS scaffold (`sanity/`, `npm run studio`), još se ne koristi aktivno
@@ -32,15 +31,16 @@ app/
   usluge/             Usluge
   projekti/           Projekti
   kontakt/            Kontakt (forma → api/contact)
-  demo/               demo shell (bez Navbar/Footer)
-  api/chat/           AI chatbot endpoint (Anthropic)
-  api/contact/        slanje mejla
-  layout.tsx          root layout + SiteChrome
+  api/contact/        slanje mejla (escape + validacija + honeypot + rate limit)
+  robots.ts           /robots.txt
+  sitemap.ts          /sitemap.xml
+  layout.tsx          root layout + SiteChrome + SEO metadata
   globals.css         design tokeni (CSS varijable)
 
 components/
   home/               Hero, ProjectsPreview, ServicesPreview, WhyUs, CTA
   layout/             Navbar, Footer, SiteChrome
+  contact/            ContactForm (client deo kontakt strane)
   ChatbotWidget.tsx   plutajući chat (desno dole)
 
 data/
@@ -65,7 +65,7 @@ sanity/               CMS scaffold
 4. WhyUs            (How we work)
 5. CTA
 
-`SiteChrome` dodaje Navbar + Footer + ChatbotWidget na sve rute **osim** `/demo*`.
+`SiteChrome` dodaje Navbar + Footer + ChatbotWidget na sve rute.
 
 ---
 

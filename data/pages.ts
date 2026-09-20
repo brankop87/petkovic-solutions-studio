@@ -41,6 +41,7 @@ type PagesContent = {
     submit: string;
     success: string;
     error: string;
+    rateLimited: string;
   };
 };
 
@@ -101,6 +102,7 @@ export const pages: Record<Locale, PagesContent> = {
       submit: "Request audit",
       success: "Message sent successfully.",
       error: "Something went wrong. Please try again.",
+      rateLimited: "Too many messages from this connection. Please try again in a few minutes.",
     },
   },
 
@@ -160,6 +162,7 @@ export const pages: Record<Locale, PagesContent> = {
       submit: "Zatraži pregled",
       success: "Poruka je uspešno poslata.",
       error: "Nešto nije u redu. Pokušaj ponovo.",
+      rateLimited: "Previše poruka sa ove veze. Pokušaj ponovo za nekoliko minuta.",
     },
   },
 };

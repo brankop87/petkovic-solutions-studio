@@ -5,7 +5,7 @@ import { services } from "@/data/services";
 import { pages } from "@/data/pages";
 
 export const metadata: Metadata = {
-  title: "Services | Petkovic Solutions",
+  title: "Services",
   description:
     "Custom websites, landing pages, and lightweight AI add-ons for service businesses.",
 };

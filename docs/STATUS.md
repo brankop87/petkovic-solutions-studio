@@ -2,6 +2,8 @@
 
 > Ovaj fajl je "sidro". Kad otvoriš projekat, pročitaj ovo prvo — odmah znaš gde si stao, šta je urađeno i šta je sledeće. Ažurira se na kraju svakog koraka.
 
+> **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
+
 **Poslednje ažuriranje:** 2026-09-03
 **Aktivna grana:** `main` (redizajn merge-ovan i deployovan)
 **Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** na commitu `0a54014` — redizajn (dvojezično EN/SR, pricing, Playfair) je u produkciji. Potvrđeno.

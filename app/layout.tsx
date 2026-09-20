@@ -6,6 +6,7 @@ import { Manrope, Playfair_Display } from "next/font/google";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { LOCALE_COOKIE, defaultLocale, isLocale } from "@/data/i18n";
+import { siteUrl } from "@/data/site";
 
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
@@ -17,10 +18,29 @@ const display = Playfair_Display({
   variable: "--font-display",
 });
 
+const description =
+  "Petkovic Solutions builds conversion-focused websites and landing pages for service businesses.";
+
 export const metadata: Metadata = {
-  title: "Petkovic Solutions",
-  description:
-    "Petkovic Solutions builds conversion-focused websites and landing pages for service businesses.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Petkovic Solutions",
+    template: "%s | Petkovic Solutions",
+  },
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Petkovic Solutions",
+    title: "Petkovic Solutions",
+    description,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Petkovic Solutions",
+    description,
+  },
 };
 
 export default async function RootLayout({

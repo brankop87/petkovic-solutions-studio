@@ -4,7 +4,7 @@ import { getLocale } from "@/lib/locale-server";
 import { pages } from "@/data/pages";
 
 export const metadata: Metadata = {
-  title: "About | Petkovic Solutions",
+  title: "About",
   description:
     "Petkovic Solutions is a boutique web studio focused on websites and landing pages for service businesses.",
 };

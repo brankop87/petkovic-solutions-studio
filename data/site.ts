@@ -2,6 +2,7 @@ import { Locale } from "@/data/i18n";
 
 // Locale-independent
 export const brand = "Petkovic Solutions";
+export const siteUrl = "https://petkovicsolutions.com";
 export const contact = { email: "info@petkovicsolutions.com" };
 
 type SiteContent = {
