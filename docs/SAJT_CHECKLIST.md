@@ -19,22 +19,22 @@
 | 6 | Dodati `robots.txt` i `sitemap.xml` | Oba su vraćala 404 |
 | 7 | Dodati OpenGraph + Twitter tagovi, `metadataBase`, canonical | Link okačen na WhatsApp/LinkedIn nije imao karticu |
 | 8 | `/kontakt` dobio svoj `<title>` i opis | Bio `"use client"` pa nije mogao da eksportuje metadata |
-| 9 | Izbačeno 6 neiskorišćenih zavisnosti | `@anthropic-ai/sdk`, `@supabase/supabase-js`, `nodemailer`, `@types/nodemailer`, `next-sanity`, `@sanity/client` |
+| 9 | OG slika 1200×630 (`app/opengraph-image.tsx`) | Kartica pri deljenju linka išla bez vizuala |
+| 10 | Izbačeno 6 neiskorišćenih zavisnosti | `@anthropic-ai/sdk`, `@supabase/supabase-js`, `nodemailer`, `@types/nodemailer`, `next-sanity`, `@sanity/client` |
 
 ---
 
 ## 2. Sledeće — po prioritetu
 
 ### Visok
-- [ ] **OG slika (1200×630).** Tagovi postoje, slika ne. Bez nje kartica na WhatsApp-u i
-      LinkedIn-u ide bez vizuala. Opcije: statični PNG u `public/og-image.png`, ili
-      `app/opengraph-image.tsx` preko `next/og` (generiše se u build-u).
 - [ ] **Proveriti Anthropic konzolu.** `/api/chat` je bila otvorena — potvrditi da nema
       nepoznate potrošnje i da je ključ rotiran ako je ikad bio postavljen na Vercelu.
 - [ ] **Obrisati nekorišćene env varijable na Vercelu** — `ANTHROPIC_API_KEY`,
       `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`. Ništa ih više ne čita.
 
 ### Srednji
+- [ ] **OG slika — logo i jezik.** Sad je tekstualni wordmark na engleskom.
+      Razmotriti pravi znak (`docs/Logo.png`) i da li publika traži srpsku verziju.
 - [ ] **Dvojezičnost i SEO.** Jezik je u kolačiću, obe verzije dele iste URL-ove →
       Google indeksira samo jednu, nema `hreflang`. Ako SR treba da rangira, trebaju
       prave rute (`/en` ili `/sr`). Već stoji kao otvorena stavka u STATUS.md.
