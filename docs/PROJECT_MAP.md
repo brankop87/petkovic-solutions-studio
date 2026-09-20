@@ -13,13 +13,15 @@
 - **Next.js 15** (App Router) + React 18
 - **Tailwind CSS** 3.4
 - **Framer Motion** (animacije nav/hero)
-- Fontovi: **Fraunces** (serif, hero) + **Manrope** (sans, telo)
+- Fontovi: **Playfair Display** (serif, naslovi) + **Manrope** (sans, telo)
 - **Vercel** deploy
 
 ### Integracije (instalirane)
-- **Resend** + **nodemailer** — kontakt mejl (`app/api/contact`)
-- **Supabase** — klijent postavljen
+- **Resend** — kontakt mejl (`app/api/contact`)
 - **Sanity** — CMS scaffold (`sanity/`, `npm run studio`), još se ne koristi aktivno
+
+> Izbačeno 2026-09-20: `nodemailer`, `@supabase/supabase-js`, `@anthropic-ai/sdk`,
+> `next-sanity`, `@sanity/client` — ništa ih nije koristilo.
 
 ---
 

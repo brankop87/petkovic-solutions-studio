@@ -4,9 +4,9 @@
 
 > **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
 
-**Poslednje ažuriranje:** 2026-09-03
+**Poslednje ažuriranje:** 2026-09-20
 **Aktivna grana:** `main` (redizajn merge-ovan i deployovan)
-**Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** na commitu `0a54014` — redizajn (dvojezično EN/SR, pricing, Playfair) je u produkciji. Potvrđeno.
+**Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) plus bezbednosne ispravke i SEO od 2026-09-20. Potvrđeno na produkciji.
 **Grana `site-refresh-2026`:** merge-ovana u `main`; može se obrisati ili zadržati.
 
 ---
@@ -18,6 +18,29 @@ $env:NODE_OPTIONS="--no-use-system-ca"; npm run dev
 ```
 Otvori http://localhost:3000
 > `--no-use-system-ca` zaobilazi bug u Node 24 na Windowsu (ruši `next dev` na TLS/Google fontovima). Bez toga puca — nije do sajta.
+
+---
+
+## 2026-09-20 — bezbednost, SEO, čišćenje
+
+Detalji i pravila: **[SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)**.
+
+Skinuto sa produkcije (sve tri su bile javno dostupne svakome ko zna URL):
+- `/preview/bella-spa` — klijentski demo
+- `/demo` — generator demo stranica preko query parametara
+- `/api/chat` — otvoren endpoint ka Anthropic API-ju bez rate limita i auth-a
+
+Sređeno:
+- `/api/contact` — HTML escape, validacija mejla, limiti dužine, honeypot, rate limit, `replyTo`
+- `robots.txt` + `sitemap.xml` (oba su vraćala 404)
+- OpenGraph/Twitter tagovi + OG slika 1200×630 (`app/opengraph-image.tsx`)
+- `/kontakt` razdvojen na server stranu + `ContactForm` klijent komponentu (zbog metadata)
+- Noor u portfoliju prebačen sa `vercel.app` na `noorbeauty.rs`
+- Izbačeno 6 neiskorišćenih paketa; obrisan mrtav `CLAUDE_DEMO_INSTRUCTIONS.md`
+
+Ostaje tebi (traži pristup nalozima):
+- [ ] Provera Anthropic konzole — da nema nepoznate potrošnje
+- [ ] Brisanje mrtvih env varijabli na Vercelu: `ANTHROPIC_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
 
 ---
 
@@ -55,6 +78,10 @@ Otvori http://localhost:3000
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `ff542dd` — + OG slika + ažuriran checklist (2026-09-20)
+- `43890c2` — + zatvorene javne rute, očvršćena kontakt forma, robots/sitemap
+- `50b50eb` — + obrisan Bella Spa klijentski preview
+- `ffc884e` — + Noor link na `noorbeauty.rs`
 - `fd751ca` — + display font Fraunces → Playfair Display (čistiji j/S)
 - `b6cdfb7` — + ChatbotWidget preveden (Faza 3 gotova)
 - `6d5b261` — + PUN prevod (homepage sekcije + podstranice + SR EUR cene)

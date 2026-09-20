@@ -21,17 +21,33 @@ Current positioning:
 - `/projekti` work
 - `/kontakt` contact / audit request
 
+Generated at build time: `/robots.txt`, `/sitemap.xml`, `/opengraph-image` (1200x630 share card).
+
+There are no other public routes. Anything added under `app/` or `public/` is reachable
+by URL the moment it deploys - see `docs/SAJT_CHECKLIST.md` before adding either.
+
 ## Local development
 ```bash
 npm install
 npm run dev
 ```
 
-If PowerShell blocks `npm`, use:
+**On this Windows machine, prefix every npm command with `NODE_OPTIONS`.** Node 24 here
+crashes on any HTTPS request (`X509_STORE_add_cert` assertion), which breaks both
+`npm install` and `next build` (Google Fonts are fetched during the build):
 
 ```bash
-npm.cmd run dev
+NODE_OPTIONS="--no-use-system-ca" npm run dev
+NODE_OPTIONS="--no-use-system-ca" npm run build
 ```
+
+PowerShell:
+
+```powershell
+$env:NODE_OPTIONS="--no-use-system-ca"; npm run dev
+```
+
+Vercel builds on Linux and is unaffected.
 
 ## Build notes
 - The project uses App Router conventions.
@@ -39,7 +55,7 @@ npm.cmd run dev
 - `next lint` is not configured yet and will prompt for ESLint setup.
 
 ## Environment
-Contact form email delivery depends on:
+The contact form is the only feature that needs secrets:
 
 ```bash
 RESEND_API_KEY=
