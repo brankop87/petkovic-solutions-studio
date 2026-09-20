@@ -21,7 +21,7 @@ export const projects: Record<Locale, Project[]> = {
       name: "Noor Beauty Center",
       description:
         "Live beauty website designed to feel premium, credible, and conversion-oriented from the first screen.",
-      href: "https://noor-beauty-center.vercel.app/",
+      href: "https://www.noorbeauty.rs/",
       type: "Live",
       niche: "Beauty / Med Spa Style",
       image: "/images/projects/noor.png",
@@ -98,7 +98,7 @@ export const projects: Record<Locale, Project[]> = {
       name: "Noor Beauty Center",
       description:
         "Živ sajt za salon lepote, osmišljen da deluje premium, ubedljivo i usmereno ka konverziji od prvog ekrana.",
-      href: "https://noor-beauty-center.vercel.app/",
+      href: "https://www.noorbeauty.rs/",
       type: "Live",
       niche: "Lepota / Med Spa",
       image: "/images/projects/noor.png",
