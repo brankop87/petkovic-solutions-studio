@@ -52,7 +52,6 @@ data/
 public/
   images/projects/    slike projekata
   demos/              demo-gym.html, demo-realestate.html
-  previews/bella-spa/ klijentski preview
 sanity/               CMS scaffold
 ```
 
