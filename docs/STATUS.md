@@ -30,13 +30,27 @@ Urađeno (lokalno, **čeka push**):
 - **Izbačen neiskorišćen `sanity` scaffold** (paket + `sanity/` folder + `studio` skripta) — nije ga importovao nijedan fajl. **764 paketa manje.**
 - **`npm audit fix`** (bez `--force`) — zakrpljeni paketi sa stvarnom površinom: `resend`/`svix`/`uuid` (kontakt forma, radi uživo), `sharp`, `yaml`.
 - Izbačen suvišan `output: 'standalone'`.
+- **Izbačena mrtva slika** `public/background-tech.svg.png` (1,6 MB) — nigde se ne referencira.
 - **Rezultat: ranjivosti 51 → 9** · build prolazi · lista ruta čista (`/ · /api/contact · /kontakt · /onama · /projekti · /usluge · /opengraph-image · /robots.txt · /sitemap.xml`).
 
 Preostalih 9 su **svesno ostavljene** — sve u build-alatima (postcss/braces/tailwind/eslint), nedostupne posetiocu; „fix" bi bio breaking Next 16 + Tailwind 4. Planirano kao zaseban zadatak (vidi dole).
 
-**I dalje čeka tebe** (traži pristup nalozima, prenosim iz 09-20 — još nije urađeno):
-- [ ] **Anthropic konzola** — proveriti da nema nepoznate potrošnje (stari otvoreni `/api/chat`); obrisati/rotirati ključ ako postoji.
-- [ ] **Vercel env** — obrisati mrtve: `ANTHROPIC_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
+**Vercel env — SREĐENO (2026-10-04):** obrisano 5 mrtvih `MAIL_*` (HOST/PORT/USER/PASS/SECURE — ostaci starog SMTP-a). `ANTHROPIC_API_KEY` i `SUPABASE_*` nisu ni postojali. Ostale samo 3 koje kod čita: `RESEND_API_KEY`, `MAIL_FROM`, `MAIL_TO`. ✅
+
+### ⏳ OSTALO DA BRANKO ISPEGLA
+- [ ] **Rotacija `RESEND_API_KEY` + čuvanje kao Secret.** Vercel ga markira „Needs Attention":
+      vrednost je vidljiva svakome s pristupom projektu (NIJE procurela javno, samo nije
+      sačuvana kao Secret). **Nije hitno** (solo Hobby projekat, samo Branko ima pristup).
+      Uraditi ovim **redom da kontakt forma ne pukne:**
+      1. Resend → napravi NOV ključ (stari ostavi da radi).
+      2. Vercel → Edit `RESEND_API_KEY` → nalepi nov → tip **Sensitive/Secret** → Save.
+      3. Redeploy (ili sačekaj push koda) → pošalji sebi test poruku da forma radi.
+      4. Tek onda Resend → revoke stari ključ.
+- [ ] **Odluka: `public/email-logo.png` (1,3 MB).** Kod ga ne koristi. Obrisati — OSIM ako
+      ga neki tvoj STARI poslati mejl linkuje preko `petkovicsolutions.com/email-logo.png`
+      (tad bi se u tim mejlovima pokvarila slika). Ti znaš da li si to ikad stavio.
+- [ ] (opciono, niska) Anthropic konzola — pogled da nema nepoznate potrošnje; pošto ključ
+      nije bio na Vercelu, verovatno bespredmetno.
 
 ---
 
@@ -46,7 +60,7 @@ Redom, da ne lupamo glavu i znamo na čemu smo:
 
 **A) Pre produkcije (ova runda)**
 1. [x] Bezbednosni headeri + čišćenje zavisnosti (gore).
-2. [ ] Ti: Anthropic konzola + Vercel env (2 koraka u browseru).
+2. [x] Vercel env očišćen (ostale 3 žive). ⏳ Ostaje: rotacija `RESEND_API_KEY` kao Secret (vidi „OSTALO DA BRANKO ISPEGLA").
 3. [ ] Push na `main` → Vercel deploy → proveriti headere na securityheaders.com (cilj: A/A+).
 
 **B) Sadržaj — „ista priča" (sledeća sesija)**

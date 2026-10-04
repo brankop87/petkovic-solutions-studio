@@ -15,6 +15,7 @@
 | 2 | Izbačen neiskorišćen `sanity` scaffold (paket + `sanity/` folder + `studio` skripta) | Nije ga importovao nijedan fajl u kodu. Skinulo **764 paketa** i oborilo ranjivosti 51 → 26. |
 | 3 | `npm audit fix` (bez `--force`) | Zakrpljeni paketi sa stvarnom površinom: `resend`/`svix`/`uuid` (kontakt forma, radi uživo), `sharp` (slike), `yaml`. 26 → 9. |
 | 4 | Izbačen `output: 'standalone'` iz `next.config.mjs` | Suvišno na Vercelu. |
+| 5 | Izbačena mrtva slika `public/background-tech.svg.png` (1,6 MB) | Nigde se ne referencira u kodu. |
 
 **Rezultat:** ranjivosti **51 → 9** · build prolazi · lista ruta čista.
 
@@ -43,10 +44,13 @@ Svih 9 su u **build-alatima** (`postcss`, `braces`, `micromatch`, `tailwind`, `e
 ## 2. Sledeće — po prioritetu
 
 ### Visok
-- [ ] **Proveriti Anthropic konzolu.** `/api/chat` je bila otvorena — potvrditi da nema
-      nepoznate potrošnje i da je ključ rotiran ako je ikad bio postavljen na Vercelu.
-- [ ] **Obrisati nekorišćene env varijable na Vercelu** — `ANTHROPIC_API_KEY`,
-      `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`. Ništa ih više ne čita.
+- [ ] **⏳ Rotirati `RESEND_API_KEY` i sačuvati kao Secret** (Vercel „Needs Attention" — vrednost
+      čitljiva svima s pristupom projektu; nije procurela javno). Redosled: nov ključ u Resendu →
+      update u Vercelu kao Sensitive → redeploy + test forme → revoke stari. Detalji: `STATUS.md`
+      („OSTALO DA BRANKO ISPEGLA"). **Nije hitno** (solo Hobby projekat).
+- [x] ~~**Obrisati nekorišćene env varijable na Vercelu**~~ — SREĐENO 2026-10-04: obrisano 5 mrtvih
+      `MAIL_*` (SMTP ostaci); `ANTHROPIC_API_KEY`/`SUPABASE_*` nisu ni postojali. Ostale 3 žive.
+- [ ] (niska) **Anthropic konzola** — pogled da nema nepoznate potrošnje; ključ nije bio na Vercelu, verovatno bespredmetno.
 
 ### Srednji
 - [ ] **OG slika — logo i jezik.** Sad je tekstualni wordmark na engleskom.
