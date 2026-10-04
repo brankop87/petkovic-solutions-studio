@@ -3,7 +3,23 @@
 > Radni podsetnik dok peglamo outreach. Sajt je prvi utisak za svakog klijenta
 > kome pošaljemo link — mora da izdrži pogled, ne da otvara rupe.
 >
-> **Poslednje ažuriranje:** 2026-09-20
+> **Poslednje ažuriranje:** 2026-10-04
+
+---
+
+## 0. Urađeno (2026-10-04) — bezbednosno ojačavanje
+
+| # | Šta | Zašto |
+|---|---|---|
+| 1 | Dodato 5 bezbednosnih HTTP headera u `next.config.mjs` | HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy — clickjacking, prisila HTTPS, gašenje kamere/mika/lokacije. Ne menja izgled ni rad. |
+| 2 | Izbačen neiskorišćen `sanity` scaffold (paket + `sanity/` folder + `studio` skripta) | Nije ga importovao nijedan fajl u kodu. Skinulo **764 paketa** i oborilo ranjivosti 51 → 26. |
+| 3 | `npm audit fix` (bez `--force`) | Zakrpljeni paketi sa stvarnom površinom: `resend`/`svix`/`uuid` (kontakt forma, radi uživo), `sharp` (slike), `yaml`. 26 → 9. |
+| 4 | Izbačen `output: 'standalone'` iz `next.config.mjs` | Suvišno na Vercelu. |
+
+**Rezultat:** ranjivosti **51 → 9** · build prolazi · lista ruta čista.
+
+### Preostalih 9 — SVESNO ostavljeno
+Svih 9 su u **build-alatima** (`postcss`, `braces`, `micromatch`, `tailwind`, `eslint`) — rade samo pri buildu, obrađuju NAŠ sopstveni kod, nisu dostupne posetiocu. Jedini „fix" je `--force` koji forsira **Next 15→16 i Tailwind 3→4** (breaking migracija). Ne razvaljujemo radni sajt zbog brojke bez realnog rizika. → vidi §2 „Planirano".
 
 ---
 
@@ -46,10 +62,14 @@
 - [ ] **`public/background-tech.svg.png` (1,6 MB) i `public/email-logo.png` (1,3 MB)** —
       ne referencira ih nijedan fajl u kodu. Proveriti da ih ne koristi neki mejl
       šablon spolja, pa obrisati.
-- [ ] **Sanity scaffold.** `sanity/sanity.config.ts` je prazan (`schema: { types: [] }`,
-      placeholder `projectId`). Ili ga iskoristiti ili izbaciti i `sanity` paket.
-- [ ] **`output: 'standalone'` u `next.config.mjs`** — Vercel to ne koristi. Bezopasno, ali suvišno.
-- [ ] `npm audit` prijavljuje ranjivosti — pregledati.
+- [x] ~~**Sanity scaffold**~~ — izbačen 2026-10-04 (paket + `sanity/` folder + `studio` skripta).
+- [x] ~~**`output: 'standalone'`**~~ — izbačen 2026-10-04.
+- [x] ~~`npm audit` ranjivosti~~ — sređeno 2026-10-04 (51 → 9; preostalih 9 su build-noise, vidi §0 + Planirano).
+
+### Planirano (zaseban, namenski zadatak — NIJE hitno)
+- [ ] **Nadogradnja Next 15 → 16 i Tailwind 3 → 4.** Gasi preostalih 9 „build-noise" ranjivosti,
+      ali je breaking migracija — radi se namerno, sa testiranjem, ne kao hitna zakrpa.
+      Dok se ne uradi, tih 9 ostaje svesno ostavljeno.
 
 ---
 

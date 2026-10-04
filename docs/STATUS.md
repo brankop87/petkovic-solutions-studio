@@ -4,7 +4,7 @@
 
 > **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
 
-**Poslednje ažuriranje:** 2026-09-20
+**Poslednje ažuriranje:** 2026-10-04
 **Aktivna grana:** `main` (redizajn merge-ovan i deployovan)
 **Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) plus bezbednosne ispravke i SEO od 2026-09-20. Potvrđeno na produkciji.
 **Grana `site-refresh-2026`:** merge-ovana u `main`; može se obrisati ili zadržati.
@@ -18,6 +18,45 @@ $env:NODE_OPTIONS="--no-use-system-ca"; npm run dev
 ```
 Otvori http://localhost:3000
 > `--no-use-system-ca` zaobilazi bug u Node 24 na Windowsu (ruši `next dev` na TLS/Google fontovima). Bez toga puca — nije do sajta.
+
+---
+
+## 2026-10-04 — bezbednosno ojačavanje (headeri + zavisnosti)
+
+Detalji i pravila: **[SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** (§0).
+
+Urađeno (lokalno, **čeka push**):
+- **5 bezbednosnih HTTP headera** u `next.config.mjs` — HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy. Ne menja izgled ni rad.
+- **Izbačen neiskorišćen `sanity` scaffold** (paket + `sanity/` folder + `studio` skripta) — nije ga importovao nijedan fajl. **764 paketa manje.**
+- **`npm audit fix`** (bez `--force`) — zakrpljeni paketi sa stvarnom površinom: `resend`/`svix`/`uuid` (kontakt forma, radi uživo), `sharp`, `yaml`.
+- Izbačen suvišan `output: 'standalone'`.
+- **Rezultat: ranjivosti 51 → 9** · build prolazi · lista ruta čista (`/ · /api/contact · /kontakt · /onama · /projekti · /usluge · /opengraph-image · /robots.txt · /sitemap.xml`).
+
+Preostalih 9 su **svesno ostavljene** — sve u build-alatima (postcss/braces/tailwind/eslint), nedostupne posetiocu; „fix" bi bio breaking Next 16 + Tailwind 4. Planirano kao zaseban zadatak (vidi dole).
+
+**I dalje čeka tebe** (traži pristup nalozima, prenosim iz 09-20 — još nije urađeno):
+- [ ] **Anthropic konzola** — proveriti da nema nepoznate potrošnje (stari otvoreni `/api/chat`); obrisati/rotirati ključ ako postoji.
+- [ ] **Vercel env** — obrisati mrtve: `ANTHROPIC_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
+
+---
+
+## Plan za dalje (dogovoreno 2026-10-04)
+
+Redom, da ne lupamo glavu i znamo na čemu smo:
+
+**A) Pre produkcije (ova runda)**
+1. [x] Bezbednosni headeri + čišćenje zavisnosti (gore).
+2. [ ] Ti: Anthropic konzola + Vercel env (2 koraka u browseru).
+3. [ ] Push na `main` → Vercel deploy → proveriti headere na securityheaders.com (cilj: A/A+).
+
+**B) Sadržaj — „ista priča" (sledeća sesija)**
+1. [ ] **Univerzalni headline** — skloniti vezivanje za jednu nišu; poruka „kreiramo tvoje digitalno prisustvo, ko god / gde god da si". Kandidat: *„Websites that make small businesses look like big ones."*
+2. [ ] **Proširiti demo primere** — već postoje `demo-gym` i `demo-realestate` (živi, upleteni u `data/projects.ts`). Dodati još niša koje gađamo u outreach-u: barbershop, nail salon, estetska klinika, cleaning. Jasno označeni kao „concept / sample", NE kao pravi klijenti → legit bez laži.
+3. [ ] **Oživeti IG/FB** — sadržaj kroz struku (before/after demoa, saveti), da profil izgleda aktivno i pre prvih klijenata.
+
+**C) Kasnije (namenski)**
+- [ ] Next 16 + Tailwind 4 nadogradnja (gasi preostalih 9 vulnova; breaking, sa testom).
+- [ ] `hreflang` / `/sr` rute ako SR treba da rangira.
 
 ---
 
