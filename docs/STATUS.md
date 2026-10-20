@@ -4,10 +4,26 @@
 
 > **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
 
-**Poslednje ažuriranje:** 2026-10-04
-**Aktivna grana:** `main` (redizajn merge-ovan i deployovan)
+**Poslednje ažuriranje:** 2026-10-20
+**Aktivna grana:** `sr-seo-urls` (Faza 4 — zasebni SR URL-ovi; na preview-u, čeka odobrenje za merge)
 **Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) plus bezbednosne ispravke i SEO od 2026-09-20. Potvrđeno na produkciji.
-**Grana `site-refresh-2026`:** merge-ovana u `main`; može se obrisati ili zadržati.
+
+---
+
+## 2026-10-20 — Faza 4: zasebni `/sr` URL-ovi + hreflang (dvojezični SEO)
+
+Bilo je cookie-based (oba jezika na istom URL-u → Google ne indeksira srpski). Sad svaki jezik ima svoju adresu, pa SR može zasebno da rangira.
+
+- **EN ostaje na rootu** (`/`, `/onama`…) — postojeći URL-ovi/SEO netaknuti. **SR pod `/sr`** (`/sr`, `/sr/onama`…) preko tankih re-export fajlova.
+- **`middleware.ts`** postavlja `x-locale` header iz putanje → root layout renderuje tačan `<html lang>`.
+- **`LocaleProvider`** izvlači jezik iz `usePathname`; **prekidač menja URL** (`/onama` ↔ `/sr/onama`). Cookie izbačen.
+- Interni linkovi lokalizovani preko `localePath()` (`data/i18n.ts`); svaka strana ima `generateMetadata` sa **canonical + hreflang (en/sr/x-default)** + lokalizovan **OG/Twitter** (`og:locale`).
+- **`sitemap.xml`** emituje hreflang alternative za sve strane.
+- Novi fajlovi: `middleware.ts`, `lib/i18n-meta.ts`, `app/sr/**`. `getLocale()` sad čita header (ne cookie).
+
+Verifikovano lokalno: svih 10 ruta 200, tačan `html lang`+hreflang+canonical po ruti, sadržaj+OG po jeziku, `/sr` interni linkovi ostaju u `/sr` grani.
+
+**Status: na preview-u, čeka merge u `main` za produkciju.**
 
 ---
 
