@@ -1,6 +1,7 @@
 import { Locale } from "@/data/i18n";
 import { services, servicesLabels } from "@/data/services";
 import { siteContent } from "@/data/site";
+import Reveal from "@/components/motion/Reveal";
 
 export default function ServicesPreview({ locale }: { locale: Locale }) {
   const servicesSection = siteContent[locale].services;
@@ -10,7 +11,7 @@ export default function ServicesPreview({ locale }: { locale: Locale }) {
   return (
     <section id="services" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+        <Reveal direction="up" className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="max-w-xl">
             <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
               {servicesSection.eyebrow}
@@ -56,7 +57,7 @@ export default function ServicesPreview({ locale }: { locale: Locale }) {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { Locale, localePath } from "@/data/i18n";
 import { siteContent } from "@/data/site";
+import Reveal from "@/components/motion/Reveal";
 
 export default function CTA({ locale }: { locale: Locale }) {
   const { cta } = siteContent[locale];
 
   return (
     <section id="contact" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
-      <div className="mx-auto max-w-[980px] rounded-[34px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-10 shadow-[var(--shadow)] sm:p-14">
+      <Reveal direction="up" className="mx-auto max-w-[980px] rounded-[34px] border border-[var(--line)] bg-[linear-gradient(135deg,rgba(24,160,106,0.12),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-10 shadow-[var(--shadow)] sm:p-14">
         <div className="max-w-3xl">
           <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
             {cta.eyebrow}
@@ -33,7 +34,7 @@ export default function CTA({ locale }: { locale: Locale }) {
             {cta.primaryCta}
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

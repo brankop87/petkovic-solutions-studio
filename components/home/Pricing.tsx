@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Locale, localePath } from "@/data/i18n";
 import { pricing } from "@/data/pricing";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Pricing({ locale }: { locale: Locale }) {
   const content = pricing[locale];
@@ -8,7 +9,7 @@ export default function Pricing({ locale }: { locale: Locale }) {
   return (
     <section id="pricing" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1200px]">
-        <div className="max-w-2xl">
+        <Reveal direction="up" className="max-w-2xl">
           <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
             {content.eyebrow}
           </div>
@@ -23,16 +24,18 @@ export default function Pricing({ locale }: { locale: Locale }) {
           <p className="mt-6 text-sm leading-8 text-[var(--muted)] sm:text-base">
             {content.description}
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {content.tiers.map((tier) => (
-            <div
+          {content.tiers.map((tier, index) => (
+            <Reveal
               key={tier.name}
+              direction="up"
+              delay={index * 0.08}
               className={
                 tier.highlight
-                  ? "relative flex flex-col rounded-[30px] border border-[rgba(24,160,106,0.45)] bg-[linear-gradient(135deg,rgba(24,160,106,0.14),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-8 shadow-[var(--shadow)]"
-                  : "relative flex flex-col rounded-[30px] border border-[var(--line)] bg-[var(--surface)] p-8"
+                  ? "relative flex h-full flex-col rounded-[30px] border border-[rgba(24,160,106,0.45)] bg-[linear-gradient(135deg,rgba(24,160,106,0.14),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-8 shadow-[var(--shadow)]"
+                  : "relative flex h-full flex-col rounded-[30px] border border-[var(--line)] bg-[var(--surface)] p-8"
               }
             >
               {tier.badge && (
@@ -86,7 +89,7 @@ export default function Pricing({ locale }: { locale: Locale }) {
                   {content.cta.label}
                 </Link>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

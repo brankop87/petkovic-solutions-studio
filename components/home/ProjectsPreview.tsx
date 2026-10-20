@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Locale } from "@/data/i18n";
 import { projects, projectsSection } from "@/data/projects";
+import Reveal from "@/components/motion/Reveal";
 
 export default function ProjectsPreview({ locale }: { locale: Locale }) {
   const list = projects[locale];
@@ -11,33 +12,40 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
   return (
     <section id="work" className="px-6 py-24 sm:px-8 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-[1200px]">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-          <div>
-            <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
-              {labels.eyebrow}
+        <Reveal direction="up">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+            <div>
+              <div className="text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
+                {labels.eyebrow}
+              </div>
+
+              <h2
+                className="mt-3 text-4xl leading-tight sm:text-5xl lg:text-6xl"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {labels.title}
+              </h2>
             </div>
 
-            <h2
-              className="mt-3 text-4xl leading-tight sm:text-5xl lg:text-6xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {labels.title}
-            </h2>
+            <p className="max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
+              {labels.intro}
+            </p>
           </div>
-
-          <p className="max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
-            {labels.intro}
-          </p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {liveProjects.map((project) => (
-            <a
+          {liveProjects.map((project, index) => (
+            <Reveal
               key={project.name}
+              direction={index % 2 === 0 ? "left" : "right"}
+              delay={index * 0.08}
+              className="h-full"
+            >
+            <a
               href={project.href}
               target="_blank"
               rel="noreferrer"
-              className="group grid gap-6 rounded-[32px] border border-[var(--line)] bg-[var(--surface)] p-5 transition duration-300 hover:border-[var(--accent)] lg:p-6"
+              className="group grid h-full gap-6 rounded-[32px] border border-[var(--line)] bg-[var(--surface)] p-5 transition duration-300 hover:border-[var(--accent)] lg:p-6"
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-[26px] border border-[var(--line)] bg-[var(--surface-soft)]">
                 <Image
@@ -104,10 +112,11 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
                 </div>
               </div>
             </a>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-16 rounded-[30px] border border-[var(--line)] bg-white/[0.02] p-8">
+        <Reveal direction="up" className="mt-16 rounded-[30px] border border-[var(--line)] bg-white/[0.02] p-8">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted-strong)]">
               {labels.conceptDirections}
@@ -150,7 +159,7 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
               </a>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

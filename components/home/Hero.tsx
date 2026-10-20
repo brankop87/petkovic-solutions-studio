@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Locale, localePath } from "@/data/i18n";
 import { siteContent } from "@/data/site";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Hero({ locale }: { locale: Locale }) {
   const { hero, proof } = siteContent[locale];
@@ -9,7 +10,7 @@ export default function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="px-6 pb-24 pt-32 sm:px-8 lg:px-10 lg:pb-32 lg:pt-40">
       <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
-        <div className="max-w-3xl">
+        <Reveal direction="up" className="max-w-3xl">
           <div className="inline-flex rounded-full border border-[var(--line)] bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-[var(--muted)]">
             {hero.eyebrow}
           </div>
@@ -52,9 +53,9 @@ export default function Hero({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="grid gap-6 lg:pt-4">
+        <Reveal direction="right" delay={0.1} className="grid gap-6 lg:pt-4">
           <div className="rounded-[34px] border border-[var(--line)] bg-[var(--surface)] p-8 shadow-[var(--shadow)] backdrop-blur">
             <div className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
               {card.label}
@@ -91,7 +92,7 @@ export default function Hero({ locale }: { locale: Locale }) {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

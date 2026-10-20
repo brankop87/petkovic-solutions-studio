@@ -1,5 +1,6 @@
 import { Locale } from "@/data/i18n";
 import { siteContent } from "@/data/site";
+import Reveal from "@/components/motion/Reveal";
 
 export default function WhyUs({ locale }: { locale: Locale }) {
   const { process } = siteContent[locale];
@@ -27,8 +28,10 @@ export default function WhyUs({ locale }: { locale: Locale }) {
 
           <div className="grid gap-5">
             {process.steps.map((step, index) => (
-              <div
+              <Reveal
                 key={step.title}
+                direction="up"
+                delay={index * 0.08}
                 className="rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7"
               >
                 <div>
@@ -41,7 +44,7 @@ export default function WhyUs({ locale }: { locale: Locale }) {
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--muted)]">
                   {step.description}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
