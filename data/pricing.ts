@@ -42,10 +42,10 @@ export const pricing: Record<Locale, PricingContent> = {
       {
         name: "Business website",
         price: "from $3,000",
-        note: "Typical projects land $4k–$6k with scope.",
+        note: "Typical projects land $4k-$6k with scope.",
         tagline: "A complete, credibility-building site for service businesses.",
         features: [
-          "5–7 custom pages",
+          "5-7 custom pages",
           "Homepage, services, about, contact",
           "Conversion-focused structure",
           "Mobile-first build + basic SEO",
@@ -67,7 +67,7 @@ export const pricing: Record<Locale, PricingContent> = {
       },
     ],
     footnote:
-      "Final pricing depends on scope. Optional care plan — updates and hosting — from $80/mo.",
+      "Final pricing depends on scope. Optional care plan - updates and hosting - from $80/mo.",
     cta: { label: "Request a quote", href: "/kontakt" },
   },
 
@@ -92,10 +92,10 @@ export const pricing: Record<Locale, PricingContent> = {
       {
         name: "Sajt za biznis",
         price: "od €900",
-        note: "Tipični projekti padnu €1.100–1.500 sa obimom.",
+        note: "Tipični projekti padnu €1.100-1.500 sa obimom.",
         tagline: "Kompletan sajt koji gradi poverenje, za uslužne biznise.",
         features: [
-          "5–7 strana po meri",
+          "5-7 strana po meri",
           "Početna, usluge, o nama, kontakt",
           "Struktura fokusirana na konverziju",
           "Mobile-first + osnovni SEO",
@@ -117,7 +117,7 @@ export const pricing: Record<Locale, PricingContent> = {
       },
     ],
     footnote:
-      "Konačna cena zavisi od obima. Opciono održavanje — izmene i hosting — od €30/mes.",
+      "Konačna cena zavisi od obima. Opciono održavanje - izmene i hosting - od €30/mes.",
     cta: { label: "Zatraži ponudu", href: "/kontakt" },
   },
 };

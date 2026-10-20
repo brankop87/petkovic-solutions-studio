@@ -13,6 +13,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Run on pages only — skip Next internals, API routes, and static files.
+  // Run on pages only - skip Next internals, API routes, and static files.
   matcher: ["/((?!_next/|api/|.*\\.).*)"],
 };

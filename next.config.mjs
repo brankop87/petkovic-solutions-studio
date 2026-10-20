@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-// Bezbednosni HTTP headeri — salju se uz SVAKU stranicu.
+// Bezbednosni HTTP headeri - salju se uz SVAKU stranicu.
 // Ne menjaju izgled ni rad sajta; zatvaraju standardne rupe koje botovi probaju.
 // Objasnjeno u docs/SAJT_CHECKLIST.md (§3).
 const securityHeaders = [
@@ -16,7 +16,7 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   // Tudji sajt vidi samo da je poseta dosla sa petkovicsolutions.com, bez detalja.
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // Sajtu ne trebaju kamera/mikrofon/lokacija — ugasi ih na nivou sajta.
+  // Sajtu ne trebaju kamera/mikrofon/lokacija - ugasi ih na nivou sajta.
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
 ];
 

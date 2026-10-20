@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Petkovic Solutions — websites built to win more qualified inquiries";
+export const alt = "Petkovic Solutions - websites built to win more qualified inquiries";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 // Povlaci TTF sa Google Fonts-a u build-u. Ako ne uspe, ImageResponse padne na
-// podrazumevani font — slika se i dalje generise, build ne puca.
+// podrazumevani font - slika se i dalje generise, build ne puca.
 async function loadFont(family: string, weight: number) {
   try {
     const cssUrl = `https://fonts.googleapis.com/css2?family=${family}:wght@${weight}`;

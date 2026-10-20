@@ -35,8 +35,8 @@ export const chatbot: Record<Locale, ChatbotContent> = {
     budgetQ: "What's your approximate budget?",
     budgets: [
       { label: "Under $1,000", emoji: "💡" },
-      { label: "$1,000 – $3,000", emoji: "🚀" },
-      { label: "$3,000 – $10,000", emoji: "🔥" },
+      { label: "$1,000 - $3,000", emoji: "🚀" },
+      { label: "$3,000 - $10,000", emoji: "🔥" },
       { label: "$10,000+", emoji: "💎" },
     ],
     contactKicker: "Almost there!",
@@ -65,8 +65,8 @@ export const chatbot: Record<Locale, ChatbotContent> = {
     budgetQ: "Koliki ti je otprilike budžet?",
     budgets: [
       { label: "Do €500", emoji: "💡" },
-      { label: "€500 – €1.500", emoji: "🚀" },
-      { label: "€1.500 – €5.000", emoji: "🔥" },
+      { label: "€500 - €1.500", emoji: "🚀" },
+      { label: "€1.500 - €5.000", emoji: "🔥" },
       { label: "€5.000+", emoji: "💎" },
     ],
     contactKicker: "Skoro pa gotovo!",
