@@ -6,9 +6,9 @@ import { ReactNode } from "react";
 type Direction = "up" | "left" | "right";
 
 const offsets: Record<Direction, { x?: number; y?: number }> = {
-  up: { y: 28 },
-  left: { x: -48 },
-  right: { x: 48 },
+  up: { y: 52 },
+  left: { x: -120 },
+  right: { x: 120 },
 };
 
 export default function Reveal({
@@ -32,10 +32,17 @@ export default function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...offsets[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, scale: 0.94, ...offsets[direction] }}
+      whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{
+        type: "spring",
+        stiffness: 90,
+        damping: 15,
+        mass: 0.9,
+        delay,
+        opacity: { duration: 0.45, delay },
+      }}
     >
       {children}
     </motion.div>

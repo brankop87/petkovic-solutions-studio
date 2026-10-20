@@ -38,7 +38,7 @@ export default function ProjectsPreview({ locale }: { locale: Locale }) {
             <Reveal
               key={project.name}
               direction={index % 2 === 0 ? "left" : "right"}
-              delay={index * 0.08}
+              delay={index * 0.14}
               className="h-full"
             >
             <a

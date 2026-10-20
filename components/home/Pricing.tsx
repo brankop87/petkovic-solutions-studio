@@ -31,7 +31,7 @@ export default function Pricing({ locale }: { locale: Locale }) {
             <Reveal
               key={tier.name}
               direction="up"
-              delay={index * 0.08}
+              delay={index * 0.12}
               className={
                 tier.highlight
                   ? "relative flex h-full flex-col rounded-[30px] border border-[rgba(24,160,106,0.45)] bg-[linear-gradient(135deg,rgba(24,160,106,0.14),rgba(233,199,157,0.05),rgba(255,255,255,0.02))] p-8 shadow-[var(--shadow)]"

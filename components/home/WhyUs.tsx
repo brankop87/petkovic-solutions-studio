@@ -31,7 +31,7 @@ export default function WhyUs({ locale }: { locale: Locale }) {
               <Reveal
                 key={step.title}
                 direction="up"
-                delay={index * 0.08}
+                delay={index * 0.12}
                 className="rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7"
               >
                 <div>
