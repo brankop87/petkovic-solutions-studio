@@ -5,10 +5,22 @@
 > **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
 
 **Poslednje ažuriranje:** 2026-10-20
-**Aktivna grana:** `main` (Faza 4 merge-ovana i deployovana)
-**Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) plus bezbednosne ispravke i SEO od 2026-09-20. Potvrđeno na produkciji.
+**Aktivna grana:** `main` (Faze 4 i 5 merge-ovane i deployovane)
+**Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) + bezbednosne ispravke + `/sr` SEO (Faza 4) + scroll animacije (Faza 5). Potvrđeno na produkciji.
 
 ---
+
+## 2026-10-20 — Faza 5: scroll animacije
+
+Sajt je delovao statično. Dodat suptilan ali živ pokret dok se skroluje.
+
+- **`components/motion/Reveal.tsx`** — Framer Motion wrapper (`whileInView`, `once`, spring + scale „pop"); poštuje `prefers-reduced-motion`; tekst ostaje u DOM-u → **SEO neokrnjen**.
+- Primenjen: hero kolone (na učitavanju), **kartice radova ulaze naizmenično levo/desno sa razmakom**, cene/koraci/CTA se dižu na skrol.
+- Jačina se lako podešava u `Reveal.tsx` (offset/spring/scale) i `delay` po sekciji.
+
+Mogući „bolderski" dodaci za kasnije (ako zatreba više wow): hover-tilt na projektima, brojke koje se nabrajaju (+social proof), živ gradijent u hero-u, klizajuća traka niša.
+
+**Status: ✅ UŽIVO (commit c4f2a16).**
 
 ## 2026-10-20 — Faza 4: zasebni `/sr` URL-ovi + hreflang (dvojezični SEO)
 
