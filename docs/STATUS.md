@@ -5,7 +5,7 @@
 > **Vidi i [SAJT_CHECKLIST.md](SAJT_CHECKLIST.md)** — bezbednosne ispravke od 2026-09-20 i pravila da se ne ponove.
 
 **Poslednje ažuriranje:** 2026-10-20
-**Aktivna grana:** `sr-seo-urls` (Faza 4 — zasebni SR URL-ovi; na preview-u, čeka odobrenje za merge)
+**Aktivna grana:** `main` (Faza 4 merge-ovana i deployovana)
 **Živi sajt (`main` → petkovicsolutions.com):** ✅ **UŽIVO** — redizajn (dvojezično EN/SR, pricing, Playfair) plus bezbednosne ispravke i SEO od 2026-09-20. Potvrđeno na produkciji.
 
 ---
@@ -23,7 +23,7 @@ Bilo je cookie-based (oba jezika na istom URL-u → Google ne indeksira srpski).
 
 Verifikovano lokalno: svih 10 ruta 200, tačan `html lang`+hreflang+canonical po ruti, sadržaj+OG po jeziku, `/sr` interni linkovi ostaju u `/sr` grani.
 
-**Status: na preview-u, čeka merge u `main` za produkciju.**
+**Status: ✅ UŽIVO na produkciji (2026-10-20, commit 667c9ee).** Potvrđeno: `/` i `/sr` → 200, tačan `html lang`+hreflang, SR sadržaj live.
 
 ---
 
