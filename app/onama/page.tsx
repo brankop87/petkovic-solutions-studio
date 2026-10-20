@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getLocale } from "@/lib/locale-server";
+import { metaFor } from "@/lib/i18n-meta";
+import { localePath } from "@/data/i18n";
 import { pages } from "@/data/pages";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Petkovic Solutions is a boutique web studio focused on websites and landing pages for service businesses.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = pages[locale].about;
+  return metaFor("/onama", locale, { title: t.eyebrow, description: t.lead });
+}
 
 export default async function AboutPage() {
   const locale = await getLocale();
@@ -55,7 +57,7 @@ export default async function AboutPage() {
             </p>
 
             <Link
-              href="/kontakt"
+              href={localePath("/kontakt", locale)}
               className="mt-6 inline-flex rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"
             >
               {t.cta}

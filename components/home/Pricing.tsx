@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Locale } from "@/data/i18n";
+import { Locale, localePath } from "@/data/i18n";
 import { pricing } from "@/data/pricing";
 
 export default function Pricing({ locale }: { locale: Locale }) {
@@ -76,7 +76,7 @@ export default function Pricing({ locale }: { locale: Locale }) {
 
               <div className="mt-8 pt-2">
                 <Link
-                  href={content.cta.href}
+                  href={localePath(content.cta.href, locale)}
                   className={
                     tier.highlight
                       ? "inline-flex rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"

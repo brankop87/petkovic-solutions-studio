@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
-import { nav, ui } from "@/data/i18n";
+import { nav, ui, localePath } from "@/data/i18n";
 
 export default function Navbar() {
   const { locale } = useLocale();
@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-[var(--line)] bg-[#0c1216]/82 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
-        <Link href="/" className="flex items-center leading-none">
+        <Link href={localePath("/", locale)} className="flex items-center leading-none">
           <AnimatePresence mode="wait">
             <motion.span
               key={showCompactLogo ? "compact" : "full"}
@@ -52,7 +52,7 @@ export default function Navbar() {
           {nav.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={localePath(link.href, locale)}
               className="text-sm text-[var(--muted-strong)] transition hover:text-white"
             >
               {link[locale]}
@@ -62,7 +62,7 @@ export default function Navbar() {
           <LanguageSwitcher />
 
           <Link
-            href="/kontakt"
+            href={localePath("/kontakt", locale)}
             className="rounded-full border border-[var(--line)] bg-white/[0.04] px-5 py-2 text-sm text-white transition hover:border-[var(--accent)] hover:bg-[rgba(24,160,106,0.12)] hover:text-[var(--accent-strong)]"
           >
             {strings.requestAudit}
@@ -91,7 +91,7 @@ export default function Navbar() {
               {nav.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={localePath(link.href, locale)}
                   onClick={() => setMenuOpen(false)}
                   className="block text-base text-[var(--muted-strong)] transition hover:text-white"
                 >
@@ -104,7 +104,7 @@ export default function Navbar() {
               </div>
 
               <Link
-                href="/kontakt"
+                href={localePath("/kontakt", locale)}
                 onClick={() => setMenuOpen(false)}
                 className="mt-4 block rounded-full border border-[var(--line)] bg-white/[0.04] px-5 py-3 text-center text-sm text-white transition hover:border-[var(--accent)] hover:bg-[rgba(24,160,106,0.12)]"
               >

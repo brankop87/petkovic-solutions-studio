@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleProvider";
-import { nav, ui } from "@/data/i18n";
+import { nav, ui, localePath } from "@/data/i18n";
 import { brand } from "@/data/site";
 
 export default function Footer() {
@@ -26,11 +26,11 @@ export default function Footer() {
 
         <div className="grid gap-3 text-sm text-[var(--muted-strong)] md:justify-self-end md:text-right">
           {nav.slice(0, 2).map((link) => (
-            <Link key={link.href} href={link.href} className="transition hover:text-white">
+            <Link key={link.href} href={localePath(link.href, locale)} className="transition hover:text-white">
               {link[locale]}
             </Link>
           ))}
-          <Link href="/kontakt" className="transition hover:text-white">
+          <Link href={localePath("/kontakt", locale)} className="transition hover:text-white">
             {strings.requestAudit}
           </Link>
 

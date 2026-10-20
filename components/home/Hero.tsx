@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Locale } from "@/data/i18n";
+import { Locale, localePath } from "@/data/i18n";
 import { siteContent } from "@/data/site";
 
 export default function Hero({ locale }: { locale: Locale }) {
@@ -27,7 +27,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
           <div className="mt-12 flex flex-wrap gap-4">
             <Link
-              href="/kontakt"
+              href={localePath("/kontakt", locale)}
               className="rounded-full bg-[var(--accent)] px-7 py-3 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"
             >
               {hero.primaryCta}

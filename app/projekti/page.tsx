@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getLocale } from "@/lib/locale-server";
+import { metaFor } from "@/lib/i18n-meta";
 import { projects, projectsSection } from "@/data/projects";
 import { pages } from "@/data/pages";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description:
-    "Live client work and concept directions across beauty, transport, content, real estate, and fitness.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = pages[locale].work;
+  return metaFor("/projekti", locale, { title: t.eyebrow, description: t.intro });
+}
 
 export default async function ProjectsPage() {
   const locale = await getLocale();

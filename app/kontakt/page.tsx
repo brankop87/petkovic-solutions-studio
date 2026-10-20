@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { getLocale } from "@/lib/locale-server";
+import { metaFor } from "@/lib/i18n-meta";
 import { contact } from "@/data/site";
 import { pages } from "@/data/pages";
 import ContactForm from "@/components/contact/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Request a free website audit. We review your current site and point out the biggest credibility and conversion gaps.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = pages[locale].contact;
+  return metaFor("/kontakt", locale, { title: t.eyebrow, description: t.lead });
+}
 
 export default async function ContactPage() {
   const locale = await getLocale();

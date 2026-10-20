@@ -1,11 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { cookies } from "next/headers";
 import { Manrope, Playfair_Display } from "next/font/google";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
-import { LOCALE_COOKIE, defaultLocale, isLocale } from "@/data/i18n";
+import { getLocale } from "@/lib/locale-server";
 import { siteUrl } from "@/data/site";
 
 const manrope = Manrope({
@@ -48,14 +47,12 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const stored = cookieStore.get(LOCALE_COOKIE)?.value;
-  const locale = isLocale(stored) ? stored : defaultLocale;
+  const locale = await getLocale();
 
   return (
     <html lang={locale}>
       <body className={`${manrope.variable} ${display.variable} bg-[var(--bg)] text-[var(--text)]`}>
-        <LocaleProvider initialLocale={locale}>
+        <LocaleProvider>
           <SiteChrome>{children}</SiteChrome>
         </LocaleProvider>
       </body>

@@ -8,6 +8,17 @@ export function isLocale(value: string | undefined): value is Locale {
   return value === "en" || value === "sr";
 }
 
+// Map an internal path to the current locale's URL tree.
+// EN lives at the root ("/kontakt"); SR lives under "/sr" ("/sr/kontakt").
+// Pure anchors ("#work") and external links pass through unchanged.
+export function localePath(path: string, locale: Locale): string {
+  if (locale === "en") return path;
+  if (path === "/") return "/sr";
+  if (path.startsWith("/#")) return "/sr" + path.slice(1); // "/#work" -> "/sr#work"
+  if (path.startsWith("/")) return "/sr" + path; // "/kontakt" -> "/sr/kontakt"
+  return path; // "#work", mailto:, https://...
+}
+
 // Navigation: hrefs are shared, labels per locale.
 export const nav: { href: string; en: string; sr: string }[] = [
   { href: "/#work", en: "Work", sr: "Radovi" },
