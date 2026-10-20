@@ -1,127 +1,117 @@
 # PETKOVIC SOLUTIONS — PROJECT MAP
 
-> Ažurirano: 2026-09-03. Odražava stvarno stanje `petkovic-solutions-clean/petkovic-solutions-studio` (živi sajt).
+> Ažurirano: 2026-10-20. Odražava stvarno stanje repo-a. Za „gde sam stao / šta dalje" vidi **[STATUS.md](STATUS.md)** (sidro).
 
 ## STATUS
-- **LIVE** na https://petkovicsolutions.com
-- Deploy: GitHub `main` (`brankop87/petkovic-solutions-studio`) → **Vercel auto-deploy**
-- Ovo je jedini aktivni radni folder. (Stari `petkovic-solutions-studio` u root-u je zastareo/za brisanje.)
+- **LIVE** na https://petkovicsolutions.com (EN) i https://petkovicsolutions.com/sr (SR)
+- Kod: `C:\2026\Projects\Petkovic Solutions`
+- Deploy: push na GitHub `main` (`brankop87/petkovic-solutions-studio`) → **Vercel auto-deploy** (Hobby, nalog „Branko's projects")
 
 ---
 
 ## STACK
 - **Next.js 15** (App Router) + React 18
 - **Tailwind CSS** 3.4
-- **Framer Motion** (animacije nav/hero)
-- Fontovi: **Playfair Display** (serif, naslovi) + **Manrope** (sans, telo)
-- **Vercel** deploy
+- **Framer Motion** — nav/chatbot + scroll-reveal animacije (`components/motion/Reveal.tsx`)
+- Fontovi (next/font): **Playfair Display** (serif, naslovi) + **Manrope** (sans, telo), oba sa `latin-ext` (srpski znakovi)
+- **Resend** — jedini backend (kontakt forma, `app/api/contact`)
+- **Vercel** deploy; 5 bezbednosnih HTTP headera u `next.config.mjs`
 
-### Integracije (instalirane)
-- **Resend** — kontakt mejl (`app/api/contact`)
-- **Sanity** — CMS scaffold (`sanity/`, `npm run studio`), još se ne koristi aktivno
+> Nema CMS-a ni baze. Sanity/Supabase/nodemailer/Anthropic SDK izbačeni 2026-09-20 (ništa ih nije koristilo).
 
-> Izbačeno 2026-09-20: `nodemailer`, `@supabase/supabase-js`, `@anthropic-ai/sdk`,
-> `next-sanity`, `@sanity/client` — ništa ih nije koristilo.
+---
+
+## DVOJEZIČNOST (EN primaran + SR na `/sr`)
+- **EN na rootu** (`/`, `/onama`…), **SR pod `/sr`** (`/sr`, `/sr/onama`…). Zasebni URL-ovi → Google indeksira oba jezika.
+- `middleware.ts` čita putanju → postavlja `x-locale` header.
+- `lib/locale-server.ts getLocale()` (server) čita taj header → root layout renderuje `<html lang>`.
+- `components/i18n/LocaleProvider.tsx` (client) izvlači jezik iz `usePathname()`; `LanguageSwitcher` **menja URL** (`/onama` ↔ `/sr/onama`).
+- `data/i18n.ts localePath()` lokalizuje sve interne linkove.
+- Svaka strana: `generateMetadata` → `lib/i18n-meta.ts metaFor()` daje canonical + **hreflang** (en/sr/x-default) + lokalizovan OG/Twitter.
+- `app/sr/**` su **tanki re-export fajlovi** iste komponente (getLocale vrati „sr" preko headera).
 
 ---
 
 ## FOLDER STRUCTURE
 ```
+middleware.ts            postavlja x-locale iz putanje
+next.config.mjs          security headeri
+
 app/
-  page.tsx            homepage
-  onama/              O nama
-  usluge/             Usluge
-  projekti/           Projekti
-  kontakt/            Kontakt (forma → api/contact)
-  api/contact/        slanje mejla (escape + validacija + honeypot + rate limit)
-  robots.ts           /robots.txt
-  sitemap.ts          /sitemap.xml
-  layout.tsx          root layout + SiteChrome + SEO metadata
-  globals.css         design tokeni (CSS varijable)
+  page.tsx               homepage (EN)         sr/page.tsx            homepage (SR, re-export)
+  onama/ usluge/         podstranice (EN)      sr/onama/ sr/usluge/   (SR, re-export)
+  projekti/ kontakt/                           sr/projekti/ sr/kontakt/
+  api/contact/route.ts   slanje mejla (escape + validacija + honeypot + rate limit)
+  layout.tsx             root layout + <html lang> + SEO metadata
+  robots.ts  sitemap.ts  (/robots.txt, /sitemap.xml sa hreflang alternativama)
+  opengraph-image.tsx    OG slika 1200×630
+  globals.css            design tokeni (CSS varijable)
 
 components/
-  home/               Hero, ProjectsPreview, ServicesPreview, WhyUs, CTA
-  layout/             Navbar, Footer, SiteChrome
-  contact/            ContactForm (client deo kontakt strane)
-  ChatbotWidget.tsx   plutajući chat (desno dole)
+  home/                  Hero, ProjectsPreview, ServicesPreview, Pricing, WhyUs, CTA
+  layout/                Navbar, Footer, SiteChrome, LanguageSwitcher
+  contact/ContactForm    client deo kontakt strane
+  i18n/LocaleProvider     client locale kontekst (iz usePathname)
+  motion/Reveal           scroll-reveal wrapper (Framer, reduced-motion safe)
+  ChatbotWidget.tsx       plutajući chat (desno dole)
 
-data/
-  site.ts             hero, proof, services/process intro, cta, contact
-  projects.ts         portfolio (Live + Concept)
-  services.ts         3 usluge
-  navigation.ts       nav linkovi
+data/  (sav tekst je Record<Locale, ...> — EN + SR)
+  site.ts     hero+card, proof, services/process intro+steps, cta; brand/contact/siteUrl
+  projects.ts portfolio (Live + Concept) + projectsSection labele
+  services.ts 3 usluge + servicesLabels
+  pricing.ts  dva pojasa: EN (USD) / SR (EUR)
+  pages.ts    tekst podstranica (onama/usluge/projekti/kontakt)
+  chatbot.ts  tok chatbota (budžeti $ / €)
+  i18n.ts     Locale tip, nav, ui stringovi, localePath()
 
-public/
-  images/projects/    slike projekata
-  demos/              demo-gym.html, demo-realestate.html
-sanity/               CMS scaffold
+lib/
+  locale-server.ts  getLocale() — čita x-locale header (server)
+  i18n-meta.ts      metaFor() — canonical + hreflang + OG po jeziku
 ```
 
 ---
 
 ## HOMEPAGE STRUCTURE
-`app/page.tsx` renderuje redom:
-1. Hero
-2. ProjectsPreview  (Selected Work)
-3. ServicesPreview  (What we offer)
-4. WhyUs            (How we work)
-5. CTA
+`app/page.tsx` čita `getLocale()` i renderuje sa `locale` propom:
+1. Hero → 2. ProjectsPreview (Selected Work) → 3. ServicesPreview → 4. Pricing → 5. WhyUs (How we work) → 6. CTA
 
 `SiteChrome` dodaje Navbar + Footer + ChatbotWidget na sve rute.
 
 ---
 
-## DATA FLOW (pravilo: nema hardkodovanog teksta u komponentama)
-- `data/site.ts` → Hero, CTA, Contact, intro tekstovi
-- `data/projects.ts` → ProjectsPreview, stranica Projekti
-- `data/services.ts` → ServicesPreview
-- `data/navigation.ts` → Navbar
-
----
-
-## RULES (CRITICAL)
-1. NEMA hardkodovanog teksta u komponentama — sve ide kroz `data/` fajlove
-2. `app/` je SAMO routing sloj — bez teške UI logike
-3. `components/home` = samo homepage
-4. `components/layout` = globalni chrome (nav/footer/chrome)
-5. Svaka nova sekcija mora biti modularna
+## PRAVILA (CRITICAL)
+1. **NEMA hardkodovanog teksta** u komponentama — sve kroz `data/` fajlove, i to `Record<Locale, …>` (EN + SR).
+2. Interni linkovi uvek kroz `localePath(href, locale)` (da rade i na `/sr`).
+3. Nova strana → dodati i `app/sr/<ruta>/page.tsx` re-export + `generateMetadata` sa `metaFor()`.
+4. `app/` je routing sloj; UI logika u `components/`.
+5. **Sve u `app/` i `public/` je JAVNO čim se deploy-uje** — pre deploya pogledati rute iz `npm run build`.
 
 ---
 
 ## PORTFOLIO (data/projects.ts)
-**Live:**
-- Noor Beauty Center — Beauty / Med Spa
-- Marko Prevoznik — Transport / Local Services
-- The Cannon — Content / SEO (Arsenal blog)
-
-**Concept:**
-- Meridian Properties — Real Estate (→ /demos/demo-realestate.html)
-- APEX Fitness — Fitness (→ /demos/demo-gym.html)
+**Live:** Noor Beauty Center (noorbeauty.rs) · Marko Prevoznik · The Cannon (Arsenal blog)
+**Concept:** Meridian Properties (→ /demos/demo-realestate.html) · APEX Fitness (→ /demos/demo-gym.html)
 
 ---
 
-## POZICIONIRANJE (trenutno)
-- Jezik: **engleski, `<html lang="en">`**
-- Tvrdo usmereno na **US service businesses** (hero eyebrow, meta opis, copy)
-- Offer ladder: besplatan audit → landing page → website → AI add-on/retainer
-- **Plan (u toku):** omekšati "US-only", proširiti na US/UK + SR, uvesti dvojezičnost (EN-primaran + SR toggle) i pricing sekciju
-
----
-
-## KNOWN CLEANUP (za sređivanje)
-- Mrtvi duplikati: `components/Navbar.tsx` i `components/Footer.tsx` se NE koriste — aktivni su `components/layout/` verzije. Obrisati.
-- "SENIOR SIGNAL" labela u WhyUs/process sekciji — zaostali copy, ukloniti.
+## POZICIONIRANJE
+- **Dvojezičan**, EN primaran + SR prekidač. Market-neutral (skinuto tvrdo „US").
+- Offer ladder: besplatan audit → landing → website → AI add-on/retainer.
+- Cene, dva pojasa (vezana za jezik): Premium EN od $1.200/$3.000/$600 · Lokalni SR od €400/€900/€250. Uvek „od", tačna ponuda posle audita.
 
 ---
 
 ## DEPLOY FLOW
-```bash
-git add .
-git commit -m "update"
-git push          # main → Vercel auto-deploy
+```powershell
+# lokalno (Node 24 CA bug — vidi node-ca-workaround)
+$env:NODE_OPTIONS="--no-use-system-ca"; npm run dev
 ```
+```bash
+git push        # main → Vercel auto-deploy
+```
+Proces: rad na grani → push → Vercel preview URL → provera → merge u `main` → produkcija.
 
 ---
 
-## VAN OVOG PROJEKTA (ne meša se u sajt)
-- **Petković Gym** (https://petkovic-gym.vercel.app) — poseban proizvod (fitness/trening tracker, Google login, srpski). Drugi brend skin (zlatno/crno). Nije klijentski rad; ne ide u portfolio dok ne sazri.
+## VAN OVOG PROJEKTA
+- **Petković Gym** (petkovic-gym.vercel.app) — poseban proizvod (fitness tracker, Google login). Nije klijentski rad; ne ide u portfolio dok ne sazri.

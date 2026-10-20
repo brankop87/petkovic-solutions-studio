@@ -91,14 +91,18 @@ Redom, da ne lupamo glavu i znamo na čemu smo:
 2. [x] Vercel env očišćen (ostale 3 žive). ⏳ Ostaje: rotacija `RESEND_API_KEY` kao Secret (vidi „OSTALO DA BRANKO ISPEGLA").
 3. [ ] Push na `main` → Vercel deploy → proveriti headere na securityheaders.com (cilj: A/A+).
 
-**B) Sadržaj — „ista priča" (sledeća sesija)**
-1. [ ] **Univerzalni headline** — skloniti vezivanje za jednu nišu; poruka „kreiramo tvoje digitalno prisustvo, ko god / gde god da si". Kandidat: *„Websites that make small businesses look like big ones."*
-2. [ ] **Proširiti demo primere** — već postoje `demo-gym` i `demo-realestate` (živi, upleteni u `data/projects.ts`). Dodati još niša koje gađamo u outreach-u: barbershop, nail salon, estetska klinika, cleaning. Jasno označeni kao „concept / sample", NE kao pravi klijenti → legit bez laži.
-3. [ ] **Oživeti IG/FB** — sadržaj kroz struku (before/after demoa, saveti), da profil izgleda aktivno i pre prvih klijenata.
+**B) Sadržaj + promocija (⬅ SLEDEĆI KORAK, dogovoreno 2026-10-20)**
+Cilj: dovesti ljude na sajt (posebno srpsko tržište — Faza 4 je tek *temelj*, SEO sam ne dovodi posetioce).
+1. [ ] **Univerzalni/oštriji headline** — market-neutral poruka. Kandidat: *„Websites that make small businesses look like big ones."*
+2. [ ] **1 ciljani demo** — NE gomila (zid „concept" = izgleda kao da nema klijente). Napraviti **jedan** demo u niši koju Branko trenutno najviše pičuje, jasno označen „concept". → **čeka Brankov odgovor: koju nišu najviše gađa.**
+3. [ ] **Lov na 1 preporuku (testimonial)** — ima 3 živa projekta, 0 preporuka = prava rupa. Jedna rečenica klijenta ispod projekta vredi više od bilo kog demoa.
+4. [ ] **Plan promocije za srpsko tržište** — konkretno: ključne reči/sadržaj za `/sr`, Google/IG/FB kanali, lokalni listinzi. (Razraditi kao zaseban korak.)
+5. [ ] **Oživeti IG/FB** — sadržaj kroz struku (before/after demoa, saveti), da profil deluje aktivno i pre prvih klijenata.
 
 **C) Kasnije (namenski)**
 - [ ] Next 16 + Tailwind 4 nadogradnja (gasi preostalih 9 vulnova; breaking, sa testom).
-- [ ] `hreflang` / `/sr` rute ako SR treba da rangira.
+- [x] `hreflang` / `/sr` rute → **urađeno (Faza 4, 2026-10-20).**
+- [ ] (opciono, više „wow" na sajtu) hover-tilt na projektima, brojke koje se nabrajaju (+social proof), živ gradijent u hero-u.
 
 ---
 
@@ -142,11 +146,11 @@ Ostaje tebi (traži pristup nalozima):
 - [x] Prevedene podstranice (onama, usluge, projekti, kontakt)
 - [x] SR pricing pojas (EUR) — Landing €400 / Sajt €900 / AI €250
 - [x] ChatbotWidget preveden (konverzacija + budžet opcije u €)
-- [ ] (opciono) `hreflang` — samo ako pređemo na `/sr` URL-ove; zasad isti URL + cookie
+- [x] `hreflang` / `/sr` URL-ovi → urađeno u **Fazi 4** (2026-10-20)
 
-**Faza 3 je gotova.** Ceo sajt (homepage + podstranice + chrome + chatbot) je dvojezičan EN/SR, cene menjaju valutu. Ostaje samo odluka o `/sr` URL-ovima za SEO (opciono, kasnije).
+**Faza 3 je gotova.** Ceo sajt (homepage + podstranice + chrome + chatbot) je dvojezičan EN/SR, cene menjaju valutu.
 
-**Kako i18n radi:** sav sadržaj je `Record<Locale, ...>` u `data/` (site, services, projects, pricing, pages) + rečnici chrome-a u `data/i18n.ts`. Server komponente čitaju jezik preko `getLocale()` (`lib/locale-server.ts`, čita cookie) i prosleđuju `locale` sekcijama; klijentske (Navbar, Footer, kontakt) koriste `useLocale()` iz `LocaleProvider`. Prekidač upisuje cookie `locale` + `router.refresh()`.
+> **Napomena (zastarelo posle Faze 4):** Faza 3 je bila cookie-based (isti URL). Od **Faze 4 (2026-10-20)** svaki jezik ima svoj URL (`/sr`), `getLocale()` čita `x-locale` header (ne cookie), prekidač menja URL. Aktuelna arhitektura i18n-a je u **[PROJECT_MAP.md](PROJECT_MAP.md)**.
 
 ---
 
@@ -159,6 +163,8 @@ Ostaje tebi (traži pristup nalozima):
 - **Gym app** (petkovic-gym.vercel.app) — poseban proizvod, NE ide na ovaj sajt zasad.
 
 ## Tačke za povratak (git)
+- `c4f2a16` — + scroll animacije (Faza 5, 2026-10-20)
+- `667c9ee` — + zasebni `/sr` URL-ovi + hreflang (Faza 4, 2026-10-20)
 - `ff542dd` — + OG slika + ažuriran checklist (2026-09-20)
 - `43890c2` — + zatvorene javne rute, očvršćena kontakt forma, robots/sitemap
 - `50b50eb` — + obrisan Bella Spa klijentski preview
