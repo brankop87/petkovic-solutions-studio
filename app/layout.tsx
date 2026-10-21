@@ -6,6 +6,7 @@ import SiteChrome from "@/components/layout/SiteChrome";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { getLocale } from "@/lib/locale-server";
 import { siteUrl } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
@@ -58,6 +59,7 @@ export default async function RootLayout({
         <LocaleProvider>
           <SiteChrome>{children}</SiteChrome>
         </LocaleProvider>
+        <Analytics />
       </body>
     </html>
   );
