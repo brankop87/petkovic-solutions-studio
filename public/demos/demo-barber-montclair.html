@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Montclair Barbershop — Upper Montclair, NJ</title>
+<meta name="description" content="Established barbershop in Upper Montclair, NJ. Fades, classic cuts, straight-razor shaves. Book your chair.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15130f; --ink2:#1c1a15; --paper:#f2ede4; --muted:#9c9488; --muted2:#c9c2b4;
+    --accent:#e2a63c; --hair:rgba(242,237,228,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;} html,body{margin:0;padding:0;}
+  body{ background:var(--ink); color:var(--paper);
+    font-family:'Work Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;} img{max-width:100%;display:block;}
+  .display{ font-family:'Bebas Neue',sans-serif; letter-spacing:0.02em; }
+  .eyebrow{font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted);}
+  section{ max-width:1320px; margin:0 auto; }
+  .rv{opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);}
+  .rv.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1;transform:none;transition:none;} .pole i{animation:none;} }
+
+  header{ position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px; background:linear-gradient(to bottom, rgba(10,9,7,0.85), rgba(10,9,7,0)); }
+  header .wordmark{ font-family:'Bebas Neue',sans-serif; font-size:23px; letter-spacing:0.08em; color:#fff; }
+  header .wordmark b{color:var(--accent);font-weight:400;}
+  header nav{ display:flex; gap:26px; align-items:center;}
+  header nav a{ font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; }
+  header nav a:hover{color:var(--accent);}
+  .nav-cta{ border:1px solid var(--hair); padding:9px 16px; border-radius:2px; }
+  .nav-cta:hover{ border-color:var(--accent); color:var(--accent);}
+  @media (max-width:720px){ header nav a:not(.nav-cta){display:none;} header{padding:16px 22px;} }
+
+  .pole{ width:20px; height:92px; border-radius:11px; overflow:hidden; border:2px solid rgba(242,237,228,0.5); box-shadow:0 6px 24px rgba(0,0,0,.5);}
+  .pole i{ display:block; height:400%;
+    background:repeating-linear-gradient(48deg, #c0392b 0 11px, #f4efe6 11px 22px, #2c5fa8 22px 33px, #f4efe6 33px 44px); animation:spin 1.8s linear infinite; }
+  @keyframes spin{ to{ transform:translateY(-44px);} }
+
+  .hero{ position:relative; min-height:100vh; display:flex; align-items:flex-end; max-width:none; }
+  .hero .bg{ position:absolute; inset:0; } .hero .bg img{ width:100%; height:100%; object-fit:cover; }
+  .hero .scrim{ position:absolute; inset:0; background:linear-gradient(to top, rgba(12,10,8,0.92) 4%, rgba(12,10,8,0.35) 48%, rgba(12,10,8,0.6)); }
+  .hero .inner{ position:relative; z-index:2; width:100%; max-width:1320px; margin:0 auto; padding:0 40px 72px; }
+  .hero .row{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+  .hero h1{ margin:14px 0 0; font-size:clamp(52px,10vw,132px); line-height:0.86; } .hero h1 span{ color:var(--accent); }
+  .hero p.sub{ margin:22px 0 0; max-width:460px; font-size:16px; line-height:1.7; color:var(--muted2); }
+  .btns{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  .btn{ display:inline-flex; align-items:center; gap:9px; padding:15px 26px; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; }
+  .btn-gold{ background:var(--accent); color:#1a1408; } .btn-gold:hover{ opacity:.9; }
+  .btn-line{ border:1px solid rgba(242,237,228,0.4); color:#fff; } .btn-line:hover{ border-color:var(--accent); color:var(--accent); }
+  .btn svg{ width:17px; height:17px; }
+  @media (max-width:720px){ .hero .inner{padding:0 22px 48px;} .hero .pole{display:none;} }
+
+  /* reviews strip (US social proof) */
+  .reviews{ border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); background:var(--ink2); max-width:none; }
+  .reviews .wrap{ max-width:1320px; margin:0 auto; padding:40px; display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+  .reviews .stars{ font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--accent); letter-spacing:4px; white-space:nowrap; }
+  .reviews .stars small{ display:block; font-family:'Work Sans',sans-serif; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+  .reviews .quotes{ display:flex; gap:40px; flex-wrap:wrap; flex:1; }
+  .reviews blockquote{ margin:0; font-size:15px; line-height:1.6; color:var(--muted2); max-width:300px; }
+  .reviews blockquote cite{ display:block; margin-top:8px; font-size:12px; color:var(--muted); font-style:normal; letter-spacing:0.06em; }
+  @media (max-width:760px){ .reviews .wrap{padding:30px 22px; gap:24px;} }
+
+  .services{ padding:110px 40px 40px; }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:40px; }
+  .sec-head h2{ margin:0; font-size:clamp(32px,5vw,58px); } .sec-head .eyebrow{ color:var(--accent); }
+  .price-list{ display:grid; grid-template-columns:1fr 1fr; gap:0 72px; }
+  .price{ display:flex; align-items:baseline; gap:14px; padding:20px 0; border-bottom:1px solid var(--hair); }
+  .price .name{ font-size:19px; } .price .desc{ font-size:13px; color:var(--muted); }
+  .price .dots{ flex:1; border-bottom:1px dotted rgba(242,237,228,0.25); transform:translateY(-4px); }
+  .price .amt{ font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:0.03em; color:var(--accent); white-space:nowrap; }
+  @media (max-width:760px){ .price-list{ grid-template-columns:1fr; gap:0;} .services{padding:88px 22px 30px;} }
+
+  .gallery{ padding:80px 40px; }
+  .grid{ display:grid; grid-template-columns:1fr 1.3fr 1fr; grid-auto-rows:260px; gap:6px; }
+  .grid a{ overflow:hidden; background:#221f1a; } .grid img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; filter:grayscale(8%); }
+  .grid a:hover img{ transform:scale(1.05); } .grid .tall{ grid-row:span 2; }
+  @media (max-width:760px){ .gallery{padding:50px 22px;} .grid{ grid-template-columns:1fr 1fr; grid-auto-rows:180px;} }
+
+  .craft{ display:flex; gap:64px; flex-wrap:wrap; align-items:center; padding:60px 40px 100px; border-top:1px solid var(--hair); }
+  .craft .text{ flex:1 1 420px; }
+  .craft blockquote{ margin:14px 0 0; font-size:clamp(23px,3vw,34px); line-height:1.35; font-style:italic; color:var(--muted2); max-width:520px; }
+  .craft p{ margin:26px 0 0; max-width:470px; font-size:15.5px; line-height:1.8; color:var(--muted); }
+  .craft .photo{ flex:1 1 320px; } .craft .photo img{ width:100%; aspect-ratio:4/5; object-fit:cover; }
+  @media (max-width:760px){ .craft{padding:44px 22px 70px; gap:36px;} }
+
+  .visit{ background:var(--ink2); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); max-width:none; }
+  .visit .wrap{ max-width:1320px; margin:0 auto; padding:100px 40px; display:flex; gap:72px; flex-wrap:wrap; }
+  .visit .col{ flex:1 1 360px; } .visit h2{ margin:12px 0 26px; font-size:clamp(30px,4vw,48px); line-height:1.05; }
+  .hours{ width:100%; border-collapse:collapse; max-width:400px; }
+  .hours td{ padding:11px 0; border-bottom:1px solid var(--hair); font-size:15px; } .hours td:last-child{ text-align:right; color:var(--muted2); }
+  .map-frame{ border:1px solid var(--hair); margin-bottom:28px; }
+  .map-embed{ display:block; width:100%; aspect-ratio:16/10; border:0; filter:grayscale(1) invert(92%) contrast(88%); }
+  .contact-line{ font-size:15px; margin-bottom:10px; } .contact-line b{ color:var(--muted); font-weight:400; display:inline-block; width:92px; }
+  .visit .btns{ margin-top:26px; }
+  @media (max-width:760px){ .visit .wrap{padding:66px 22px; gap:44px;} }
+
+  footer{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:26px 40px; font-size:12px; color:var(--muted); }
+  @media (max-width:760px){ footer{padding:22px;} }
+  .concept{ position:fixed; z-index:90; right:14px; bottom:14px; background:rgba(20,18,14,0.9); border:1px solid var(--accent); color:var(--accent);
+    font-size:10px; letter-spacing:0.16em; text-transform:uppercase; padding:8px 12px; border-radius:3px; backdrop-filter:blur(6px);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="wordmark">MONTCLAIR <b>BARBERSHOP</b></a>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#visit">Visit</a>
+    <a href="https://instagram.com/montclairbarbershop" target="_blank" rel="noreferrer" class="nav-cta">Book</a>
+  </nav>
+</header>
+
+<section id="top" class="hero">
+  <div class="bg">
+    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2200&q=80" alt="Barbershop interior with vintage chairs and warm light">
+    <div class="scrim"></div>
+  </div>
+  <div class="inner">
+    <div class="row">
+      <div class="rv in">
+        <div class="eyebrow" style="color:rgba(242,237,228,0.85)">Barbershop · Upper Montclair, NJ</div>
+        <h1 class="display">A CUT ABOVE.<br><span>EVERY TIME.</span></h1>
+        <p class="sub">An established Upper Montclair barbershop. Clean fades, classic cuts and a straight-razor finish - with a chair that is worth the trip.</p>
+        <div class="btns">
+          <a class="btn btn-gold" href="https://instagram.com/montclairbarbershop" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Book on Instagram
+          </a>
+          <a class="btn btn-line" href="tel:+19739322025">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1z"/></svg>
+            Call / Text
+          </a>
+        </div>
+      </div>
+      <div class="pole" aria-hidden="true"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS (US social proof) -->
+<section class="reviews">
+  <div class="wrap rv">
+    <div class="stars">★★★★★<small>Loved on Instagram</small></div>
+    <div class="quotes">
+      <blockquote>"Best fade in Montclair, hands down."<cite>- a regular</cite></blockquote>
+      <blockquote>"In and out, clean line every single time."<cite>- walk-in</cite></blockquote>
+      <blockquote>"Been coming here for years. Never disappoints."<cite>- Mike R.</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="sec-head rv">
+    <div><div class="eyebrow">Price list</div><h2 class="display">SERVICES</h2></div>
+    <span style="font-size:13px;color:var(--muted);max-width:300px">Walk-ins welcome when there's a chair open - DM us on Instagram to lock in a time.</span>
+  </div>
+  <div class="price-list rv">
+    <div class="price"><div><div class="name">Haircut</div><div class="desc">Clippers &amp; shears, styled</div></div><span class="dots"></span><span class="amt">$30</span></div>
+    <div class="price"><div><div class="name">Skin Fade</div><div class="desc">Clean taper, blended to the skin</div></div><span class="dots"></span><span class="amt">$35</span></div>
+    <div class="price"><div><div class="name">Hot Towel Shave</div><div class="desc">Straight razor + hot towel</div></div><span class="dots"></span><span class="amt">$35</span></div>
+    <div class="price"><div><div class="name">Beard Trim</div><div class="desc">Shape up &amp; line</div></div><span class="dots"></span><span class="amt">$20</span></div>
+    <div class="price"><div><div class="name">Cut + Beard</div><div class="desc">The full treatment</div></div><span class="dots"></span><span class="amt">$45</span></div>
+    <div class="price"><div><div class="name">Kids Cut</div><div class="desc">12 &amp; under</div></div><span class="dots"></span><span class="amt">$25</span></div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="sec-head rv"><div><div class="eyebrow" style="color:var(--accent)">From the chair</div><h2 class="display">THE WORK</h2></div></div>
+  <div class="grid rv">
+    <a href="#"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=80" alt="Beard trim with shears" loading="lazy"></a>
+    <a class="tall" href="#"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1000&q=80" alt="Precise fade and line with a razor" loading="lazy"></a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1100&q=80" alt="Vintage barber chair" loading="lazy"></a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1100&q=80" alt="Barbershop interior" loading="lazy"></a>
+  </div>
+</section>
+
+<section class="craft">
+  <div class="text rv">
+    <div class="eyebrow" style="color:var(--accent)">The shop</div>
+    <blockquote class="display" style="font-family:'Work Sans',sans-serif;font-weight:400;">"A good haircut isn't rushed. You sit down, we take our time, and you walk out standing a little taller."</blockquote>
+    <p>No conveyor belt, no "next." Every head gets the time it needs - from the consultation to the last pass with the razor. Classic cuts, modern fades, and a beard lined up the way it should be.</p>
+  </div>
+  <div class="photo rv"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80" alt="Barber at work" loading="lazy"></div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="wrap">
+    <div class="col rv">
+      <div class="eyebrow" style="color:var(--accent)">Come through</div>
+      <h2 class="display">HOURS<br>&amp; LOCATION</h2>
+      <table class="hours">
+        <tr><td>Monday - Friday</td><td>9 AM - 7 PM</td></tr>
+        <tr><td>Saturday</td><td>9 AM - 5 PM</td></tr>
+        <tr><td>Sunday</td><td>Closed</td></tr>
+      </table>
+      <div style="height:26px"></div>
+      <div class="contact-line"><b>Address</b>Broadway, Upper Montclair, NJ</div>
+      <div class="contact-line"><b>Phone</b>(973) 932-2025</div>
+      <div class="contact-line"><b>Instagram</b>@montclairbarbershop</div>
+      <div class="btns">
+        <a class="btn btn-gold" href="https://instagram.com/montclairbarbershop" target="_blank" rel="noreferrer">Book on Instagram</a>
+        <a class="btn btn-line" href="tel:+19739322025">Call / Text</a>
+      </div>
+    </div>
+    <div class="col rv">
+      <div class="map-frame">
+        <iframe class="map-embed" src="https://www.google.com/maps?q=Valley+Rd,+Upper+Montclair,+NJ&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Location - Upper Montclair, NJ"></iframe>
+      </div>
+      <p style="font-size:14px;line-height:1.7;color:var(--muted);max-width:420px">Right on Broadway, easy to find and easy to park. Best move is to DM us on Instagram before you head over - skip the wait and grab the time that works for you.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="wordmark" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--paper)">FAST <span style="color:var(--accent)">MACHINE</span></span>
+  <span>© 2026 · Barbershop · Upper Montclair, NJ</span>
+</footer>
+
+<div class="concept">Concept · demo · Petkovic Solutions</div>
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, {threshold:0.15});
+  document.querySelectorAll('.rv:not(.in)').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
