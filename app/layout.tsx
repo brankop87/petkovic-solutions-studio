@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     template: "%s | Petkovic Solutions",
   },
   description,
+  verification: {
+    google: "JIGqBqrsTfwtDM43kgiKX2BwUQx3ZNQ8XfZwwws81EI",
+  },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
