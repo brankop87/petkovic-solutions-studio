@@ -5,6 +5,12 @@ export const brand = "Petkovic Solutions";
 export const siteUrl = "https://petkovicsolutions.com";
 export const contact = { email: "info@petkovicsolutions.com" };
 
+// Link na spoljni kalendar (Cal.com / Calendly). Postavlja se kao env
+// promenljiva BOOKING_URL na Vercelu. Dok nije postavljen ili nije https,
+// blok za zakazivanje se jednostavno ne prikazuje - sajt radi normalno.
+const rawBookingUrl = process.env.BOOKING_URL ?? "";
+export const bookingUrl = rawBookingUrl.startsWith("https://") ? rawBookingUrl : "";
+
 type SiteContent = {
   hero: {
     eyebrow: string;

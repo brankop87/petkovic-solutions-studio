@@ -42,6 +42,10 @@ type PagesContent = {
     success: string;
     error: string;
     rateLimited: string;
+    bookLabel: string;
+    bookBody: string;
+    bookCta: string;
+    bookNote: string;
   };
 };
 
@@ -103,6 +107,11 @@ export const pages: Record<Locale, PagesContent> = {
       success: "Message sent successfully.",
       error: "Something went wrong. Please try again.",
       rateLimited: "Too many messages from this connection. Please try again in a few minutes.",
+      bookLabel: "Book a call",
+      bookBody:
+        "Pick a time that suits you and we go through your site together, live. Twenty minutes, no slides, no obligation.",
+      bookCta: "See available times",
+      bookNote: "Times are shown in your own timezone.",
     },
   },
 
@@ -163,6 +172,11 @@ export const pages: Record<Locale, PagesContent> = {
       success: "Poruka je uspešno poslata.",
       error: "Nešto nije u redu. Pokušaj ponovo.",
       rateLimited: "Previše poruka sa ove veze. Pokušaj ponovo za nekoliko minuta.",
+      bookLabel: "Zakaži razgovor",
+      bookBody:
+        "Izaberi termin koji ti odgovara i prođemo kroz tvoj sajt zajedno, uživo. Dvadeset minuta, bez prezentacije i bez obaveze.",
+      bookCta: "Pogledaj slobodne termine",
+      bookNote: "Termini se prikazuju u tvojoj vremenskoj zoni.",
     },
   },
 };

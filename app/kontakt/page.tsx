@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale } from "@/lib/locale-server";
 import { metaFor } from "@/lib/i18n-meta";
-import { contact } from "@/data/site";
+import { contact, bookingUrl } from "@/data/site";
 import { pages } from "@/data/pages";
 import ContactForm from "@/components/contact/ContactForm";
 
@@ -31,6 +31,27 @@ export default async function ContactPage() {
           </h1>
 
           <p className="mt-8 text-base leading-8 text-[var(--muted)]">{t.lead}</p>
+
+          {bookingUrl ? (
+            <div className="mt-8 rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7">
+              <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
+                {t.bookLabel}
+              </div>
+
+              <p className="mt-3 text-sm leading-7 text-[var(--muted-strong)]">{t.bookBody}</p>
+
+              <a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-block rounded-full bg-[var(--accent)] px-6 py-4 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"
+              >
+                {t.bookCta}
+              </a>
+
+              <p className="mt-4 text-xs leading-6 text-[var(--muted)]">{t.bookNote}</p>
+            </div>
+          ) : null}
 
           <div className="mt-8 rounded-[28px] border border-[var(--line)] bg-[var(--surface)] p-7">
             <div className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">
