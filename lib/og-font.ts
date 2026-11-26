@@ -20,3 +20,12 @@ export async function loadGoogleFont(family: string, weight: number, text: strin
     return null;
   }
 }
+
+// next/og (satori) pogresno meri tokene tipa "broj.broj" (npr. "29.11") i iza
+// njih ostavi preveliki razmak ("29.11.  u 23:59"). Secenje izmedju "29." i
+// "11" u posebne delove to resava: nijedan deo vise nema obrazac broj.broj.
+// Svaki deo se renderuje kao zaseban <span>.
+export function splitNumbersForOg(text: string): string[] {
+  return text.split(/(?<=\d\.)(?=\d)/);
+}
+

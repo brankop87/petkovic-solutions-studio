@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { loadGoogleFont } from "@/lib/og-font";
+import { loadGoogleFont, splitNumbersForOg } from "@/lib/og-font";
 
 // Kartica koja se pojavi kad se link /sr/giveaway podeli (WhatsApp, Instagram,
 // Messenger, Viber...). Zamenjuje opstu englesku OG sliku samo za ovu stranu.
@@ -116,7 +116,9 @@ export default async function GiveawayOgImage() {
           }}
         >
           <div style={{ display: "flex", fontFamily: sans, fontSize: 23, color: "#bdf1d9" }}>
-            {deadline}
+            {splitNumbersForOg(deadline).map((part, index) => (
+              <span key={index}>{part}</span>
+            ))}
           </div>
           <div style={{ display: "flex", fontFamily: sans, fontSize: 21, color: "#a7b0a5" }}>
             {domain}
