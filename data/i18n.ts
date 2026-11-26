@@ -20,6 +20,10 @@ export function localePath(path: string, locale: Locale): string {
 }
 
 // Navigation: hrefs are shared, labels per locale.
+// Strane koje postoje samo na srpskom (nemaju EN parnjaka). Jezicki prekidac
+// sa njih vodi na EN pocetnu umesto na nepostojeci EN URL (404).
+export const srOnlyPaths: string[] = ["/sr/giveaway"];
+
 export const nav: { href: string; en: string; sr: string }[] = [
   { href: "/#work", en: "Work", sr: "Radovi" },
   { href: "/#services", en: "Services", sr: "Usluge" },

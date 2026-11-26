@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "@/components/i18n/LocaleProvider";
-import { ui } from "@/data/i18n";
+import { srOnlyPaths, ui } from "@/data/i18n";
 
 export default function LanguageSwitcher() {
   const { locale } = useLocale();
@@ -13,7 +13,9 @@ export default function LanguageSwitcher() {
   // Toggle between the EN (root) and SR ("/sr") URL for the current page.
   const target =
     locale === "sr"
-      ? pathname.replace(/^\/sr/, "") || "/"
+      ? srOnlyPaths.includes(pathname)
+        ? "/"
+        : pathname.replace(/^\/sr/, "") || "/"
       : pathname === "/"
         ? "/sr"
         : `/sr${pathname}`;
