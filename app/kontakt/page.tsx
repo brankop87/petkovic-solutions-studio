@@ -11,9 +11,19 @@ export async function generateMetadata(): Promise<Metadata> {
   return metaFor("/kontakt", locale, { title: t.eyebrow, description: t.lead });
 }
 
-export default async function ContactPage() {
+type ContactPageProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
   const locale = await getLocale();
-  const t = pages[locale].contact;
+  const params = (await searchParams) ?? {};
+  // ?tema=ponuda (npr. dugme na giveaway strani): ista forma i isti mejl,
+  // samo tekst za nekoga ko tek trazi sajt umesto pregleda postojeceg.
+  const isQuote = params.tema === "ponuda";
+  const t = isQuote
+    ? { ...pages[locale].contact, ...pages[locale].contactQuote }
+    : pages[locale].contact;
 
   return (
     <section className="px-6 pb-20 pt-28 sm:px-8 lg:px-10 lg:pb-24 lg:pt-36">

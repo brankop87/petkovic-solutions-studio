@@ -162,10 +162,10 @@ export default function GiveawayPage() {
               {site.hero.secondaryCta}
             </Link>
             <Link
-              href={localePath("/kontakt", "sr")}
+              href={`${localePath("/kontakt", "sr")}?tema=ponuda`}
               className="inline-flex rounded-full bg-[var(--accent)] px-7 py-3 text-sm font-semibold text-[#06110d] transition hover:bg-[var(--accent-hover)]"
             >
-              {site.cta.primaryCta}
+              {cta.quoteLabel}
             </Link>
           </div>
         </Reveal>

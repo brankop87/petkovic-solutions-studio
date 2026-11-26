@@ -47,6 +47,15 @@ type PagesContent = {
     bookCta: string;
     bookNote: string;
   };
+  // Kontakt strana kad se otvori sa ?tema=ponuda: ista forma, tekst za nekoga
+  // ko tek trazi sajt (npr. sa giveaway strane), umesto "posalji svoj sajt".
+  contactQuote: {
+    title: string;
+    lead: string;
+    helpsBody: string;
+    messagePlaceholder: string;
+    submit: string;
+  };
 };
 
 export const pages: Record<Locale, PagesContent> = {
@@ -113,6 +122,14 @@ export const pages: Record<Locale, PagesContent> = {
       bookCta: "See available times",
       bookNote: "Times are shown in your own timezone.",
     },
+    contactQuote: {
+      title: "Get a quote for your website.",
+      lead: "Tell us what your business does and what you need. We will reply with a price and a timeline, no obligation.",
+      helpsBody:
+        "What you do and where you are based, what the site needs most (services, prices, gallery, contact), and when you need it.",
+      messagePlaceholder: "What does your business do, where are you based, and what should the site include?",
+      submit: "Request a quote",
+    },
   },
 
   sr: {
@@ -177,6 +194,14 @@ export const pages: Record<Locale, PagesContent> = {
         "Izaberi termin koji ti odgovara i prođemo kroz tvoj sajt zajedno, uživo. Dvadeset minuta, bez prezentacije i bez obaveze.",
       bookCta: "Pogledaj slobodne termine",
       bookNote: "Termini se prikazuju u tvojoj vremenskoj zoni.",
+    },
+    contactQuote: {
+      title: "Zatraži ponudu za sajt.",
+      lead: "Napiši čime se baviš i šta ti treba. Javljamo se sa cenom i rokom izrade, bez obaveze.",
+      helpsBody:
+        "Čime se baviš i gde se nalaziš, šta sajt najviše treba da ima (usluge, cene, galerija, kontakt) i do kada ti treba.",
+      messagePlaceholder: "Čime se baviš, gde se nalaziš i šta želiš da bude na sajtu.",
+      submit: "Zatraži ponudu",
     },
   },
 };

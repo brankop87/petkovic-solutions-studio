@@ -178,5 +178,6 @@ export const giveaway = {
   },
   cta: {
     title: "Ne želiš da čekaš izvlačenje?",
+    quoteLabel: "Zatraži ponudu",
   },
 };
