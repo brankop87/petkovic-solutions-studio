@@ -4,6 +4,9 @@
 
 export const instagramHandle = "@petkovicsolutions";
 export const instagramUrl = "https://www.instagram.com/petkovicsolutions";
+// Giveaway post (objavljen 26.11.2026.). Link bez ?utm_source i ostalih
+// oznaka za pracenje koje Instagram doda pri kopiranju.
+export const giveawayPostUrl = "https://www.instagram.com/p/DgL6M_liL1g/";
 
 export type GiveawayBlock =
   | { type: "p"; text: string }

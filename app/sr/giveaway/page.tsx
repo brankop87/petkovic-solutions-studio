@@ -3,7 +3,13 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { localePath } from "@/data/i18n";
 import { siteContent } from "@/data/site";
-import { giveaway, instagramHandle, instagramUrl, type GiveawayBlock } from "@/data/giveaway";
+import {
+  giveaway,
+  giveawayPostUrl,
+  instagramHandle,
+  instagramUrl,
+  type GiveawayBlock,
+} from "@/data/giveaway";
 import Reveal from "@/components/motion/Reveal";
 
 // Strana postoji samo na srpskom, pa NE koristi metaFor(): on bi dodao
@@ -24,18 +30,23 @@ export const metadata: Metadata = {
   },
 };
 
-// Pretvara svako pominjanje Instagram naloga (@handle ili instagram.com/...)
-// u tekstu u link ka profilu.
-const instagramToken = new RegExp(
-  `(${instagramHandle}|instagram\\.com/${instagramHandle.slice(1)})`,
-);
+// Reci u tekstu koje postaju linkovi: Instagram nalog (@handle ili
+// instagram.com/...) vodi na profil, "giveaway posta" vodi na sam post.
+const linkTokens: { text: string; href: string }[] = [
+  { text: instagramHandle, href: instagramUrl },
+  { text: `instagram.com/${instagramHandle.slice(1)}`, href: instagramUrl },
+  { text: "giveaway posta", href: giveawayPostUrl },
+];
+
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const linkPattern = new RegExp(`(${linkTokens.map((token) => escapeRegExp(token.text)).join("|")})`);
 
 function withInstagramLink(text: string): ReactNode {
-  return text.split(instagramToken).map((part, index) =>
+  return text.split(linkPattern).map((part, index) =>
     index % 2 === 1 ? (
       <a
         key={index}
-        href={instagramUrl}
+        href={linkTokens.find((token) => token.text === part)?.href ?? instagramUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="text-[var(--accent-strong)] underline decoration-[var(--line)] underline-offset-4 transition hover:text-white"
