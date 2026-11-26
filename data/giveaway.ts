@@ -40,6 +40,8 @@ export const giveaway = {
   },
   rules: {
     eyebrow: "Pravila",
+    // Menja se svaki put kad se pravila izmene posle objave (tacka 13).
+    updated: "Poslednja izmena pravila: 26.11.2026.",
     items: [
       {
         title: "1. Organizator",
@@ -55,7 +57,7 @@ export const giveaway = {
         blocks: [
           {
             type: "p",
-            text: "Od petka, 27.11.2026. do nedelje, 29.11.2026. u 23:59. Komentari posle toga ne učestvuju.",
+            text: "Od objave posta u četvrtak, 26.11.2026. do nedelje, 29.11.2026. u 23:59. Komentari posle toga ne učestvuju.",
           },
         ],
       },

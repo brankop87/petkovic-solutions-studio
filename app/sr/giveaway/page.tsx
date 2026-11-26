@@ -150,6 +150,10 @@ export default function GiveawayPage() {
               </div>
             ))}
           </div>
+
+          <p className="mt-8 border-t border-[var(--line)] pt-6 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
+            {rules.updated}
+          </p>
         </div>
       </section>
 
